@@ -1,0 +1,8 @@
+{
+	"hello": "hello 123123",
+	"home_page": {
+		"search_box_placeholder": "Find your favorite item",
+		"add_to_cart": "Add to cart",
+		"view_detail": "View detail"
+	}
+}

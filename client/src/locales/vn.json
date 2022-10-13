@@ -1,0 +1,8 @@
+{
+    "hello": "xin chào",
+    "home_page": {
+        "search_box_placeholder": "Tìm kiếm sản phẩm bạn yêu thích",
+        "add_to_cart": "Thêm vào giỏ hàng",
+        "view_detail": "Xem chi tiết"
+    }
+}
