@@ -1,5 +1,5 @@
 import i18n from 'i18next';
-import {initReactI18next} from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import SETTING from "./config/setting";
 import Backend from 'i18next-http-backend';
@@ -13,7 +13,7 @@ const resources = {
     vn: {
         translation: vn
     }
-}
+};
 
 i18n
 	.use(Backend)
@@ -30,8 +30,8 @@ i18n
 			escapeValue: false,
 		},
 		detection: {
-			order: ['path', 'cookie', 'htmlTag'],
-			caches: ['cookie'],
+			order: [ 'path', 'cookie', 'htmlTag' ],
+			caches: [ 'cookie' ],
 		},
 		resources,
 	});
