@@ -4,18 +4,19 @@ import { RiArrowDownSFill } from 'react-icons/ri';
 import supportsLanguagesArr from '../../config/supported_loacles';
 import { supportsLanguagesArrTypes } from '../../types/index';
 
-import i18next from 'i18next';
-import { getCookieData } from '../../utils/misc'; 
-import { COMMON_CONSTANTS } from '../../constants';
-import { setCookie } from 'typescript-cookie';
+import {useSelector, useDispatch} from 'react-redux';
+import type {RootState} from '../../store';
+import { changeLanguage } from '../../store/home';
 
 export default function LocalesSwitcher(): JSX.Element {
-	const currentLanguageCode: string | null | undefined =
-		getCookieData(COMMON_CONSTANTS.I18NEXT) || COMMON_CONSTANTS.VN;
+	const currentLanguageCode = useSelector(
+		(state: RootState) => state.changeLanguage.currentLanguage,
+	);
+
+	const dispatch = useDispatch();
     
     const handleChangeLanguage = (language: string) => {
-        i18next.changeLanguage(language);
-		setCookie( COMMON_CONSTANTS.I18NEXT, language );
+		dispatch(changeLanguage(language));
 		getCurrentLanguageItem();
 	}
 	

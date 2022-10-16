@@ -8,6 +8,6 @@ const getListItems = async () => {
     return response;
 };
 
-const home = {getListItems}
+const home = { getListItems };
 
 export default home;

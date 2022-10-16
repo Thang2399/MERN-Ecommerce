@@ -5,8 +5,9 @@ import Typography from '../base/Typography';
 import Image from '../base/Image';
 import Button from '../base/Button';
 import QuickViewItem from './QuickView';
-
-
+import { changeMoney } from '../../utils/misc';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 type Props = {
 	item: singleItemTypes;
@@ -14,6 +15,10 @@ type Props = {
 
 const SingleItem: React.FC<Props> = ({item}) => {
 	const [showQuickView, setShowQuickView] = useState<boolean>(false);
+
+	const currentLanguageCode = useSelector(
+		(state: RootState) => state.changeLanguage.currentLanguage,	
+	);
 
 	const handleClick = () =>{ 
 		console.log(123)
