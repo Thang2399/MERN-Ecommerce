@@ -5,8 +5,15 @@ export const getCookieData = (name: string) => {
     return getCookie(name);
 };
 
-export const changeMoney = ( price: string, currentLanguage: string ) =>
-{
+export const formatMoney = ( price: string | number ) =>{
+    let convertedPrice;
+    if (typeof price === 'number') {
+        convertedPrice = price;
+    } else convertedPrice = parseFloat( price );
+    return new Intl.NumberFormat('en-US').format(convertedPrice);
+};
+
+export const changeMoney = ( price: string, currentLanguage: string) =>{
     const convertedPrice: number = parseFloat( price );
     const exchangeRate = 23000;
     const result = {
@@ -14,13 +21,12 @@ export const changeMoney = ( price: string, currentLanguage: string ) =>
         currency: ''
     };
 
-    if ( currentLanguage === COMMON_CONSTANTS.VN )
-    {
-        const changedMoney = convertedPrice / exchangeRate;
-        return { ...result, price: changedMoney.toString(), currency: 'VND' };
-    } else if ( currentLanguage === COMMON_CONSTANTS.EN )
-    {
-        const changedMoney = convertedPrice * exchangeRate;
-        return { ...result, price: changedMoney.toString(), currency: 'USD' };
+    if (currentLanguage === COMMON_CONSTANTS.VN) {
+			const changedMoney = convertedPrice * exchangeRate;
+			return {
+				...result,
+				price: formatMoney(changedMoney),
+				currency: 'VND',
+			};
     }
 };

@@ -19,7 +19,6 @@ export const changeLanguageSlice = createSlice({
     initialState,
     reducers: {
         changeLanguage: (state, action: PayloadAction<string>) => {
-            console.log(state, action.payload);
             i18next.changeLanguage(action.payload);
             state.currentLanguage = action.payload;
             setCookie(COMMON_CONSTANTS.I18NEXT, action.payload);

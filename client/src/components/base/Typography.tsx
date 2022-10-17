@@ -14,7 +14,7 @@ const Typography: React.FC<Props> = ({
 	variant,
 	needTranslate,
 }) => {
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	const CustomTag = `${variant}` as keyof JSX.IntrinsicElements;
 
 	return (

@@ -4,8 +4,8 @@ import { RiArrowDownSFill } from 'react-icons/ri';
 import supportsLanguagesArr from '../../config/supported_loacles';
 import { supportsLanguagesArrTypes } from '../../types/index';
 
-import {useSelector, useDispatch} from 'react-redux';
-import type {RootState} from '../../store';
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState } from '../../store';
 import { changeLanguage } from '../../store/home';
 
 export default function LocalesSwitcher(): JSX.Element {
@@ -14,11 +14,13 @@ export default function LocalesSwitcher(): JSX.Element {
 	);
 
 	const dispatch = useDispatch();
-    
-    const handleChangeLanguage = (language: string) => {
-		dispatch(changeLanguage(language));
-		getCurrentLanguageItem();
-	}
+
+	const [ showSubmenu, setShowSubmenu ] = useState<boolean>(false);
+	const [ languages, setLanguages ] = useState<supportsLanguagesArrTypes>({
+		code: '',
+		language: '',
+		flag: '',
+	});
 	
 	const getCurrentLanguageItem = () => { 
 		const currentLanguage: supportsLanguagesArrTypes | undefined =
@@ -36,17 +38,14 @@ export default function LocalesSwitcher(): JSX.Element {
 
 	useEffect(() => {
 		getCurrentLanguageItem();
-	}, [currentLanguageCode]);
+	}, [ currentLanguageCode ]);
 	
 
-	const [languages, setLanguages] =
-		useState<supportsLanguagesArrTypes>({
-			code: '',
-			language: '',
-			flag: ''
-		});
+    const handleChangeLanguage = (language: string) => {
+			dispatch(changeLanguage(language));
+			getCurrentLanguageItem();
+		};
 
-	const [showSubmenu, setShowSubmenu] = useState<boolean>(false);
 
 	const onShowSubmenu = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -56,7 +55,7 @@ export default function LocalesSwitcher(): JSX.Element {
     const onHideSubmenu = ( e: React.MouseEvent<HTMLDivElement> ) =>{
         e.preventDefault();
 		setShowSubmenu(false);
-    }
+    };
 
 	return (
 		<div
