@@ -1,5 +1,5 @@
 import React from "react";
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     type: string,
@@ -7,11 +7,11 @@ type Props = {
     className?: string
 };
 
-const InputTextField: React.FC<Props> = ({type, placeholder, className}) => {
-    const {t} = useTranslation();
+const InputTextField: React.FC<Props> = ({ type, placeholder, className }) => {
+    const { t } = useTranslation();
     
     const handleChange = (e: any) => {
-            console.log(e.target.value)
+        console.log( e.target.value );
         };
 
     return (

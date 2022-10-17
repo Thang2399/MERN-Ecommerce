@@ -17,4 +17,4 @@ export default function Navbar(): JSX.Element {
 				<LocalesSwitcher />
 			</div>
 		);
-};
+}

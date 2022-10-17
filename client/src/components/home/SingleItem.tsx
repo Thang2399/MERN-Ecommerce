@@ -1,29 +1,22 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { singleItemTypes } from '../../types';
 
 import Typography from '../base/Typography';
 import Image from '../base/Image';
 import Button from '../base/Button';
-import QuickViewItem from './QuickView';
-import { changeMoney } from '../../utils/misc';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
 
 type Props = {
 	item: singleItemTypes;
 };
 
-const SingleItem: React.FC<Props> = ({item}) => {
-	const [showQuickView, setShowQuickView] = useState<boolean>(false);
-
-	const currentLanguageCode = useSelector(
-		(state: RootState) => state.changeLanguage.currentLanguage,	
-	);
-
-	const handleClick = () =>{ 
-		console.log(123)
+const SingleItem: React.FC<Props> = ({ item }) => {
+	const handleClick = (id: string) =>{ 
+		console.log(123);
 	};
 
+	const addToCart = async (id: string) => {
+		console.log("addToCart");
+	};
 
 	return (
 		<div
@@ -56,13 +49,13 @@ const SingleItem: React.FC<Props> = ({item}) => {
 
 			<div className={'flex justify-between items-center mt-3'}>
 				<Button
-					handleClick={handleClick}
+					handleClick={addToCart(item._id)}
 					content={'home_page.add_to_cart'}
 					buttonClassName={'bg-black w-3/5 mr-1'}
 					typoClassName={'text-white font-light'}
 				/>
 				<Button
-					handleClick={handleClick}
+					handleClick={handleClick(item._id)}
 					content={'home_page.view_detail'}
 					buttonClassName={'bg-gray-400 w-2/5'}
 					typoClassName={'text-white font-light'}
