@@ -6,7 +6,7 @@ type Props = {
 	needTranslate?: boolean;
     buttonClassName?: string;
     typoClassName?: string;
-	handleClick: any;
+	handleClick: (params: any) => any;
 };
 
 const Button: React.FC<Props> = ({
@@ -32,7 +32,7 @@ const Button: React.FC<Props> = ({
 };
 
 Button.defaultProps = {
-	buttonClassName: "bg-gray-400"
+	buttonClassName: 'bg-gray-400'
 };
 
 

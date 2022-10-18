@@ -1,4 +1,4 @@
-import { supportsLanguagesArrTypes } from "../types/index";
+import { supportsLanguagesArrTypes } from '../types/index';
 
 const supportsLanguagesArr: supportsLanguagesArrTypes[] = [
 	{

@@ -1,10 +1,10 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import SETTING from "./config/setting";
+import SETTING from './config/setting';
 import Backend from 'i18next-http-backend';
-import vn from "./locales/vn.json";
-import en from "./locales/en.json";
+import vn from './locales/vn.json';
+import en from './locales/en.json';
 
 const resources = {
     en: {
