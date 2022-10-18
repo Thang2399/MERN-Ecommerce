@@ -1,5 +1,5 @@
 import { getCookie } from 'typescript-cookie';
-import { COMMON_CONSTANTS } from "../constants";
+import { COMMON_CONSTANTS } from '../constants';
 
 export const getCookieData = (name: string) => {
     return getCookie(name);

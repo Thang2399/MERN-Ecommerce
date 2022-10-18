@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { showQuickView, getDetailItem } from '../../store/home';
 import { singleItemTypes } from '../../types';
 
 import Typography from '../base/Typography';
@@ -10,12 +13,15 @@ type Props = {
 };
 
 const SingleItem: React.FC<Props> = ({ item }) => {
-	const handleClick = (id: string) =>{ 
-		console.log(123);
+	const dispatch = useDispatch();
+
+	const handleViewDetailItem = (id: string) => {
+		dispatch(showQuickView(true));
+		dispatch(getDetailItem(id));
 	};
 
 	const addToCart = async (id: string) => {
-		console.log("addToCart");
+		console.log('addToCart');
 	};
 
 	return (
@@ -49,13 +55,13 @@ const SingleItem: React.FC<Props> = ({ item }) => {
 
 			<div className={'flex justify-between items-center mt-3'}>
 				<Button
-					handleClick={addToCart(item._id)}
+					handleClick={() => addToCart(item._id)}
 					content={'home_page.add_to_cart'}
 					buttonClassName={'bg-black w-3/5 mr-1'}
 					typoClassName={'text-white font-light'}
 				/>
 				<Button
-					handleClick={handleClick(item._id)}
+					handleClick={() => handleViewDetailItem(item._id)}
 					content={'home_page.view_detail'}
 					buttonClassName={'bg-gray-400 w-2/5'}
 					typoClassName={'text-white font-light'}

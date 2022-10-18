@@ -19,8 +19,8 @@ const Image: React.FC<Props> = ({ imgUrl, alt, className }) => {
 };
 
 Image.defaultProps = {
-    alt: "img-item",
-    className: ""
+    alt: 'img-item',
+    className: 'w-full h-full'
 };
 
 export default Image;

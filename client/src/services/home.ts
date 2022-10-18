@@ -1,13 +1,17 @@
-import axios from "axios";
+import axios from 'axios';
 
-    const endpoint = process.env.REACT_APP_SERVER_END_POINT;
-
+const endpoint = process.env.REACT_APP_SERVER_END_POINT;
 
 const getListItems = async () => {
-    const response =  axios.get(`${endpoint}/items`);
+    const response = await axios.get(`${endpoint}/items`);
     return response;
 };
 
-const home = { getListItems };
+const getSingleItem = async (id: string) => {
+    const response = await axios.get(`${endpoint}/items/${id}`);
+    return response;
+};
+
+const home = { getListItems, getSingleItem };
 
 export default home;
