@@ -22,11 +22,29 @@ export const changeMoney = ( price: string, currentLanguage: string) =>{
     };
 
     if (currentLanguage === COMMON_CONSTANTS.VN) {
-			const changedMoney = convertedPrice * exchangeRate;
-			return {
-				...result,
-				price: formatMoney(changedMoney),
-				currency: 'VND',
-			};
+        const changedMoney = convertedPrice * exchangeRate;
+        return {
+            ...result,
+            price: formatMoney(changedMoney),
+            currency: 'đ',
+        };
     }
 };
+
+    export const convertMoney = (money: string, currency: string, currentLanguage: string) => {
+        const moneyData = money;
+        if (currentLanguage === COMMON_CONSTANTS.VN) {
+            const convertPrice = changeMoney(moneyData, currentLanguage);
+            if (convertPrice) {
+                return {
+                    price: convertPrice.price,
+                    currency: convertPrice.currency,
+                };
+            }
+        } else {
+            return {
+                price: formatMoney(moneyData),
+                currency
+            };
+        }
+    };

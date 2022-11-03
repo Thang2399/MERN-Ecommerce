@@ -1,8 +1,14 @@
 {
-    "hello": "xin chào",
     "home_page": {
         "search_box_placeholder": "Tìm kiếm sản phẩm bạn yêu thích",
         "add_to_cart": "Thêm vào giỏ hàng",
-        "view_detail": "Xem chi tiết"
+        "view_detail": "Xem chi tiết",
+      "cart": {
+        "empty_cart": "Giỏ hàng của bạn đang trống.",
+        "subtotal": "Tổng cộng:",
+        "remove_item": "Xoá sản phẩm",
+        "delete_cart": "Xoá giỏ hàng",
+        "checkout": "Tiến hành thanh toán"
+      }
     }
 }
