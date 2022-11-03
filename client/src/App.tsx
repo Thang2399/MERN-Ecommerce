@@ -3,10 +3,10 @@ import PrivateLayout from './layouts/PrivateLayout';
 
 export default function App(): JSX.Element {
 
-	return (
-		<div className='App'>
-			<PublicLayout />
-			{/* <PrivateLayout /> */}
-		</div>
-	);
+    return (
+        <div className='w-fit h-auto'>
+            <PublicLayout />
+            {/* <PrivateLayout /> */}
+        </div>
+    );
 }

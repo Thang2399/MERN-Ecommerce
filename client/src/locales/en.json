@@ -1,8 +1,14 @@
 {
-	"hello": "hello 123123",
-	"home_page": {
-		"search_box_placeholder": "Find your favorite item",
-		"add_to_cart": "Add to cart",
-		"view_detail": "View detail"
-	}
+  "home_page": {
+      "search_box_placeholder": "Find your favorite item",
+      "add_to_cart": "Add to cart",
+      "view_detail": "View detail",
+    "cart": {
+      "empty_cart": "Your Cart is empty right now.",
+      "subtotal": "Subtotal:",
+      "remove_item": "Remove item",
+      "delete_cart": "Empty cart",
+      "checkout": "Process to checkout"
+    }
+  }
 }

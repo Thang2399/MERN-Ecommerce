@@ -11,7 +11,7 @@ const singleItemSchema = mongoose.Schema({
 	discountPercentage: { type: String },
 	brand: { type: String },
 	category: { type: String, required: true },
-	quantity: { type: Number || String, required: true }
+	quantity: { type: Number, required: true }
 });
 
 const SingleItemSchema = mongoose.model('SingleItemSchema', singleItemSchema);

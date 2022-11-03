@@ -16,5 +16,5 @@ export type singleItemTypes = {
     discountPercentage: string,
     brand: string,
     category: string,
-    quantity: number | string
+    quantity: number
 }
