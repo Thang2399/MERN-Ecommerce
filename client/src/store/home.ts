@@ -1,13 +1,13 @@
 import { REDUCER_HOME_ACTION } from '../constants/reducer';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { getCookieData } from '../utils/misc';
+import { convertMoney, getCookieData } from '../utils/misc';
 import { COMMON_CONSTANTS } from '../constants';
 import { setCookie } from 'typescript-cookie';
 import i18next from 'i18next';
 import { singleItemTypes } from '../types';
 
-export interface CommonState {
+export interface HomePageState {
     currentLanguage: string,
     showQuickView: boolean,
     itemId: string,
@@ -24,30 +24,37 @@ const localStorageCartList = localStorage.getItem('cartItemsList');
 const initialCartList = localStorageCartList ? JSON.parse(localStorageCartList) : [];
 
 const getQuantityItemInCart = () => {
-    let count = 0;
-    if (initialCartList.length > 0) {
-        initialCartList.forEach((item: singleItemTypes) => {
-            count = count + item.quantity;
-        });
-    }
+    const initialValue = {
+        quantity: 0,
+        totalPrice: 0
+    };
+    const { quantity, totalPrice } = initialCartList.reduce((prevItem: any, currItem: any) => {
+        const { quantity, price } = currItem;
+        const singleItemPrice = parseFloat(price);
+        const itemPrice = quantity * singleItemPrice;
 
-    return count.toString();
+        prevItem.quantity += quantity;
+        prevItem.totalPrice += itemPrice;
+
+        return prevItem;
+    }, initialValue);
+    return { quantity, totalPrice };
 };
 
-const initialState: CommonState = {
+const initialState: HomePageState = {
     currentLanguage:
         cookieLanguageCode || COMMON_CONSTANTS.VN,
     showQuickView: false,
     itemId: '',
     cartItemsList: initialCartList,
     showCart: false,
-    quantityInCart: getQuantityItemInCart(),
-    totalPriceInCart: '',
+    quantityInCart: getQuantityItemInCart().quantity || '0',
+    totalPriceInCart: getQuantityItemInCart().totalPrice || '0',
     currency: cookieLanguageCode === COMMON_CONSTANTS.VN ? 'đ' : '$'
 };
 
-export const changeLanguageSlice = createSlice({
-    name: 'changeLanguageSlice',
+export const homePageSlice = createSlice({
+    name: 'homePageSlice',
     initialState,
     reducers: {
         changeLanguage: (state, action: PayloadAction<string>) => {
@@ -137,6 +144,6 @@ export const {
     changeQuantityItem,
     getTotalCartPrice,
     deleteCart
-} = changeLanguageSlice.actions;
+} = homePageSlice.actions;
 
-export default changeLanguageSlice.reducer;
+export default homePageSlice.reducer;

@@ -2,7 +2,13 @@ import { getCookie } from 'typescript-cookie';
 import { COMMON_CONSTANTS } from '../constants';
 
 export const getCookieData = (name: string) => {
-    return getCookie(name);
+    let result = '';
+    const cookieData = getCookie(name);
+    const languagesArray = [ 'vn', 'en' ];
+    if (cookieData && languagesArray.includes(cookieData)) {
+        result = cookieData;
+    } else result = 'en';
+    return result;
 };
 
 export const formatMoney = ( price: string | number ) =>{
