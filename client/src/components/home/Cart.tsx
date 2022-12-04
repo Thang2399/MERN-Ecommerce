@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { AiOutlineCloseCircle, AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { IoIosClose } from 'react-icons/io';
@@ -9,28 +10,29 @@ import Image from '../base/Image';
 import { singleItemTypes } from '../../types';
 import { RootState } from '../../store';
 import { showCart, changeQuantityItem, removeItemFromCart, getTotalCartPrice, deleteCart } from '../../store/home';
-import { convertMoney, formatMoney } from '../../utils/misc';
+import { convertMoney } from '../../utils/misc';
 import { COMMON_CONSTANTS } from '../../constants';
 import { REDUCER_HOME_ACTION } from '../../constants/reducer';
 import Button from '../base/Button';
 
 const Cart: React.FC = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const carItemsList = useSelector(
-        (state: RootState) => state.changeLanguage.cartItemsList,
+        (state: RootState) => state.homePageReducer.cartItemsList,
     );
 
     const currentLanguageCode = useSelector(
-        (state: RootState) => state.changeLanguage.currentLanguage,
+        (state: RootState) => state.homePageReducer.currentLanguage,
     );
 
     const totalPriceInCart = useSelector(
-        (state: RootState) => state.changeLanguage.totalPriceInCart,
+        (state: RootState) => state.homePageReducer.totalPriceInCart,
     );
 
     const currency = useSelector(
-        (state: RootState) => state.changeLanguage.currency,
+        (state: RootState) => state.homePageReducer.currency,
     );
 
     const handleCloseQuickView = () => {
@@ -73,8 +75,13 @@ const Cart: React.FC = () => {
         dispatch(deleteCart());
     };
 
+    const handleCheckout = () => {
+        navigate('/cart');
+        handleCloseQuickView();
+    };
+
     return (
-        <div className={'w-full h-full flex'}>
+        <div className={'w-full h-full flex pt-16'}>
             <div
                 className={'w-3/4'}
                 onClick={() => handleCloseQuickView()}
@@ -197,10 +204,7 @@ const Cart: React.FC = () => {
                                         </>
                                     )}
                                     <Typography
-                                        content={totalPriceInCart
-                                            && currency
-                                            && currentLanguageCode
-                                            && convertMoney(totalPriceInCart, currency, currentLanguageCode)?.price || totalPriceInCart}
+                                        content={totalPriceInCart && convertMoney(totalPriceInCart, currency, currentLanguageCode)?.price || totalPriceInCart}
                                         needTranslate={false}
                                         className={'font-semibold text-2xl'}
                                     />
@@ -219,6 +223,11 @@ const Cart: React.FC = () => {
                             </div>
 
                             <div className={'mt-3'}>
+                                <Button
+                                    content={'home_page.cart.checkout'}
+                                    handleClick={handleCheckout}
+                                    buttonClassName={'text-gray-300 bg-white border border-gray-300 mb-2'}
+                                />
                                 <Button
                                     content={'home_page.cart.delete_cart'}
                                     handleClick={handleDeleteCart}

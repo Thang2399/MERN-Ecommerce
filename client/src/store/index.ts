@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import changeLanguageReducer from './home';
+import homePageReducer from './home';
 
 export const store = configureStore({
     reducer: {
-        changeLanguage: changeLanguageReducer
+        homePageReducer: homePageReducer
     },
 });
 

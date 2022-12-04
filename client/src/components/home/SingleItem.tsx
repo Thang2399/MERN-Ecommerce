@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+
 import { showQuickView, getDetailItem, addItemToCart, getTotalCartPrice } from '../../store/home';
 import { singleItemTypes } from '../../types';
 
@@ -19,10 +20,8 @@ const SingleItem: React.FC<Props> = ({ item }) => {
     const dispatch = useDispatch();
 
     const currentLanguageCode = useSelector(
-        (state: RootState) => state.changeLanguage.currentLanguage,
+        (state: RootState) => state.homePageReducer.currentLanguage,
     );
-
-    const cartItemsList = useSelector((state: RootState) => state.changeLanguage.cartItemsList,);
 
     const handleViewDetailItem = (id: string) => {
         dispatch(showQuickView(true));

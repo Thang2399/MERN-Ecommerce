@@ -30,7 +30,7 @@ i18n
 			escapeValue: false,
 		},
 		detection: {
-			order: [ 'path', 'cookie', 'htmlTag' ],
+			order: [ 'cookie', 'htmlTag' ],
 			caches: [ 'cookie' ],
 		},
 		resources,

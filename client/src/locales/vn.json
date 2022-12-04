@@ -1,14 +1,57 @@
 {
+    "required": "Bắt buộc",
     "home_page": {
         "search_box_placeholder": "Tìm kiếm sản phẩm bạn yêu thích",
         "add_to_cart": "Thêm vào giỏ hàng",
         "view_detail": "Xem chi tiết",
       "cart": {
         "empty_cart": "Giỏ hàng của bạn đang trống.",
-        "subtotal": "Tổng cộng:",
+        "subtotal": "Tổng cộng",
         "remove_item": "Xoá sản phẩm",
         "delete_cart": "Xoá giỏ hàng",
-        "checkout": "Tiến hành thanh toán"
+        "checkout": "Tiến hành thanh toán",
+        "items": "sản phẩm"
       }
+    },
+    "cart_page": {
+      "checkout": "Thanh toán",
+      "checkout_form": {
+        "customer_information": "Thông tin khách hàng",
+        "full_name": "Họ và tên",
+        "first_name": "Tên",
+        "first_name_placeholder": "Tên của bạn",
+        "last_name": "Họ",
+        "last_name_placeholder": "Họ của bạn",
+        "phone_number": "Số điện thoại",
+        "email_address": "Địa chỉ email",
+        "address": "Địa chỉ",
+        "country": "Quốc gia",
+        "city": "Thành phố",
+        "district": "Quận",
+        "street_address": "Địa chỉ cụ thể",
+        "btn": {
+          "next": "Tiếp tục",
+          "back_home": "Về trang chủ",
+          "back": "Quay lại",
+          "submit": "Gửi"
+        },
+        "steppers": {
+          "user_info": "Thông tin khách hàng",
+          "address": "Địa chỉ",
+          "discount_code": "Phiếu giảm giá",
+          "checkout": "Thanh toán"
+        }
+      }
+    },
+    "form": {
+      "first_name": "Tên",
+      "last_name": "Họ",
+      "full_name": "Họ và tên",
+      "phone_number": "Số điện thoại",
+      "email_address": "Email"
+    },
+    "error_messages": {
+      "filed_required": "{{field}} bắt buộc",
+      "wrong_email_validate": "Sai format email"
     }
 }

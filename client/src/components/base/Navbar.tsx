@@ -11,24 +11,37 @@ import { BsFillCartCheckFill } from 'react-icons/bs';
 import { showCart } from '../../store/home';
 
 export default function Navbar(): JSX.Element {
+    const [ searchValue, setSearchValue ] = useState<string>('');
+
+    const showCartStatus = useSelector(
+        (state: RootState) => state.homePageReducer.showCart,
+    );
     const dispatch = useDispatch();
+
     const cartItems = useSelector(
-        (state: RootState) => state.changeLanguage.cartItemsList,
+        (state: RootState) => state.homePageReducer.cartItemsList,
     );
     const quantityInCart = useSelector(
-        (state: RootState) => state.changeLanguage.quantityInCart,
+        (state: RootState) => state.homePageReducer.quantityInCart,
     );
     const handleShowCart = () => {
-        dispatch(showCart(true));
+        dispatch(showCart(!showCartStatus));
+    };
+
+    const handleChange = (e: any) => {
+        setSearchValue(e.target.value);
     };
 
     return (
-        <div className={'bg-black/80 flex items-center px-3 py-2'}>
+        <div className={'bg-black flex items-center px-3 py-2'}>
             <div className={'mr-4'}>
                 <Logo/>
             </div>
             <div className={'w-1/3 mr-4'}>
                 <InputTextField
+                    value={searchValue}
+                    handleChange={handleChange}
+                    inputName={'searchValue'}
                     type={'text'}
                     placeholder={'home_page.search_box_placeholder'}
                 />

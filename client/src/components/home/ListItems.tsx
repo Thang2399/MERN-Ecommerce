@@ -1,5 +1,6 @@
 import React from 'react';
 import SingleItem from './SingleItem';
+
 import { singleItemTypes } from '../../types';
 
 type Props = {
@@ -7,11 +8,12 @@ type Props = {
 };
 
 const ListItems: React.FC<Props> = ({ listItems }) => {
+
     return (
-        <div>
+        <div className={'h-full'}>
             <div
                 className={
-                    'w-full grid grid-cols-5 md:grid-cols-2 lg:grid-cols-4 gap-5'
+                    'w-full h-full grid grid-cols-5 md:grid-cols-2 lg:grid-cols-4 gap-5'
                 }>
                 {listItems.map((item: singleItemTypes) => (
                     <div key={item._id}>

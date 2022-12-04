@@ -21,7 +21,7 @@ const QuickViewItem: React.FC<Props> = ({ id }) => {
     const dispatch = useDispatch();
     
     const currentLanguageCode = useSelector(
-        (state: RootState) => state.changeLanguage.currentLanguage,
+        (state: RootState) => state.homePageReducer.currentLanguage,
     );
 
     const [ item, setItem ] = useState<singleItemTypes | null>(null);
@@ -68,7 +68,7 @@ const QuickViewItem: React.FC<Props> = ({ id }) => {
     }, []);
 
     return (
-        <div className={'w-full h-full flex items-center justify-center'}>
+        <div className={'w-full h-full flex items-center justify-center bg-black bg-opacity-40'}>
             <div className={'bg-white mx-40 px-8 py-5 w-full rounded-lg'}>
                 <div
                     className={'flex justify-end mb-4 cursor-pointer text-3xl'}
