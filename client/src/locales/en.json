@@ -28,6 +28,7 @@
       "city": "City",
       "district": "District",
       "street_address": "Street Address",
+      "shipping_method": "Shipping Method",
       "btn": {
         "next": "Next",
         "back_home": "Back home",
@@ -38,7 +39,12 @@
         "user_info": "User Information",
         "address": "Address",
         "discount_code": "Discount Code",
-        "checkout": "Checkout"
+        "checkout": "Checkout",
+        "shipping_method": "Shipping Method"
+      },
+      "card_options_list": {
+        "home" : "Delivery to my address",
+        "store": "Get at store"
       }
     }
   },
@@ -47,7 +53,11 @@
     "last_name": "lastname",
     "full_name": "fullname",
     "phone_number": "phone number",
-    "email_address": "email"
+    "email_address": "email",
+    "country": "country",
+    "city": "city",
+    "district": "district",
+    "street_address": "street address"
   },
   "error_messages": {
     "filed_required": "This {{field}} field is required",

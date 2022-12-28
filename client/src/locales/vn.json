@@ -29,6 +29,7 @@
         "city": "Thành phố",
         "district": "Quận",
         "street_address": "Địa chỉ cụ thể",
+        "shipping_method": "Phương thức giao hàng",
         "btn": {
           "next": "Tiếp tục",
           "back_home": "Về trang chủ",
@@ -39,8 +40,13 @@
           "user_info": "Thông tin khách hàng",
           "address": "Địa chỉ",
           "discount_code": "Phiếu giảm giá",
-          "checkout": "Thanh toán"
-        }
+          "checkout": "Thanh toán",
+          "shipping_method": "Phương thức giao hàng"
+        },
+        "card_options_list": {
+          "home" : "Giao hàng tận nơi",
+          "store": "Lấy hàng tại cửa hàng"
+      }
       }
     },
     "form": {
@@ -48,7 +54,11 @@
       "last_name": "Họ",
       "full_name": "Họ và tên",
       "phone_number": "Số điện thoại",
-      "email_address": "Email"
+      "email_address": "Email",
+      "country": "Quốc gia",
+      "city": "Thành phố",
+      "district": "Quận/huyện",
+      "street_address": "Địa chỉ"
     },
     "error_messages": {
       "filed_required": "{{field}} bắt buộc",

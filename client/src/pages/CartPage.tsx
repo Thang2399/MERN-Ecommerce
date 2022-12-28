@@ -7,42 +7,51 @@ import { AiFillCaretUp, AiFillCaretDown } from 'react-icons/ai';
 import { HiOutlineArrowNarrowLeft, HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import CartUserInfoForm from '../components/cart/CartUserInfoForm';
 
+import { singleItemTypes } from '../types/home';
 import {
-    singleItemTypes,
     userAddress,
     userAddressFormErrorMessages,
     userInforFormErrorMessages,
     userInformation
-} from '../types';
+} from '../types/cart';
 import { RootState } from '../store';
 import { COMMON_CONSTANTS } from '../constants';
 import { convertMoney } from '../utils/misc';
 import { changeQuantityItem, getTotalCartPrice, removeItemFromCart } from '../store/home';
+import { setUserInforFormData } from '../store/cart';
 import { REDUCER_HOME_ACTION } from '../constants/reducer';
 import Stepper from '../components/base/Stepper';
 import { useNavigate } from 'react-router-dom';
-import { userInformationForm, userInformationFormErrorMessage, userAddressForm, userAddressFormErrorMessage } from '../form';
-import { checkValidateForm } from '../utils/cart';
+import { userInformationForm, userInformationFormErrorMessage, userAddressForm, userAddressFormErrorMessage } from '../form/cart';
+import { checkValidateFormUserInfo, checkValidateFormUserAddress } from '../utils/cart';
 
 const steps = [
     'cart_page.checkout_form.steppers.user_info',
     'cart_page.checkout_form.steppers.address',
-    'cart_page.checkout_form.steppers.checkout'
+    'cart_page.checkout_form.steppers.shipping_method'
+];
+
+const optionsList = [
+    {
+        label: 'cart_page.checkout_form.card_options_list.home',
+        value: 'home'
+    },
+    {
+        label: 'cart_page.checkout_form.card_options_list.store',
+        value: 'store'
+    }
 ];
 
 export default function CartPage(): JSX.Element {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [ activeStep, setActiveStep ] = useState<number>(1);
-    const [ completedStep, setCompletedStep ] = useState<{
-        [k: number]: boolean;
-    }>({});
+    const [ activeStep, setActiveStep ] = useState<number>(0);
     const [ userInforForm, setUserInforForm ] = useState<userInformation>(userInformationForm);
     const [ userAddressInforForm, setUserAddressInforForm ] = useState<userAddress>(userAddressForm);
     const [ errorMessageUserInforForm, setErrorMessageUserInforForm ] = useState<userInforFormErrorMessages>(userInformationFormErrorMessage);
     const [ errorMessageUserAddressForm, setErrorMessageUserAddressForm ] = useState<userAddressFormErrorMessages>(userAddressFormErrorMessage);
-
+    const [ selectedOptionValue, setSelectedOptionValue ] = useState<string>(optionsList[0].value);
 
     const carItemsList = useSelector(
         (state: RootState) => state.homePageReducer.cartItemsList,
@@ -86,29 +95,49 @@ export default function CartPage(): JSX.Element {
         }
     };
 
-    const getCompletedStep = () => {
-        const newCompleted = completedStep;
-        newCompleted[activeStep] = true;
-        console.log(newCompleted, 'newCompleted');
-        setCompletedStep(newCompleted);
-    };
-
-    const handleNext = async () => {
-        const errorMsg = await checkValidateForm(userInforForm);
+    const handleCheckValidateUserInforForm = () => {
+        const errorMsg = checkValidateFormUserInfo(userInforForm);
         setErrorMessageUserInforForm(errorMsg);
+
         let error = 0;
         let key: keyof userInforFormErrorMessages;
         for (key in errorMsg) {
             if (errorMsg[key].message !== '') error ++;
         }
+
+        return error;
+    };
+
+    const handleCheckValidateUserAddressForm = () => {
+        const errorMsg = checkValidateFormUserAddress(userAddressInforForm);
+        setErrorMessageUserAddressForm(errorMsg);
+
+        let error = 0;
+        let key: keyof userAddressFormErrorMessages;
+        for (key in errorMsg) {
+            if (errorMsg[key].message !== '') error ++;
+        }
+
+        return error;
+    };
+
+    const handleNext = () => {
+        let error = 0;
+        if (activeStep === 0) {
+            error =  handleCheckValidateUserInforForm();
+        } else if (activeStep === 1) {
+            error = handleCheckValidateUserAddressForm();
+        }
         if (error === 0) {
             setActiveStep((step: number) => (step + 1));
-            getCompletedStep();
         }
     };
 
     const handleSubmit = () => {
-        console.log(userInforForm);
+        const isShipToHome = selectedOptionValue === 'home' ? true : false;
+        const formData = { ...userInforForm, ...userAddressInforForm, isShipToHome };
+        dispatch(setUserInforFormData(formData));
+        navigate('/payment');
     };
 
     const handleConfirm = (e: any) => {
@@ -270,7 +299,6 @@ export default function CartPage(): JSX.Element {
                             <Stepper
                                 steps={steps}
                                 activeStep={activeStep}
-                                completedStep={completedStep}
                             />
                         </div>
 
@@ -283,6 +311,9 @@ export default function CartPage(): JSX.Element {
                                 userAddressInforForm={userAddressInforForm}
                                 setUserAddressInforForm={setUserAddressInforForm}
                                 errorMessageUserAddressForm={errorMessageUserAddressForm}
+                                optionsList={optionsList}
+                                selectedOptionValue={selectedOptionValue}
+                                setSelectedOptionValue={setSelectedOptionValue}
                             />
                         </div>
 

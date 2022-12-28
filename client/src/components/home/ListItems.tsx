@@ -1,7 +1,7 @@
 import React from 'react';
 import SingleItem from './SingleItem';
 
-import { singleItemTypes } from '../../types';
+import { singleItemTypes } from '../../types/home';
 
 type Props = {
     listItems: singleItemTypes[];

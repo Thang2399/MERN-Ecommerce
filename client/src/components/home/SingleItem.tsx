@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 import { showQuickView, getDetailItem, addItemToCart, getTotalCartPrice } from '../../store/home';
-import { singleItemTypes } from '../../types';
+import { singleItemTypes } from '../../types/home';
 
 import Typography from '../base/Typography';
 import Image from '../base/Image';

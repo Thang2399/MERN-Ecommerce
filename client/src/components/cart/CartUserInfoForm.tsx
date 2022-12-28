@@ -9,7 +9,8 @@ import {
     userAddressFormErrorMessages,
     userInforFormErrorMessages,
     userInformation
-} from '../../types';
+} from '../../types/cart';
+import BaseRadioButtons from '../base/RadioButtons';
 
 interface Props {
     userInforForm: userInformation,
@@ -18,7 +19,10 @@ interface Props {
     errorMessageUserInforForm: userInforFormErrorMessages,
     userAddressInforForm: userAddress,
     setUserAddressInforForm: Dispatch<SetStateAction<userAddress>>,
-    errorMessageUserAddressForm: userAddressFormErrorMessages
+    errorMessageUserAddressForm: userAddressFormErrorMessages,
+    optionsList: { label: string, value: string }[],
+    selectedOptionValue: string,
+    setSelectedOptionValue: Dispatch<SetStateAction<string>>
 }
 
 const CartUserInfoForm: React.FC<Props> = ({
@@ -28,7 +32,10 @@ const CartUserInfoForm: React.FC<Props> = ({
     errorMessageUserInforForm,
     userAddressInforForm,
     setUserAddressInforForm,
-    errorMessageUserAddressForm
+    errorMessageUserAddressForm,
+    optionsList,
+    selectedOptionValue,
+    setSelectedOptionValue
 }) => {
     
     const handleChangeUserInfor = (e: any) => {
@@ -40,7 +47,18 @@ const CartUserInfoForm: React.FC<Props> = ({
             ...userInforForm,
             [e.target.name]: inputValue
         });
+    };
 
+    const handleChangeUserAddress = (e: any) => {
+        const inputValue = e.target.value;
+        setUserAddressInforForm({
+            ...userAddressInforForm,
+            [e.target.name]: inputValue
+        });
+    };
+
+    const handleSelectOption = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedOptionValue((event.target as HTMLInputElement).value);
     };
 
     return (
@@ -50,10 +68,11 @@ const CartUserInfoForm: React.FC<Props> = ({
                     <>
                         <Typography
                             content={'cart_page.checkout_form.customer_information'}
-                            className={'text-xl font-semibold'}
-                            variant={'h-4'}
+                            className={'text-2xl font-semibold mb-2'}
+                            variant={'h4'}
                         />
 
+                        {/*First Name*/}
                         <div>
                             <Typography
                                 content={'cart_page.checkout_form.first_name'}
@@ -73,6 +92,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                             />
                         </div>
 
+                        {/*Last name*/}
                         <div className={'mt-2'}>
                             <Typography
                                 content={'cart_page.checkout_form.last_name'}
@@ -92,6 +112,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                             />
                         </div>
 
+                        {/*Phone number*/}
                         <div className={'mt-2'}>
                             <Typography
                                 content={'cart_page.checkout_form.phone_number'}
@@ -111,6 +132,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                             />
                         </div>
 
+                        {/*Email*/}
                         <div className={'mt-2'}>
                             <Typography
                                 content={'cart_page.checkout_form.email_address'}
@@ -132,17 +154,17 @@ const CartUserInfoForm: React.FC<Props> = ({
 
                     </>
 
-
                 )}
 
                 {activeStep === 1 && (
                     <>
                         <Typography
                             content={'cart_page.checkout_form.address'}
-                            className={'text-xl font-semibold'}
-                            variant={'h-4'}
+                            className={'text-2xl font-semibold mb-2'}
+                            variant={'h4'}
                         />
 
+                        {/*Country*/}
                         <div>
                             <Typography
                                 content={'cart_page.checkout_form.country'}
@@ -162,6 +184,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                             />
                         </div>
 
+                        {/*City*/}
                         <div className={'mt-2'}>
                             <Typography
                                 content={'cart_page.checkout_form.city'}
@@ -176,48 +199,66 @@ const CartUserInfoForm: React.FC<Props> = ({
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
-                                errorMessage={errorMessageUserInforForm.lastName.message}
-                                field={errorMessageUserInforForm.lastName.field}
+                                errorMessage={errorMessageUserAddressForm.city.message}
+                                field={errorMessageUserAddressForm.city.field}
                             />
                         </div>
 
+                        {/*District*/}
                         <div className={'mt-2'}>
                             <Typography
-                                content={'cart_page.checkout_form.phone_number'}
+                                content={'cart_page.checkout_form.district'}
                                 className={'text-base mb-2'}
                             />
                             <InputTextField
-                                value={userInforForm.phoneNumber}
-                                handleChange={handleChange}
+                                value={userAddressInforForm.district}
+                                handleChange={handleChangeUserAddress}
                                 type={'text'}
-                                inputName={'phoneNumber'}
-                                placeholder={'cart_page.checkout_form.phone_number'}
+                                inputName={'district'}
+                                placeholder={'cart_page.checkout_form.district'}
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
-                                errorMessage={errorMessageUserInforForm.phoneNumber.message}
-                                field={errorMessageUserInforForm.phoneNumber.field}
+                                errorMessage={errorMessageUserAddressForm.district.message}
+                                field={errorMessageUserAddressForm.district.field}
                             />
                         </div>
 
+                        {/*Street address*/}
                         <div className={'mt-2'}>
                             <Typography
-                                content={'cart_page.checkout_form.email_address'}
+                                content={'cart_page.checkout_form.street_address'}
                                 className={'text-base mb-2'}
                             />
                             <InputTextField
-                                value={userInforForm.emailAddress}
-                                handleChange={handleChange}
-                                type={'email'}
-                                inputName={'emailAddress'}
-                                placeholder={'cart_page.checkout_form.email_address'}
+                                value={userAddressInforForm.streetAddress}
+                                handleChange={handleChangeUserAddress}
+                                type={'text'}
+                                inputName={'streetAddress'}
+                                placeholder={'cart_page.checkout_form.street_address'}
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
-                                errorMessage={errorMessageUserInforForm.emailAddress.message}
-                                field={errorMessageUserInforForm.emailAddress.field}
+                                errorMessage={errorMessageUserAddressForm.streetAddress.message}
+                                field={errorMessageUserAddressForm.streetAddress.field}
                             />
                         </div>
+                    </>
+                )}
+
+                {activeStep === 2 && (
+                    <>
+                        <Typography
+                            content={'cart_page.checkout_form.shipping_method'}
+                            className={'text-2xl font-semibold mb-2'}
+                            variant={'h4'}
+                        />
+
+                        <BaseRadioButtons
+                            optionsList={optionsList}
+                            defaultValue={selectedOptionValue}
+                            handleSelect={handleSelectOption}
+                        />
                     </>
                 )}
             </form>
