@@ -1,5 +1,6 @@
 import HomePage from '../pages/HomePage';
 import CartPage from '../pages/CartPage';
+import PaymentPage from '../pages/PaymentPage';
 
 const routes: any[] = [
     {
@@ -9,6 +10,10 @@ const routes: any[] = [
     {
         element: CartPage,
         path: '/cart'
+    },
+    {
+        element: PaymentPage,
+        path: '/payment'
     }
 ];
 

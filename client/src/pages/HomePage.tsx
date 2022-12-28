@@ -1,10 +1,10 @@
 import React from 'react';
-import PublicLayout from '../layouts/PublicLayout';
+import HomeLayout from '../components/home/HomeLayout';
 
 export default function HomePage(): JSX.Element {
     return (
         <div className={'relative pt-20'}>
-            <PublicLayout />
+            <HomeLayout />
         </div>
     );
 }

@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import services from '../services';
-import { singleItemTypes } from '../types';
+import services from '../../services';
+import { singleItemTypes } from '../../types/home';
 
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState } from '../../store';
 
-import ListItems from '../components/home/ListItems';
-import QuickViewItem from '../components/home/QuickView';
+import ListItems from './ListItems';
+import QuickViewItem from './QuickView';
 
-export default function PublicLayout(): JSX.Element {
+export default function HomeLayout(): JSX.Element {
     const [ listItems, setListItems ] = useState<singleItemTypes[]>([]);
 
     const showQuickView = useSelector(

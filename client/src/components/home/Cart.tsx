@@ -7,7 +7,7 @@ import { IoIosClose } from 'react-icons/io';
 import Typography from '../base/Typography';
 import Image from '../base/Image';
 
-import { singleItemTypes } from '../../types';
+import { singleItemTypes } from '../../types/home';
 import { RootState } from '../../store';
 import { showCart, changeQuantityItem, removeItemFromCart, getTotalCartPrice, deleteCart } from '../../store/home';
 import { convertMoney } from '../../utils/misc';

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import homePageReducer from './home';
+import cartPageReducer from './cart';
 
 export const store = configureStore({
     reducer: {
-        homePageReducer: homePageReducer
+        homePageReducer: homePageReducer,
+        cartPageReducer: cartPageReducer
     },
 });
 

@@ -1,11 +1,11 @@
 import { REDUCER_HOME_ACTION } from '../constants/reducer';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { convertMoney, getCookieData } from '../utils/misc';
+import {  getCookieData } from '../utils/misc';
 import { COMMON_CONSTANTS } from '../constants';
 import { setCookie } from 'typescript-cookie';
 import i18next from 'i18next';
-import { singleItemTypes } from '../types';
+import { singleItemTypes } from '../types/home';
 
 export interface HomePageState {
     currentLanguage: string,

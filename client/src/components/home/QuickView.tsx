@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart, getTotalCartPrice, showQuickView } from '../../store/home';
-import { singleItemTypes } from '../../types';
+import { singleItemTypes } from '../../types/home';
 
 import services from '../../services';
 import { AiOutlineCloseCircle } from 'react-icons/ai';

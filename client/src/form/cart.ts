@@ -49,3 +49,15 @@ export const userAddressFormErrorMessage = {
         field: ''
     }
 };
+
+export const userInforForm = {
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    emailAddress: '',
+    country: '',
+    city: '',
+    district: '',
+    streetAddress: '',
+    isShipToHome: false
+};
