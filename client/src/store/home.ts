@@ -46,7 +46,7 @@ const initialState: HomePageState = {
         cookieLanguageCode || COMMON_CONSTANTS.VN,
     showQuickView: false,
     itemId: '',
-    cartItemsList: initialCartList,
+    cartItemsList: initialCartList || [],
     showCart: false,
     quantityInCart: getQuantityItemInCart().quantity || '0',
     totalPriceInCart: getQuantityItemInCart().totalPrice || '0',
@@ -129,7 +129,9 @@ export const homePageSlice = createSlice({
         },
         deleteCart: (state) => {
             state.cartItemsList = [];
-            localStorage.setItem('cartItemsList', JSON.stringify(state.cartItemsList));
+            localStorage.removeItem('cartItemsList');
+            state.quantityInCart = '0';
+            state.totalPriceInCart = '0';
         }
     },
 });

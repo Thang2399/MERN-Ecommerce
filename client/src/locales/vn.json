@@ -1,67 +1,107 @@
 {
-    "required": "Bắt buộc",
-    "home_page": {
-        "search_box_placeholder": "Tìm kiếm sản phẩm bạn yêu thích",
-        "add_to_cart": "Thêm vào giỏ hàng",
-        "view_detail": "Xem chi tiết",
-      "cart": {
-        "empty_cart": "Giỏ hàng của bạn đang trống.",
-        "subtotal": "Tổng cộng",
-        "remove_item": "Xoá sản phẩm",
-        "delete_cart": "Xoá giỏ hàng",
-        "checkout": "Tiến hành thanh toán",
-        "items": "sản phẩm"
-      }
-    },
-    "cart_page": {
-      "checkout": "Thanh toán",
-      "checkout_form": {
-        "customer_information": "Thông tin khách hàng",
+  "required": "Bắt buộc",
+  "home_page": {
+    "search_box_placeholder": "Tìm kiếm sản phẩm bạn yêu thích",
+    "add_to_cart": "Thêm vào giỏ hàng",
+    "view_detail": "Xem chi tiết",
+    "cart": {
+      "empty_cart": "Giỏ hàng của bạn đang trống.",
+      "subtotal": "Tổng cộng",
+      "remove_item": "Xoá sản phẩm",
+      "delete_cart": "Xoá giỏ hàng",
+      "checkout": "Tiến hành thanh toán",
+      "items": "sản phẩm"
+    }
+  },
+  "cart_page": {
+    "checkout": "Thanh toán",
+    "checkout_form": {
+      "customer_information": {
+        "label": "Thông tin khách hàng",
         "full_name": "Họ và tên",
         "first_name": "Tên",
         "first_name_placeholder": "Tên của bạn",
         "last_name": "Họ",
         "last_name_placeholder": "Họ của bạn",
         "phone_number": "Số điện thoại",
-        "email_address": "Địa chỉ email",
-        "address": "Địa chỉ",
+        "email_address": "Địa chỉ email"
+      },
+      "address": {
+        "label": "Địa chỉ",
         "country": "Quốc gia",
         "city": "Thành phố",
         "district": "Quận",
-        "street_address": "Địa chỉ cụ thể",
+        "street_address": "Địa chỉ cụ thể"
+      },
+      "shipping_method": {
+        "label": "Phương thức giao hàng"
+      },
+      "checkout": {
+        "label": "Thanh toán",
+        "discount_code": "Mã giảm giá",
+        "discount_code_placeholder": "Mã giảm giá",
+        "payment_method": {
+          "label": "Phương thức thanh toán",
+          "credit_card": {
+            "card_holder_name": "Tên chủ thẻ",
+            "card_number": "Số thẻ",
+            "card_security_code": "Mã số CVV",
+            "card_expiry": "Thời gian hết hạn",
+            "card_expiry_month": "MM",
+            "card_expiry_year": "YY"
+          }
+        }
+      },
+      "btn": {
+        "next": "Tiếp tục",
+        "back_home": "Về trang chủ",
+        "back": "Quay lại",
+        "submit": "Gửi"
+      },
+      "steppers": {
+        "user_info": "Thông tin khách hàng",
+        "address": "Địa chỉ",
+        "discount_code": "Phiếu giảm giá",
         "shipping_method": "Phương thức giao hàng",
-        "btn": {
-          "next": "Tiếp tục",
-          "back_home": "Về trang chủ",
-          "back": "Quay lại",
-          "submit": "Gửi"
-        },
-        "steppers": {
-          "user_info": "Thông tin khách hàng",
-          "address": "Địa chỉ",
-          "discount_code": "Phiếu giảm giá",
-          "checkout": "Thanh toán",
-          "shipping_method": "Phương thức giao hàng"
-        },
-        "card_options_list": {
-          "home" : "Giao hàng tận nơi",
-          "store": "Lấy hàng tại cửa hàng"
+        "checkout": "Thanh toán"
+      },
+      "card_options_list": {
+        "home": "Giao hàng tận nơi",
+        "store": "Lấy hàng tại cửa hàng",
+        "ship_cod": "Thanh toán khi nhận hàng (COD)",
+        "card": "Thẻ tín dụng/ghi nợ"
       }
-      }
-    },
-    "form": {
-      "first_name": "Tên",
-      "last_name": "Họ",
-      "full_name": "Họ và tên",
-      "phone_number": "Số điện thoại",
-      "email_address": "Email",
-      "country": "Quốc gia",
-      "city": "Thành phố",
-      "district": "Quận/huyện",
-      "street_address": "Địa chỉ"
-    },
-    "error_messages": {
-      "filed_required": "{{field}} bắt buộc",
-      "wrong_email_validate": "Sai format email"
     }
+  },
+  "form": {
+    "first_name": "Tên",
+    "last_name": "Họ",
+    "full_name": "Họ và tên",
+    "phone_number": "Số điện thoại",
+    "email_address": "Email",
+    "country": "Quốc gia",
+    "city": "Thành phố",
+    "district": "Quận/huyện",
+    "street_address": "Địa chỉ"
+  },
+  "error_messages": {
+    "filed_required": "{{field}} bắt buộc",
+    "wrong_email_validate": "Sai format email"
+  },
+  "payment_page": {
+    "billing": "Hóa đơn",
+    "items": "Đơn hàng",
+    "information": "Thông tin cá nhân",
+    "payment_method": "Phương thức thanh toán",
+    "ship_cod": "Thanh toán khi nhận hàng (COD)",
+    "Card": "Thẻ tín dụng/ghi nợ"
+  },
+    "popup_confirm": {
+      "confirm_buy": {
+        "title": "Xác nhận",
+        "label": "Bạn chắc chắn muốn mua những món đồ này?",
+        "confirm": "Xác nhận",
+        "cancel": "Hủy"
+      }
+  }
 }

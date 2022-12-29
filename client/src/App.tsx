@@ -11,11 +11,16 @@ export default function App(): JSX.Element {
         (state: RootState) => state.homePageReducer.showCart,
     );
 
+    const showPopupConfirm = useSelector(
+        (state: RootState) => state.commonReducer.showPopupConfirm
+    );
+
     return (
-        <div className={'w-full h-screen'}>
-            <div className={'fixed top-0 left-0 w-full z-50'}>
+        <div className={'w-full h-screen relative'}>
+            <div className={'fixed top-0 left-0 w-full z-20'}>
                 <Navbar/>
             </div>
+
             <div className={'w-full h-full'}>
                 <BrowserRouter>
                     <Routes>
@@ -38,8 +43,6 @@ export default function App(): JSX.Element {
                     )}
                 </BrowserRouter>
             </div>
-            
-
 
         </div>
     );

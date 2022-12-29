@@ -11,27 +11,38 @@ import { singleItemTypes } from '../types/home';
 import {
     userAddress,
     userAddressFormErrorMessages,
-    userInforFormErrorMessages,
-    userInformation
+    userInforFormErrorMessages, userInforFormType,
+    userInformation, userPaymentFormType
 } from '../types/cart';
 import { RootState } from '../store';
-import { COMMON_CONSTANTS } from '../constants';
+import { COMMON_CONSTANTS, HTTP_STATUS } from '../constants';
 import { convertMoney } from '../utils/misc';
-import { changeQuantityItem, getTotalCartPrice, removeItemFromCart } from '../store/home';
+import { addItemToCart, changeQuantityItem, deleteCart, getTotalCartPrice, removeItemFromCart } from '../store/home';
+import { setShowPopupConfirm } from '../store/common';
 import { setUserInforFormData } from '../store/cart';
 import { REDUCER_HOME_ACTION } from '../constants/reducer';
 import Stepper from '../components/base/Stepper';
 import { useNavigate } from 'react-router-dom';
-import { userInformationForm, userInformationFormErrorMessage, userAddressForm, userAddressFormErrorMessage } from '../form/cart';
+import {
+    userInformationForm,
+    userInformationFormErrorMessage,
+    userAddressForm,
+    userAddressFormErrorMessage,
+    userPaymentForm
+} from '../form/cart';
 import { checkValidateFormUserInfo, checkValidateFormUserAddress } from '../utils/cart';
+import PopupConfirm from '../components/common/PopupConfirm';
+import services from '../services';
+import { setInvoice } from '../store/invoice';
 
 const steps = [
     'cart_page.checkout_form.steppers.user_info',
     'cart_page.checkout_form.steppers.address',
-    'cart_page.checkout_form.steppers.shipping_method'
+    'cart_page.checkout_form.steppers.shipping_method',
+    'cart_page.checkout_form.steppers.checkout'
 ];
 
-const optionsList = [
+const optionsListShippingMethod = [
     {
         label: 'cart_page.checkout_form.card_options_list.home',
         value: 'home'
@@ -42,16 +53,33 @@ const optionsList = [
     }
 ];
 
+const optionsListPaymentMethod = [
+    {
+        label: 'cart_page.checkout_form.card_options_list.ship_cod',
+        value: 'cod'
+    },
+    {
+        label: 'cart_page.checkout_form.card_options_list.card',
+        value: 'card'
+    }
+];
+
 export default function CartPage(): JSX.Element {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [ activeStep, setActiveStep ] = useState<number>(0);
+
     const [ userInforForm, setUserInforForm ] = useState<userInformation>(userInformationForm);
     const [ userAddressInforForm, setUserAddressInforForm ] = useState<userAddress>(userAddressForm);
+
     const [ errorMessageUserInforForm, setErrorMessageUserInforForm ] = useState<userInforFormErrorMessages>(userInformationFormErrorMessage);
     const [ errorMessageUserAddressForm, setErrorMessageUserAddressForm ] = useState<userAddressFormErrorMessages>(userAddressFormErrorMessage);
-    const [ selectedOptionValue, setSelectedOptionValue ] = useState<string>(optionsList[0].value);
+
+    const [ userPaymentInforForm, setUserPaymentInforForm ] = useState<userPaymentFormType>(userPaymentForm);
+
+    const [ selectedShippingOptionValue, setSelectedShippingOptionValue ] = useState<string>(optionsListShippingMethod[0].value);
+    const [ selectedPaymentOptionValue, setSelectedPaymentOptionValue ] = useState<string>(optionsListPaymentMethod[0].value);
 
     const carItemsList = useSelector(
         (state: RootState) => state.homePageReducer.cartItemsList,
@@ -71,6 +99,10 @@ export default function CartPage(): JSX.Element {
 
     const currency = useSelector(
         (state: RootState) => state.homePageReducer.currency,
+    );
+
+    const showPopupConfirm = useSelector(
+        (state: RootState) => state.commonReducer.showPopupConfirm
     );
 
     const onChangeQuantity = (id: string, action: string) => {
@@ -134,10 +166,7 @@ export default function CartPage(): JSX.Element {
     };
 
     const handleSubmit = () => {
-        const isShipToHome = selectedOptionValue === 'home' ? true : false;
-        const formData = { ...userInforForm, ...userAddressInforForm, isShipToHome };
-        dispatch(setUserInforFormData(formData));
-        navigate('/payment');
+        dispatch(setShowPopupConfirm(true));
     };
 
     const handleConfirm = (e: any) => {
@@ -146,6 +175,47 @@ export default function CartPage(): JSX.Element {
         if (activeStep !== steps.length -1) {
             handleNext();
         } else handleSubmit();
+    };
+
+    const handleClosePopup = () => {
+        dispatch(setShowPopupConfirm(false));
+    };
+
+    const handleCreateShoppingInvoice = async (payload: userInforFormType) => {
+        try {
+            const res = await services.createInvoice(payload);
+            console.log('res', res);
+            if (res && res.status === HTTP_STATUS.CREATE_SUCCESS) {
+                dispatch(setShowPopupConfirm(false));
+                dispatch(setInvoice(res.data));
+                dispatch(deleteCart());
+                navigate('/payment');
+            }
+        }
+        catch (error: any) {
+            console.log('error', error);
+        }
+    };
+
+    const handleConfirmBuy = () => {
+        const isShipToHome = selectedShippingOptionValue === 'home' ? true : false;
+        const isCodMethod = selectedPaymentOptionValue === 'cod' ? true : false;
+        const defaultPaymentForm = userPaymentForm;
+        let paymentFormPayload: userPaymentFormType;
+        if (isCodMethod) {
+            paymentFormPayload = defaultPaymentForm;
+        } else {
+            paymentFormPayload = userPaymentInforForm;
+        }
+        const formData = {
+            ...userInforForm,
+            ...userAddressInforForm,
+            isShipToHome,
+            ...paymentFormPayload,
+            listBoughtItems: carItemsList,
+            totalPrice: totalPriceInCart
+        };
+        handleCreateShoppingInvoice(formData);
     };
 
     return (
@@ -293,7 +363,7 @@ export default function CartPage(): JSX.Element {
 
                 </div>
 
-                <div className={'w-2/5'}>
+                <div className={'w-1/2 pl-8'}>
                     <div className={'border rounded-lg p-4'}>
                         <div>
                             <Stepper
@@ -304,16 +374,21 @@ export default function CartPage(): JSX.Element {
 
                         <div className={'mt-3'}>
                             <CartUserInfoForm
+                                activeStep={activeStep}
                                 userInforForm={userInforForm}
                                 setUserInforForm={setUserInforForm}
-                                activeStep={activeStep}
                                 errorMessageUserInforForm={errorMessageUserInforForm}
                                 userAddressInforForm={userAddressInforForm}
                                 setUserAddressInforForm={setUserAddressInforForm}
                                 errorMessageUserAddressForm={errorMessageUserAddressForm}
-                                optionsList={optionsList}
-                                selectedOptionValue={selectedOptionValue}
-                                setSelectedOptionValue={setSelectedOptionValue}
+                                userPaymentInforForm={userPaymentInforForm}
+                                setUserPaymentInforForm={setUserPaymentInforForm}
+                                optionsListShippingMethod={optionsListShippingMethod}
+                                optionsListPaymentMethod={optionsListPaymentMethod}
+                                selectedShippingOptionValue={selectedShippingOptionValue}
+                                setSelectedShippingOptionValue={setSelectedShippingOptionValue}
+                                selectedPaymentOptionValue={selectedPaymentOptionValue}
+                                setSelectedPaymentOptionValue={setSelectedPaymentOptionValue}
                             />
                         </div>
 
@@ -372,6 +447,19 @@ export default function CartPage(): JSX.Element {
 
 
             </div>
+
+            {showPopupConfirm && (
+                <div className={'absolute top-0 left-0 z-50'}>
+                <PopupConfirm
+                    popupTitle={'popup_confirm.confirm_buy.title'}
+                    popupLabel={'popup_confirm.confirm_buy.label'}
+                    cancelButtonLabel={'popup_confirm.confirm_buy.cancel'}
+                    confirmButtonLabel={'popup_confirm.confirm_buy.confirm'}
+                    handleCancel={handleClosePopup}
+                    handleConfirm={handleConfirmBuy}
+                />
+            </div>
+            )}
         </div>
     );
 }

@@ -1,11 +1,19 @@
-export const userInformationForm = {
+import {
+    userAddress,
+    userAddressFormErrorMessages,
+    userInforFormErrorMessages,
+    userInforFormType, userInformation,
+    userPaymentFormType
+} from '../types/cart';
+
+export const userInformationForm: userInformation = {
     firstName: '',
     lastName: '',
     emailAddress: '',
     phoneNumber: ''
 };
 
-export const userInformationFormErrorMessage = {
+export const userInformationFormErrorMessage: userInforFormErrorMessages = {
     firstName: {
         message: '',
         field: ''
@@ -24,14 +32,14 @@ export const userInformationFormErrorMessage = {
     }
 };
 
-export const userAddressForm = {
+export const userAddressForm: userAddress = {
     country: '',
     city: '',
     district: '',
     streetAddress: '',
 };
 
-export const userAddressFormErrorMessage = {
+export const userAddressFormErrorMessage: userAddressFormErrorMessages = {
     country: {
         message: '',
         field: ''
@@ -50,7 +58,17 @@ export const userAddressFormErrorMessage = {
     }
 };
 
-export const userInforForm = {
+export const userPaymentForm: userPaymentFormType = {
+    isCodMethod: true,
+    discountCode: '',
+    cardNumber: '',
+    cardHolderName: '',
+    cardSecurityCode: '',
+    cardExpirationMonth: '',
+    cardExpirationYear: '',
+};
+
+export const userInforForm: userInforFormType = {
     firstName: '',
     lastName: '',
     phoneNumber: '',
@@ -59,5 +77,12 @@ export const userInforForm = {
     city: '',
     district: '',
     streetAddress: '',
-    isShipToHome: false
+    isShipToHome: true,
+    isCodMethod: true,
+    discountCode: '',
+    cardNumber: '',
+    cardHolderName: '',
+    cardSecurityCode: '',
+    cardExpirationMonth: '',
+    cardExpirationYear: ''
 };
