@@ -1,3 +1,5 @@
+import { AUTHENTICATION, LOGIN } from './auth.js';
+
 export const USER_ROLE = {
 	ADMIN: 'admin',
 	USER: 'user',
@@ -15,12 +17,7 @@ export const HTTP_STATUS = {
 	NOT_FOUND: 404
 };
 
-export const INVOICE_STATUS = {
-	RECEIVED_ORDER: 'received order',
-	CHECKING_IN_STOCK: 'checking in stock',
-	PREPARING_ITEMS: 'preparing items',
-	PACKAGED_ITEMS: 'packaged items',
-	DELIVERING: 'delivering',
-	DELIVERED_SUCCESS: 'delivered successfully',
-	DELIVERED_FAIL: 'delivered failed',
+export const HTTP_RESPONSE_MESSAGE = {
+	AUTHENTICATION: { ...AUTHENTICATION },
+	LOGIN: { ...LOGIN }
 };

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { INVOICE_STATUS } from '../constant/index.js';
+import { INVOICE_STATUS } from '../constant/invoice.js';
 
 const invoiceSchema = mongoose.Schema({
 	firstName: { type: String, required: true },
