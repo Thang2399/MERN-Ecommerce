@@ -1,11 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
+
+import commonReducer from './common';
 import homePageReducer from './home';
 import cartPageReducer from './cart';
+import invoicePageReducer from './invoice';
 
 export const store = configureStore({
     reducer: {
+        commonReducer: commonReducer,
         homePageReducer: homePageReducer,
-        cartPageReducer: cartPageReducer
+        cartPageReducer: cartPageReducer,
+        invoicePageReducer: invoicePageReducer
     },
 });
 

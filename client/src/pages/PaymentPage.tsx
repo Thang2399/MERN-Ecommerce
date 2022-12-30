@@ -28,5 +28,7 @@ export default function PaymentPage(): JSX.Element {
 
     console.log('userFormData', userFormData);
     
-	return <div>PaymentPage</div>;
+	return (
+        <div className={'pt-20'}>PaymentPage</div>
+    );
 }

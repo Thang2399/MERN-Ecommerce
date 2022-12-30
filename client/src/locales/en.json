@@ -16,19 +16,41 @@
   "cart_page": {
     "checkout": "Checkout",
     "checkout_form": {
-      "customer_information": "Customer Information",
-      "first_name": "First Name",
-      "first_name_placeholder": "First Name",
-      "last_name": "Last Name",
-      "last_name_placeholder": "Last Name",
-      "phone_number": "Phone Number",
-      "email_address": "Email Address",
-      "address": "Address",
-      "country": "Country",
-      "city": "City",
-      "district": "District",
-      "street_address": "Street Address",
-      "shipping_method": "Shipping Method",
+      "customer_information": {
+        "label": "Customer Information",
+        "first_name": "First Name",
+        "first_name_placeholder": "First Name",
+        "last_name": "Last Name",
+        "last_name_placeholder": "Last Name",
+        "phone_number": "Phone Number",
+        "email_address": "Email Address"
+      },
+      "address": {
+        "label": "Address",
+        "country": "Country",
+        "city": "City",
+        "district": "District",
+        "street_address": "Street Address"
+      },
+      "shipping_method": {
+        "label": "Shipping Method"
+      },
+      "checkout": {
+        "label": "Checkout",
+        "discount_code": "Discount Code",
+        "discount_code_placeholder": "Discount Code",
+        "payment_method": {
+          "label": "Payment Method",
+          "credit_card": {
+            "card_holder_name": "Cardholder Name",
+            "card_number": "Card Number",
+            "card_security_code": "Security Code (CVV)",
+            "card_expiry": "Card Expiry",
+            "card_expiry_month": "MM",
+            "card_expiry_year": "YY"
+          }
+        }
+      },
       "btn": {
         "next": "Next",
         "back_home": "Back home",
@@ -39,12 +61,14 @@
         "user_info": "User Information",
         "address": "Address",
         "discount_code": "Discount Code",
-        "checkout": "Checkout",
-        "shipping_method": "Shipping Method"
+        "shipping_method": "Shipping Method",
+        "checkout": "Checkout"
       },
       "card_options_list": {
-        "home" : "Delivery to my address",
-        "store": "Get at store"
+        "home": "Delivery to my address",
+        "store": "Get at store",
+        "ship_cod": "Cash on delivery (COD)",
+        "card": "Credit/Debit Card"
       }
     }
   },
@@ -62,5 +86,21 @@
   "error_messages": {
     "filed_required": "This {{field}} field is required",
     "wrong_email_validate": "Wrong email format"
+  },
+  "payment_page": {
+    "billing": "Billing",
+    "items": "Your list of items",
+    "information": "Your information",
+    "payment_method": "Payment Method",
+    "ship_cod": "Cash on delivery (COD)",
+    "card": "Credit/Debit Card"
+  },
+  "popup_confirm": {
+    "confirm_buy": {
+      "title": "Confirm",
+      "label": "Are you sure you want to buy all of this items?",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    }
   }
 }

@@ -50,6 +50,16 @@ export type userAddressFormErrorMessages = {
     }
 }
 
+export type userPaymentFormType = {
+    isCodMethod: boolean,
+    discountCode: string,
+    cardNumber: string,
+    cardHolderName: string,
+    cardSecurityCode: string,
+    cardExpirationMonth: string,
+    cardExpirationYear: string,
+};
+
 export type userInforFormType = {
     firstName: string,
     lastName: string,
@@ -59,5 +69,12 @@ export type userInforFormType = {
     city: string,
     district: string,
     streetAddress: string,
-    isShipToHome: boolean
+    isShipToHome: boolean,
+    isCodMethod: boolean,
+    discountCode: string,
+    cardNumber: string,
+    cardHolderName: string,
+    cardSecurityCode: string,
+    cardExpirationMonth: string,
+    cardExpirationYear: string
 }

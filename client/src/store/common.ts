@@ -1,12 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { setCookie } from 'typescript-cookie';
-import i18next from 'i18next';
-import { getCookieData } from '../utils/misc';
-import { COMMON_CONSTANTS } from '../constants';
 
 export interface CommonState {
-    currentLanguage: string,
+    showPopupConfirm: boolean
 }
 
-const cookieLanguageCode = getCookieData(COMMON_CONSTANTS.I18NEXT);
+const initialState: CommonState = {
+    showPopupConfirm: false
+};
+
+export const commonSlice = createSlice({
+    name: 'commonSlice',
+    initialState,
+    reducers: {
+        setShowPopupConfirm(state, action: PayloadAction<boolean>) {
+            state.showPopupConfirm = action.payload;
+        }
+    },
+});
+
+export const { setShowPopupConfirm } = commonSlice.actions;
+
+export default  commonSlice.reducer;

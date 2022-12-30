@@ -23,6 +23,8 @@ const Cart: React.FC = () => {
         (state: RootState) => state.homePageReducer.cartItemsList,
     );
 
+    console.log('carItemsLis123123123t', carItemsList);
+
     const currentLanguageCode = useSelector(
         (state: RootState) => state.homePageReducer.currentLanguage,
     );

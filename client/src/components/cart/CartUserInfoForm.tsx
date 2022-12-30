@@ -8,21 +8,26 @@ import {
     userAddress,
     userAddressFormErrorMessages,
     userInforFormErrorMessages,
-    userInformation
+    userInformation, userPaymentFormType
 } from '../../types/cart';
 import BaseRadioButtons from '../base/RadioButtons';
 
 interface Props {
+    activeStep: number,
     userInforForm: userInformation,
     setUserInforForm: Dispatch<SetStateAction<userInformation>>,
-    activeStep: number,
     errorMessageUserInforForm: userInforFormErrorMessages,
     userAddressInforForm: userAddress,
     setUserAddressInforForm: Dispatch<SetStateAction<userAddress>>,
     errorMessageUserAddressForm: userAddressFormErrorMessages,
-    optionsList: { label: string, value: string }[],
-    selectedOptionValue: string,
-    setSelectedOptionValue: Dispatch<SetStateAction<string>>
+    userPaymentInforForm: userPaymentFormType,
+    setUserPaymentInforForm: Dispatch<SetStateAction<userPaymentFormType>>
+    optionsListShippingMethod: { label: string, value: string }[],
+    optionsListPaymentMethod: { label: string, value: string }[],
+    selectedShippingOptionValue: string,
+    setSelectedShippingOptionValue: Dispatch<SetStateAction<string>>,
+    selectedPaymentOptionValue: string,
+    setSelectedPaymentOptionValue: Dispatch<SetStateAction<string>>
 }
 
 const CartUserInfoForm: React.FC<Props> = ({
@@ -33,11 +38,16 @@ const CartUserInfoForm: React.FC<Props> = ({
     userAddressInforForm,
     setUserAddressInforForm,
     errorMessageUserAddressForm,
-    optionsList,
-    selectedOptionValue,
-    setSelectedOptionValue
-}) => {
-    
+    userPaymentInforForm,
+    setUserPaymentInforForm,
+    optionsListShippingMethod,
+    optionsListPaymentMethod,
+    selectedShippingOptionValue,
+    setSelectedShippingOptionValue,
+    selectedPaymentOptionValue,
+    setSelectedPaymentOptionValue
+    }) => {
+
     const handleChangeUserInfor = (e: any) => {
         let inputValue = e.target.value;
         if (e.target.name === 'phoneNumber') {
@@ -57,8 +67,20 @@ const CartUserInfoForm: React.FC<Props> = ({
         });
     };
 
-    const handleSelectOption = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedOptionValue((event.target as HTMLInputElement).value);
+    const handleChangeUserPayment = (e: any) => {
+        const inputValue = e.target.value;
+        setUserPaymentInforForm({
+            ...userPaymentInforForm,
+            [e.target.name]: inputValue
+        });
+    };
+
+    const handleSelectShippingOption = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedShippingOptionValue((event.target as HTMLInputElement).value);
+    };
+
+    const handleSelectPaymentOption = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedPaymentOptionValue((event.target as HTMLInputElement).value);
     };
 
     return (
@@ -67,7 +89,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                 {activeStep === 0 && (
                     <>
                         <Typography
-                            content={'cart_page.checkout_form.customer_information'}
+                            content={'cart_page.checkout_form.customer_information.label'}
                             className={'text-2xl font-semibold mb-2'}
                             variant={'h4'}
                         />
@@ -75,7 +97,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                         {/*First Name*/}
                         <div>
                             <Typography
-                                content={'cart_page.checkout_form.first_name'}
+                                content={'cart_page.checkout_form.customer_information.first_name'}
                                 className={'text-base mb-2'}
                             />
                             <InputTextField
@@ -83,7 +105,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                 handleChange={handleChangeUserInfor}
                                 type={'text'}
                                 inputName={'firstName'}
-                                placeholder={'cart_page.checkout_form.first_name_placeholder'}
+                                placeholder={'cart_page.checkout_form.customer_information.first_name_placeholder'}
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
@@ -95,7 +117,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                         {/*Last name*/}
                         <div className={'mt-2'}>
                             <Typography
-                                content={'cart_page.checkout_form.last_name'}
+                                content={'cart_page.checkout_form.customer_information.last_name'}
                                 className={'text-base mb-2'}
                             />
                             <InputTextField
@@ -103,7 +125,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                 handleChange={handleChangeUserInfor}
                                 type={'text'}
                                 inputName={'lastName'}
-                                placeholder={'cart_page.checkout_form.last_name_placeholder'}
+                                placeholder={'cart_page.checkout_form.customer_information.last_name_placeholder'}
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
@@ -115,7 +137,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                         {/*Phone number*/}
                         <div className={'mt-2'}>
                             <Typography
-                                content={'cart_page.checkout_form.phone_number'}
+                                content={'cart_page.checkout_form.customer_information.phone_number'}
                                 className={'text-base mb-2'}
                             />
                             <InputTextField
@@ -123,7 +145,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                 handleChange={handleChangeUserInfor}
                                 type={'text'}
                                 inputName={'phoneNumber'}
-                                placeholder={'cart_page.checkout_form.phone_number'}
+                                placeholder={'cart_page.checkout_form.customer_information.phone_number'}
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
@@ -135,7 +157,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                         {/*Email*/}
                         <div className={'mt-2'}>
                             <Typography
-                                content={'cart_page.checkout_form.email_address'}
+                                content={'cart_page.checkout_form.customer_information.email_address'}
                                 className={'text-base mb-2'}
                             />
                             <InputTextField
@@ -143,7 +165,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                 handleChange={handleChangeUserInfor}
                                 type={'email'}
                                 inputName={'emailAddress'}
-                                placeholder={'cart_page.checkout_form.email_address'}
+                                placeholder={'cart_page.checkout_form.customer_information.email_address'}
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
@@ -159,7 +181,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                 {activeStep === 1 && (
                     <>
                         <Typography
-                            content={'cart_page.checkout_form.address'}
+                            content={'cart_page.checkout_form.address.label'}
                             className={'text-2xl font-semibold mb-2'}
                             variant={'h4'}
                         />
@@ -167,7 +189,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                         {/*Country*/}
                         <div>
                             <Typography
-                                content={'cart_page.checkout_form.country'}
+                                content={'cart_page.checkout_form.address.country'}
                                 className={'text-base mb-2'}
                             />
                             <InputTextField
@@ -175,7 +197,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                 handleChange={handleChangeUserAddress}
                                 type={'text'}
                                 inputName={'country'}
-                                placeholder={'cart_page.checkout_form.first_name_placeholder'}
+                                placeholder={'cart_page.checkout_form.address.country'}
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
@@ -187,7 +209,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                         {/*City*/}
                         <div className={'mt-2'}>
                             <Typography
-                                content={'cart_page.checkout_form.city'}
+                                content={'cart_page.checkout_form.address.city'}
                                 className={'text-base mb-2'}
                             />
                             <InputTextField
@@ -195,7 +217,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                 handleChange={handleChangeUserAddress}
                                 type={'text'}
                                 inputName={'city'}
-                                placeholder={'cart_page.checkout_form.last_name_placeholder'}
+                                placeholder={'cart_page.checkout_form.address.city'}
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
@@ -207,7 +229,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                         {/*District*/}
                         <div className={'mt-2'}>
                             <Typography
-                                content={'cart_page.checkout_form.district'}
+                                content={'cart_page.checkout_form.address.district'}
                                 className={'text-base mb-2'}
                             />
                             <InputTextField
@@ -215,7 +237,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                 handleChange={handleChangeUserAddress}
                                 type={'text'}
                                 inputName={'district'}
-                                placeholder={'cart_page.checkout_form.district'}
+                                placeholder={'cart_page.checkout_form.address.district'}
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
@@ -227,7 +249,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                         {/*Street address*/}
                         <div className={'mt-2'}>
                             <Typography
-                                content={'cart_page.checkout_form.street_address'}
+                                content={'cart_page.checkout_form.address.street_address'}
                                 className={'text-base mb-2'}
                             />
                             <InputTextField
@@ -235,7 +257,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                 handleChange={handleChangeUserAddress}
                                 type={'text'}
                                 inputName={'streetAddress'}
-                                placeholder={'cart_page.checkout_form.street_address'}
+                                placeholder={'cart_page.checkout_form.address.street_address'}
                                 className={'border mb-1'}
                             />
                             <ErrorMessage
@@ -249,16 +271,171 @@ const CartUserInfoForm: React.FC<Props> = ({
                 {activeStep === 2 && (
                     <>
                         <Typography
-                            content={'cart_page.checkout_form.shipping_method'}
+                            content={'cart_page.checkout_form.shipping_method.label'}
                             className={'text-2xl font-semibold mb-2'}
                             variant={'h4'}
                         />
 
                         <BaseRadioButtons
-                            optionsList={optionsList}
-                            defaultValue={selectedOptionValue}
-                            handleSelect={handleSelectOption}
+                            optionsList={optionsListShippingMethod}
+                            defaultValue={selectedShippingOptionValue}
+                            handleSelect={handleSelectShippingOption}
                         />
+                    </>
+                )}
+
+                {activeStep === 3 && (
+                    <>
+                        <Typography
+                            content={'cart_page.checkout_form.checkout.label'}
+                            className={'text-2xl font-semibold mb-2'}
+                            variant={'h4'}
+                        />
+
+                        {/* Discount code*/}
+                        <div className={'mt-2'}>
+                            <Typography
+                                content={'cart_page.checkout_form.checkout.discount_code'}
+                                className={'text-base mb-2'}
+                            />
+                            <InputTextField
+                                value={userPaymentInforForm.discountCode}
+                                handleChange={handleChangeUserPayment}
+                                type={'text'}
+                                inputName={'discountCode'}
+                                placeholder={'cart_page.checkout_form.checkout.discount_code'}
+                                className={'border mb-1'}
+                            />
+                            <ErrorMessage
+                                errorMessage={errorMessageUserAddressForm.streetAddress.message}
+                                field={errorMessageUserAddressForm.streetAddress.field}
+                            />
+                        </div>
+
+                        <div className={'mt-2'}>
+                            <Typography
+                                content={'cart_page.checkout_form.checkout.payment_method.label'}
+                                className={'text-2xl font-semibold mb-2'}
+                            />
+
+                            <BaseRadioButtons
+                                optionsList={optionsListPaymentMethod}
+                                defaultValue={selectedPaymentOptionValue}
+                                handleSelect={handleSelectPaymentOption}
+                            />
+
+                            {selectedPaymentOptionValue === 'card' && (
+                                <div className={'mt-2'}>
+                                    <Typography
+                                        content={'cart_page.checkout_form.checkout.payment_method.credit_card.card_holder_name'}
+                                        className={'text-base mb-2'}
+                                    />
+
+                                    {/* Card Name*/}
+                                    <div>
+                                        <InputTextField
+                                            value={userPaymentInforForm.cardHolderName}
+                                            handleChange={handleChangeUserPayment}
+                                            type={'text'}
+                                            inputName={'cardHolderName'}
+                                            placeholder={'cart_page.checkout_form.checkout.payment_method.credit_card.card_holder_name'}
+                                            className={'border mb-1'}
+                                        />
+                                        <ErrorMessage
+                                            errorMessage={errorMessageUserAddressForm.streetAddress.message}
+                                            field={errorMessageUserAddressForm.streetAddress.field}
+                                        />
+                                    </div>
+
+                                    <div className={'mt-2 flex'}>
+                                        {/* Card Number*/}
+                                        <div className={'w-3/5 mr-4'}>
+                                            <Typography
+                                                content={'cart_page.checkout_form.checkout.payment_method.credit_card.card_number'}
+                                                className={'text-base mb-2'}
+                                            />
+
+                                            <InputTextField
+                                                value={userPaymentInforForm.cardNumber}
+                                                handleChange={handleChangeUserPayment}
+                                                type={'text'}
+                                                inputName={'cardNumber'}
+                                                placeholder={'cart_page.checkout_form.checkout.payment_method.credit_card.card_number'}
+                                                className={'border mb-1'}
+                                            />
+                                            <ErrorMessage
+                                                errorMessage={errorMessageUserAddressForm.streetAddress.message}
+                                                field={errorMessageUserAddressForm.streetAddress.field}
+                                            />
+                                        </div>
+
+                                        <div className={'w-1/3 mr-4'}>
+                                            <Typography
+                                                content={'cart_page.checkout_form.checkout.payment_method.credit_card.card_security_code'}
+                                                className={'text-base mb-2'}
+                                            />
+
+                                            {/* Card CVV*/}
+                                            <InputTextField
+                                                value={userPaymentInforForm.cardSecurityCode}
+                                                handleChange={handleChangeUserPayment}
+                                                type={'text'}
+                                                inputName={'cardSecurityCode'}
+                                                placeholder={'cart_page.checkout_form.checkout.payment_method.credit_card.card_security_code'}
+                                                className={'border mb-1'}
+                                            />
+                                            <ErrorMessage
+                                                errorMessage={errorMessageUserAddressForm.streetAddress.message}
+                                                field={errorMessageUserAddressForm.streetAddress.field}
+                                            />
+                                        </div>
+                                        <div className={'w-2/5'}>
+                                            <Typography
+                                                content={'cart_page.checkout_form.checkout.payment_method.credit_card.card_expiry'}
+                                                className={'text-base mb-2'}
+                                            />
+                                            <div>
+
+                                                {/* Card Expiry*/}
+                                                <div className={'flex justify-between items-center'}>
+                                                    <div className={'w-1/2 mr-2'}>
+                                                        <InputTextField
+                                                            value={userPaymentInforForm.cardExpirationMonth}
+                                                            handleChange={handleChangeUserPayment}
+                                                            type={'text'}
+                                                            inputName={'cardExpirationMonth'}
+                                                            placeholder={'cart_page.checkout_form.checkout.payment_method.credit_card.card_expiry_month'}
+                                                            className={'border mb-1'}
+                                                        />
+                                                    </div>
+
+                                                    <Typography
+                                                        content={'/'}
+                                                        className={'text-base mr-2'}
+                                                        needTranslate={false}
+                                                    />
+
+                                                    <div className={'w-1/2'}>
+                                                        <InputTextField
+                                                            value={userPaymentInforForm.cardExpirationYear}
+                                                            handleChange={handleChangeUserPayment}
+                                                            type={'text'}
+                                                            inputName={'cardExpirationYear'}
+                                                            placeholder={'cart_page.checkout_form.checkout.payment_method.credit_card.card_expiry_year'}
+                                                            className={'border mb-1'}
+                                                        />
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            )}
+                        </div>
                     </>
                 )}
             </form>

@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import itemRoutes from './routes/singleItem.js';
+import invoiceRoutes from './routes/invoice.js';
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/items', itemRoutes);
+app.use('/api/invoices', invoiceRoutes);
 
 const PORT = 8800;
 
