@@ -17,7 +17,7 @@ import {
 import { RootState } from '../store';
 import { COMMON_CONSTANTS, HTTP_STATUS } from '../constants';
 import { convertMoney } from '../utils/misc';
-import { addItemToCart, changeQuantityItem, deleteCart, getTotalCartPrice, removeItemFromCart } from '../store/home';
+import { changeQuantityItem, deleteCart, getTotalCartPrice, removeItemFromCart } from '../store/home';
 import { setShowPopupConfirm } from '../store/common';
 import { setUserInforFormData } from '../store/cart';
 import { REDUCER_HOME_ACTION } from '../constants/reducer';
