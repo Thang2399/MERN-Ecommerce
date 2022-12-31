@@ -8,7 +8,7 @@ type Props = {
 
 const Image: React.FC<Props> = ({ imgUrl, alt, className }) => {
 	return (
-		<div>
+		<div className={'w-full h-full'}>
             <img
                 src={imgUrl}
                 alt={alt}

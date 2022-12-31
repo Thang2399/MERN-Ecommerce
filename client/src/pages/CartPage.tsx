@@ -219,7 +219,7 @@ export default function CartPage(): JSX.Element {
     };
 
     return (
-        <div className={'pt-20 h-5/6 px-20'}>
+        <div className={'h-5/6'}>
             <Typography
                 content={'cart_page.checkout'}
                 variant={'h1'}

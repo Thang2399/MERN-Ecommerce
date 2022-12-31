@@ -3,7 +3,7 @@ import HomeLayout from '../components/home/HomeLayout';
 
 export default function HomePage(): JSX.Element {
     return (
-        <div className={'relative pt-20'}>
+        <div className={'relative'}>
             <HomeLayout />
         </div>
     );

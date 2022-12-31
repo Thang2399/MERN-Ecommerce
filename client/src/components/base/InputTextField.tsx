@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { BiShow, BiHide } from 'react-icons/bi';
 
 type Props = {
     value: string,
