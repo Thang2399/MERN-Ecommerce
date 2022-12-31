@@ -51,7 +51,6 @@ export const loginUser = async (req, res) => {
 				process.env.MONGOOSE_CONNECTION,
 				{ expiresIn: '1d' }
 			);
-			const bearerToken = `Bearer ${token}`;
 
 			const response = {
 				message: HTTP_RESPONSE_MESSAGE.LOGIN.LOGIN_SUCCESS,
@@ -62,7 +61,7 @@ export const loginUser = async (req, res) => {
 					userEmail: specificUser.email,
 					userRole: specificUser.role,
 					userPhoneNumber: specificUser.phoneNumber,
-					accessToken: bearerToken
+					accessToken: token
 				}
 			};
 

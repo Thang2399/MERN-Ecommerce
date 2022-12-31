@@ -1,9 +1,34 @@
 {
   "required": "Required",
+    "login_page": {
+    "label": "Login",
+    "not_have_an_account": "Not having an account yet?",
+    "sign_up_now": "Sign up now",
+    "forgot_password": "Forget password?",
+    "login_form": {
+      "email": "Email",
+      "email_placeholder": "Your email address",
+      "password": "Password",
+      "password_placeholder": "Your password",
+      "remember_me": "Remember me",
+      "submit_btn": "Login"
+    },
+      "response_message": {
+        "login_success": "Login successfully!",
+        "wrong_email_or_password": "Wrong email or password"
+      }
+  },
   "home_page": {
     "search_box_placeholder": "Find your favorite item",
     "add_to_cart": "Add to cart",
     "view_detail": "View detail",
+    "login_icon": {
+      "sign_up": "Sign up",
+      "login": "Login",
+      "logout": "Log out",
+      "setting": "Setting",
+      "invoice_history": "Invoice history"
+    },
     "cart": {
       "empty_cart": "Your Cart is empty right now.",
       "subtotal": "Subtotal",
@@ -81,7 +106,8 @@
     "country": "country",
     "city": "city",
     "district": "district",
-    "street_address": "street address"
+    "street_address": "street address",
+    "password": "password"
   },
   "error_messages": {
     "filed_required": "This {{field}} field is required",

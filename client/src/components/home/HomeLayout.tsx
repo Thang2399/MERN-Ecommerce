@@ -39,16 +39,16 @@ export default function HomeLayout(): JSX.Element {
 
 
     return (
-        <div className='w-screen h-full bg-blue-900'>
+        <div className='h-full'>
             <div className={'w-full h-full'}>
-                <div className={'px-20 w-full h-1/3 bg-red-700'}>
+                <div className={'w-full h-1/3'}>
                     <ListItems listItems={listItems}/>
                 </div>
             </div>
             {showQuickView && (
                 <div
                     className={
-                        'absolute top-0 left-0 w-screen h-screen bg-black bg-opacity-40 overflow-hidden'
+                        'absolute top-0 left-0 bg-black bg-opacity-40 overflow-hidden'
                     }>
                     <QuickViewItem id={specificItemId}/>
                 </div>

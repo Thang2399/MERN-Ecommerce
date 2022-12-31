@@ -1,5 +1,5 @@
 import { getCookie } from 'typescript-cookie';
-import { COMMON_CONSTANTS } from '../constants';
+import { COMMON_CONSTANTS, REGEX } from '../constants';
 
 export const getCookieData = (name: string) => {
     let result = '';
@@ -37,7 +37,7 @@ export const changeMoney = ( price: string, currentLanguage: string) =>{
     }
 };
 
-    export const convertMoney = (money: string, currency: string, currentLanguage: string) => {
+export const convertMoney = (money: string, currency: string, currentLanguage: string) => {
         const moneyData = money;
         if (currentLanguage === COMMON_CONSTANTS.VN) {
             const convertPrice = changeMoney(moneyData, currentLanguage);
@@ -54,3 +54,27 @@ export const changeMoney = ( price: string, currentLanguage: string) =>{
             };
         }
     };
+
+export const checkRequiredFiled = (data: string, field: string) => {
+    const errorMessage = {
+        message: '',
+        field: ''
+    };
+
+    if (!data || data === '') {
+        errorMessage.message = 'error_messages.filed_required';
+        errorMessage.field = field;
+    }
+
+    return errorMessage;
+};
+
+export const checkEmailAddress = (data: string, field: string) => {
+    const errorMessage = checkRequiredFiled(data, field);
+
+    if (errorMessage.message === '' && !REGEX.EMAIL_VALIDATE.test(data)) {
+        errorMessage.message = 'error_messages.wrong_email_validate';
+    }
+
+    return errorMessage;
+};

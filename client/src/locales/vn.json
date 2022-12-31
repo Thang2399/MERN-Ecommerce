@@ -1,9 +1,34 @@
 {
   "required": "Bắt buộc",
+  "login_page": {
+    "label": "Đăng nhập",
+    "not_have_an_account": "Chưa có tài khoản?",
+    "sign_up_now": "Đăng kí ngay",
+    "forgot_password": "Quên mật khẩu?",
+    "login_form": {
+      "email": "Email",
+      "email_placeholder": "Email của bạn",
+      "password": "Mật khẩu",
+      "password_placeholder": "Mật khẩu của bạn",
+      "remember_me": "Lưu mật khẩu",
+      "submit_btn": "Đăng nhập"
+    },
+    "response_message": {
+      "login_success": "Đăng nhập thành công",
+      "wrong_email_or_password": "Sai email hoặc mật khẩu"
+    }
+  },
   "home_page": {
     "search_box_placeholder": "Tìm kiếm sản phẩm bạn yêu thích",
     "add_to_cart": "Thêm vào giỏ hàng",
     "view_detail": "Xem chi tiết",
+    "login_icon": {
+      "sign_up": "Đăng kí ngay",
+      "login": "Đăng nhập",
+      "logout": "Đăng xuất",
+      "setting": "Cài đặt",
+      "invoice_history": "Lịch sử đơn hàng"
+    },
     "cart": {
       "empty_cart": "Giỏ hàng của bạn đang trống.",
       "subtotal": "Tổng cộng",
@@ -82,7 +107,8 @@
     "country": "Quốc gia",
     "city": "Thành phố",
     "district": "Quận/huyện",
-    "street_address": "Địa chỉ"
+    "street_address": "Địa chỉ",
+    "password": "Mật khẩu"
   },
   "error_messages": {
     "filed_required": "{{field}} bắt buộc",

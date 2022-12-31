@@ -7,6 +7,7 @@ import { supportsLanguagesArrTypes } from '../../types/index';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../../store';
 import { changeLanguage } from '../../store/home';
+import Image from '../base/Image';
 
 export default function LocalesSwitcher(): JSX.Element {
     const currentLanguageCode = useSelector(
@@ -62,7 +63,9 @@ export default function LocalesSwitcher(): JSX.Element {
             onMouseOver={onShowSubmenu}
             onMouseLeave={onHideSubmenu}>
             <div className={'flex items-center cursor-pointer'}>
-                <h2 className={'text-3xl mr-2'}>{languages.flag}</h2>
+                <div className={'mr-2 w-8 h-8 flex justify-center items-center'}>
+                    <Image imgUrl={languages.flag}/>
+                </div>
                 <h5 className={'text-lg mr-2'}>{languages.language}</h5>
                 <div>
                     <RiArrowDownSFill/>
@@ -79,9 +82,11 @@ export default function LocalesSwitcher(): JSX.Element {
                             key={item.code}
                             onClick={() => handleChangeLanguage(item.code)}
                             className={
-                                'flex items-center cursor-pointer py-2 px-4 first:rounded-t-md last:rounded-b-md hover:bg-gray-300 hover:text-black'
+                                'flex items-center cursor-pointer py-2 px-4 first:rounded-t-md last:rounded-b-md hover:bg-gray-300 hover:text-black first:border-b'
                             }>
-                            <h1 className={'text-2xl mr-3'}>{item.flag}</h1>
+                            <div className={'mr-2 w-8 h-8 flex justify-center items-center'}>
+                                <Image imgUrl={item.flag}/>
+                            </div>
                             <h5 className={'text-base'}>{item.language}</h5>
                         </div>
                     ))}

@@ -1,7 +1,12 @@
+import { AUTHENTICATION, LOGIN } from './auth';
+
 export const COMMON_CONSTANTS = {
     I18NEXT: 'i18next',
     VN: 'vn',
-    EN: 'en'
+    EN: 'en',
+    ACCESS_TOKEN: 'access_token',
+    USER_ID: 'user_id',
+    USER_ROLE: 'user_role'
 };
 
 export const REGEX = {
@@ -17,4 +22,9 @@ export const HTTP_STATUS = {
     UNAUTHORIZED: 401,
     FORBIDDEN: 403,
     NOT_FOUND: 404,
+};
+
+export const HTTP_RESPONSE_MESSAGE = {
+	AUTHENTICATION: { ...AUTHENTICATION },
+	LOGIN: { ...LOGIN }
 };

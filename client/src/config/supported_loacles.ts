@@ -4,12 +4,12 @@ const supportsLanguagesArr: supportsLanguagesArrTypes[] = [
 	{
 		code: 'vn',
 		language: 'Tiếng Việt',
-		flag: '🇻🇳',
+		flag: '/assets/images/vietnam-flag.png'
 	},
 	{
 		code: 'en',
 		language: 'English',
-		flag: '🇬🇧',
+		flag: '/assets/images/england-flag.png'
 	},
 ];
 

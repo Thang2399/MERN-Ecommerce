@@ -1,29 +1,6 @@
 import { userAddress, userInformation } from '../types/cart';
 import { REGEX } from '../constants';
-
-export const checkRequiredFiled = (data: string, field: string) => {
-    const errorMessage = {
-        message: '',
-        field: ''
-    };
-
-    if (!data || data === '') {
-        errorMessage.message = 'error_messages.filed_required';
-        errorMessage.field = field;
-    }
-
-    return errorMessage;
-};
-
-export const checkEmailAddress = (data: string, field: string) => {
-    const errorMessage = checkRequiredFiled(data, field);
-
-    if (errorMessage.message === '' && !REGEX.EMAIL_VALIDATE.test(data)) {
-        errorMessage.message = 'error_messages.wrong_email_validate';
-    }
-
-    return errorMessage;
-};
+import { checkEmailAddress, checkRequiredFiled } from './misc';
 
 
 export const checkValidateFormUserInfo = (form: userInformation) => {
