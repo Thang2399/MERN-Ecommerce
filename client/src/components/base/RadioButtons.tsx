@@ -8,13 +8,12 @@ import { useTranslation } from 'react-i18next';
 interface Props {
     optionsList: { label: string, value: string }[],
     defaultValue: string,
-    handleSelect: (params: any) => any
+    handleSelect: (params: any) => any,
+    isRow?: boolean
 }
 
-const BaseRadioButtons: React.FC<Props> = ({ optionsList, defaultValue, handleSelect }) => {
+const BaseRadioButtons: React.FC<Props> = ({ optionsList, defaultValue, handleSelect, isRow }) => {
     const { t } = useTranslation();
-    
-    // const [ value, setValue ] = React.useState(optionsList[1].value);
     //
     // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //     setValue((event.target as HTMLInputElement).value);
@@ -23,6 +22,7 @@ const BaseRadioButtons: React.FC<Props> = ({ optionsList, defaultValue, handleSe
     return (
         <FormControl>
             <RadioGroup
+                row={isRow}
                 aria-labelledby="demo-controlled-radio-buttons-group"
                 name="controlled-radio-buttons-group"
                 value={defaultValue}
@@ -41,6 +41,10 @@ const BaseRadioButtons: React.FC<Props> = ({ optionsList, defaultValue, handleSe
             </RadioGroup>
         </FormControl>
     );
+};
+
+BaseRadioButtons.defaultProps = {
+    isRow: false,
 };
 
 export default BaseRadioButtons;

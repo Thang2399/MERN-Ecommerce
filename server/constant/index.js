@@ -7,6 +7,12 @@ export const USER_ROLE = {
 	SALESMAN: 'salesman'
 };
 
+export const USER_GENDER = {
+	MALE: 'male',
+	FEMALE: 'female',
+	OTHER: 'other'
+};
+
 export const HTTP_STATUS = {
 	SUCCESS: 200,
 	CREATE_SUCCESS: 201,
