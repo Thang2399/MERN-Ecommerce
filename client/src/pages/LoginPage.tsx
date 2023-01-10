@@ -23,8 +23,10 @@ export default function LoginPage(): JSX.Element {
     return (
         <div className={'flex items-center justify-center w-full h-full'}>
             <div className={'w-full flex'}>
-                <div className={'w-3/5'}>
-                    <Image imgUrl={'/assets/images/login-image.jpeg'}/>
+                <div className={'w-3/5 justify-center items-center'}>
+                    <div className={'w-4/5'}>
+                        <Image imgUrl={'/assets/images/login-image.jpeg'}/>
+                    </div>
                 </div>
                 <div className={'w-2/5'}>
                     <LoginForm />

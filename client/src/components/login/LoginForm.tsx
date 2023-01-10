@@ -87,7 +87,6 @@ export default function LoginForm(): JSX.Element {
         }
 
         if (error === 0) {
-            console.log('controller');
             handleLoginUser(loginForm);
         }
     };
@@ -131,6 +130,7 @@ export default function LoginForm(): JSX.Element {
                         value={loginForm.password}
                         inputName={'password'}
                         className={'border mb-1'}
+                        isPasswordField={true}
                     />
                     <ErrorMessage
                         errorMessage={loginFormErrorMessages.password.message}
@@ -138,7 +138,7 @@ export default function LoginForm(): JSX.Element {
                     />
                 </div>
 
-                <div className={'mt-6 flex justify-between'}>
+                <div className={'mt-6 flex justify-between items-center'}>
                     <BaseCheckbox checkboxList={rememberMeOptionList} />
 
                     <div className={'cursor-pointer'} onClick={redirectToForgetPassword}>

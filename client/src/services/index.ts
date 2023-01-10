@@ -1,9 +1,9 @@
-import login from './login';
+import auth from './auth';
 import home from './home';
 import cart from './cart';
 
 const services = {
-    ...login,
+    ...auth,
     ...home,
     ...cart
 };

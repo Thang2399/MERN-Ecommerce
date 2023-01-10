@@ -18,6 +18,50 @@
         "wrong_email_or_password": "Wrong email or password"
       }
   },
+  "signup_page": {
+    "label": "Sign Up",
+    "signup_form": {
+      "first_name": {
+        "label": "First Name",
+        "placeholder": "Your first name"
+      },
+      "last_name":{
+        "label": "Last Name",
+        "placeholder": "Your last name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Your email address"
+      },
+      "phone_number": {
+        "label": "Phone Number",
+        "placeholder": "Your phone number"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Your password"
+      },
+      "repeat_password": {
+        "label": "Confirm Password",
+        "placeholder": "Your confirm password"
+      },
+      "password_validate": {
+        "label": "Note: Your password must contain at least 8 characters, including letters, numbers and special characters"
+      },
+      "gender": {
+        "label": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "other": "Other"
+      },
+      "date_of_birth": {
+        "label": "Date Of Birth"
+      },
+      "submit_btn": "Sign Up"
+    },
+    "already_have_account": "Already have an account?",
+    "login_now": "Login now"
+  },
   "home_page": {
     "search_box_placeholder": "Find your favorite item",
     "add_to_cart": "Add to cart",
@@ -101,6 +145,7 @@
     "first_name": "firstname",
     "last_name": "lastname",
     "full_name": "fullname",
+    "user_name": "username",
     "phone_number": "phone number",
     "email_address": "email",
     "country": "country",
@@ -111,7 +156,9 @@
   },
   "error_messages": {
     "filed_required": "This {{field}} field is required",
-    "wrong_email_validate": "Wrong email format"
+    "wrong_email_validate": "Wrong email format",
+    "wrong_password_validate": "Wrong password format",
+    "confirm_password_not_match": "The password field and the confirm password field do not match"
   },
   "payment_page": {
     "billing": "Billing",

@@ -7,10 +7,35 @@ import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
+// export const checkExistingData = (payload) => {
+// 	const userName = payload.userName;
+// 	const email = payload.email;
+// 	const phoneNumber = payload.phoneNumber;
+// 	// const message = '';
+//
+// 	console.log('userName', userName);
+// 	// check duplicate userName
+// 	UserSchema.findOne({ userName }, function (err, user) {
+// 		let message = '';
+// 		if (err) {
+// 			console.log('error', err);
+// 			return console.log(err);
+// 		}
+// 		if (user) {
+// 			console.log('user already exists', user);
+// 			message = 'Duplicate user';
+// 		}
+// 		console.log('phoneNumber', phoneNumber);
+// 		return message;
+// 	});
+// };
+
 export const signUpUser = async (req, res) => {
 	try {
+		console.log('check run');
 		const userBody = req.body;
 
+		// await checkExistingData(userBody);
 		userBody.password = await hashPassword(userBody.password);
 
 		const newUser = await UserSchema(userBody);
@@ -27,10 +52,10 @@ export const signUpUser = async (req, res) => {
 				userPhoneNumber: newUser.phoneNumber
 			}
 		};
-		return res.status(HTTP_STATUS.SUCCESS).json(response);
+		return res.status(HTTP_STATUS.CREATE_SUCCESS).json(response);
 	} catch (err) {
 		console.log(err);
-		return res.status(HTTP_STATUS.BAD_REQUEST).json({ message: err.message });
+		return res.status(HTTP_STATUS.BAD_REQUEST).json(err);
 	}
 };
 
