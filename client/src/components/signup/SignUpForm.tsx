@@ -67,28 +67,38 @@ export default function SignUpForm(): JSX.Element {
         setGender((event.target as HTMLInputElement).value);
     };
 
-    const handleSignUpUser = async (payload: signUpFormPayloadTypes) => {
+    const onSignUpUser = async (payload: signUpFormPayloadTypes) => {
         dispatch(setShowLoadingIcon(true));
         try {
             const res = await services.signUpUser(payload);
             if (res && res.status === HTTP_STATUS.CREATE_SUCCESS){
                 console.log('res', res);
-                // const data = res.data.data;
-                // setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, data.accessToken);
-                // setCookie(COMMON_CONSTANTS.USER_ID, data._id);
-                // setCookie(COMMON_CONSTANTS.USER_ROLE, data.userRole);
-                // dispatch(setUserCommonInfor({
-                //     accessToken: data.accessToken,
-                //     role: data.role,
-                //     id: data._id,
-                // }));
-                await dispatch(setShowLoadingIcon(false));
-                // await navigate('/');
-                // await dispatch(setShowToastMessage({
-                //     show: true,
-                //     message: 'login_page.response_message.login_success',
-                //     type: 'success'
-                // }));
+                const loginPayload = {
+                    email: payload.email,
+                    password: payload.password,
+                    remember: false,
+                };
+                const loginRes = await services.loginUser(loginPayload);
+
+                if (loginRes && loginRes.status === HTTP_STATUS.CREATE_SUCCESS) {
+                    const data = loginRes.data.data;
+                    setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, data.accessToken);
+                    setCookie(COMMON_CONSTANTS.USER_ID, data._id);
+                    setCookie(COMMON_CONSTANTS.USER_ROLE, data.userRole);
+                    dispatch(setUserCommonInfor({
+                        accessToken: data.accessToken,
+                        role: data.role,
+                        id: data._id,
+                    }));
+                    await dispatch(setShowLoadingIcon(false));
+                    await navigate('/');
+                    await dispatch(setShowToastMessage({
+                        show: true,
+                        message: 'login_page.response_message.login_success',
+                        type: 'success'
+                    }));
+                }
+
             }
         }
         catch (err: any) {
@@ -115,7 +125,7 @@ export default function SignUpForm(): JSX.Element {
         }
 
         if (error === 0) {
-            handleSignUpUser(formPayload);
+            onSignUpUser(formPayload);
         }
     };
 

@@ -46,7 +46,7 @@ export default function LoginForm(): JSX.Element {
         navigate('/forget_password');
     };
 
-    const handleLoginUser = async (payload:defaultLoginFormTypes) => {
+    const onLoginUser = async (payload: defaultLoginFormTypes) => {
         dispatch(setShowLoadingIcon(true));
         try {
             const res = await services.loginUser(payload);
@@ -87,7 +87,7 @@ export default function LoginForm(): JSX.Element {
         }
 
         if (error === 0) {
-            handleLoginUser(loginForm);
+            onLoginUser(loginForm);
         }
     };
 

@@ -14,7 +14,7 @@ export const REGEX = {
     EMAIL_VALIDATE: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     CONTAIN_AT_LEAST_ONE_NUMBER: /\d/,
     CONTAIN_AT_LEAST_ONE_LETTER: /[a-zA-Z]/,
-    CONTAIN_AT_LEAST_ONE_SPECIAL_CHARACTER: /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
+    CONTAIN_AT_LEAST_ONE_SPECIAL_CHARACTER: /[ `!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/
 };
 
 export const HTTP_STATUS = {
