@@ -71,7 +71,8 @@
       "login": "Đăng nhập",
       "logout": "Đăng xuất",
       "setting": "Cài đặt",
-      "invoice_history": "Lịch sử đơn hàng"
+      "invoice_history": "Lịch sử đơn hàng",
+      "logout_message": "Đăng xuất thành công"
     },
     "cart": {
       "empty_cart": "Giỏ hàng của bạn đang trống.",

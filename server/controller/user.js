@@ -9,7 +9,6 @@ const router = express.Router();
 
 export const signUpUser = async (req, res) => {
 	try {
-		console.log('check run');
 		const userBody = req.body;
 
 		userBody.password = await hashPassword(userBody.password);
@@ -33,7 +32,6 @@ export const signUpUser = async (req, res) => {
 		// console.log(err);
 		console.log('err', err);
 		const convertedError = JSON.stringify(err);
-		console.log('converted error', convertedError);
 		return res.status(HTTP_STATUS.BAD_REQUEST).send(convertedError);
 	}
 };
@@ -76,17 +74,6 @@ export const loginUser = async (req, res) => {
 	} catch (err) {
 		console.log('err', err);
 		return res.status(HTTP_STATUS.UNAUTHORIZED).json({ mesage: HTTP_RESPONSE_MESSAGE.LOGIN.WRONG_USER_EMAIL_OR_PASSWORD });
-	}
-};
-
-export const logoutUser = async (req, res) => {
-	try {
-		const token = req.body.accessToken;
-		const response = jwt.sign(token, '');
-		console.log('response', response);
-	} catch (err) {
-		console.log('err', err);
-		return res.status(HTTP_STATUS.UNAUTHORIZED).json({ mesage: HTTP_RESPONSE_MESSAGE.LOGIN.UNAUTHORIZED });
 	}
 };
 
