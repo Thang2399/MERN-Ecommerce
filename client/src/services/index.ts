@@ -1,11 +1,11 @@
-import auth from './auth';
-import home from './home';
-import cart from './cart';
+import authService from './auth.service';
+import homeService from './home.service';
+import cartService from './cart.service';
 
 const services = {
-    ...auth,
-    ...home,
-    ...cart
+    ...authService,
+    ...homeService,
+    ...cartService
 };
 
 export default services;

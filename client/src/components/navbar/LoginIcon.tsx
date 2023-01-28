@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
+import { FaUserAlt } from 'react-icons/fa';
 import { MdOutlineArrowDropDown, MdOutlineArrowDropUp } from 'react-icons/md';
 import Typography from '../base/Typography';
 import { useNavigate } from 'react-router-dom';
-import { getCookie } from 'typescript-cookie';
+import { setCookie } from 'typescript-cookie';
 import { COMMON_CONSTANTS } from '../../constants';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
+import { setShowToastMessage, setUserCommonInfor } from '../../store/common';
 
 const loginOptions = [
     {
@@ -41,12 +43,15 @@ const logoutOptions = [
 
 export default function LoginIcon(): JSX.Element {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
     const [ showSubmenu, setShowSubmenu ] = useState<boolean>(false);
     const [ submenuOption, setSubmenuOption ] = useState<{label: string, redirectPath: string, isLogoutItem: boolean}[]>(loginOptions);
     
     const accessToken = useSelector((state: RootState) => state.commonReducer.userCommonInfor.accessToken);
 
     const checkUserLogin = () => {
+        console.log('check run');
        if (accessToken) {
            setSubmenuOption(logoutOptions);
        } else {
@@ -68,11 +73,22 @@ export default function LoginIcon(): JSX.Element {
         setShowSubmenu(false);
     };
     
-    const onMenuItemClick = (redirectPath: string, isLogoutItem: boolean) => {
+    const onMenuItemClick = async (redirectPath: string, isLogoutItem: boolean) => {
         if (!isLogoutItem) {
-            navigate(redirectPath);
+            await navigate(redirectPath);
         } else {
-            console.log('logged out');
+            await setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, '');
+            await dispatch(setUserCommonInfor({
+                    accessToken: '',
+                    role: '',
+                    id: '',
+                }));
+            await dispatch(setShowToastMessage({
+                    show: true,
+                    message: 'home_page.logout_message',
+                    type: 'success'
+                }));
+            await navigate('/');
         }
     };
 
@@ -83,7 +99,8 @@ export default function LoginIcon(): JSX.Element {
             <div
                 className={'flex items-center cursor-pointer transition delay-500 text-3xl w-1/3'}
             >
-                <AiOutlineUser/>
+                {accessToken ? <FaUserAlt /> : <AiOutlineUser/> }
+
                 <div>
                     {showSubmenu
                         ? <MdOutlineArrowDropUp/>

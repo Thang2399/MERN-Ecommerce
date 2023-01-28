@@ -73,6 +73,7 @@
       "setting": "Setting",
       "invoice_history": "Invoice history"
     },
+    "logout_message": "Logout successfully",
     "cart": {
       "empty_cart": "Your Cart is empty right now.",
       "subtotal": "Subtotal",
