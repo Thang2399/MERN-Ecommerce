@@ -47,4 +47,18 @@ export const createInvoice = async (req, res) => {
 	}
 };
 
+export const getListInvoicesFromEmail = async (req, res) => {
+	console.log('checking');
+	try {
+		const userEmail = req.body.email;
+
+		const listInvoices = await InvoiceSchema.find({ emailAddress: userEmail });
+
+
+		return res.status(HTTP_STATUS.SUCCESS).json(listInvoices);
+	} catch (err) {
+		return res.status(HTTP_STATUS.SERVER_ERROR).json(err);
+	}
+};
+
 export default router;
