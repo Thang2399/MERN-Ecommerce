@@ -25,8 +25,8 @@ const loginOptions = [
 
 const logoutOptions = [
     {
-        label: 'home_page.login_icon.setting',
-        redirectPath: '/setting',
+        label: 'home_page.login_icon.my_account',
+        redirectPath: '/my_account',
         isLogoutItem: false,
     },
     {
@@ -77,11 +77,15 @@ export default function LoginIcon(): JSX.Element {
         if (!isLogoutItem) {
             await navigate(redirectPath);
         } else {
-            await setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, '');
+            setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, '');
+            setCookie(COMMON_CONSTANTS.USER_ID, '');
+            setCookie(COMMON_CONSTANTS.USER_ROLE, '');
+            setCookie(COMMON_CONSTANTS.USER_EMAIL, '');
             await dispatch(setUserCommonInfor({
                     accessToken: '',
                     role: '',
                     id: '',
+                    email: '',
                 }));
             await dispatch(setShowToastMessage({
                     show: true,

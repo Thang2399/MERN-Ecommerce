@@ -1,7 +1,7 @@
 import express from 'express';
 import { verifyToken } from '../utils/index.js';
 
-import { getListInvoices, getSingleInvoice, createInvoice, getListInvoicesFromEmail } from '../controller/invoice.js';
+import { getListInvoices, getSingleInvoice, createInvoice, getListInvoicesFromEmail } from '../controller/invoice.controller.js';
 
 const router = express.Router();
 

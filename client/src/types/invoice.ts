@@ -22,3 +22,22 @@ export type singleInvoiceType = {
     listBoughtItems: singleItemTypes[],
     invoiceStatus: string
 }
+
+export type detailSingleInvoiceType = {
+    _id: string,
+    firstName: string,
+    lastName: string,
+    phoneNumber: string,
+    emailAddress: string,
+    country: string,
+    city: string,
+    district: string,
+    streetAddress: string,
+    isShipToHome: boolean,
+	isCodMethod: boolean,
+	discountCode: string,
+    invoiceId: string,
+    totalPrice: string,
+	listBoughtItems: singleItemTypes[],
+	invoiceStatus: string
+}

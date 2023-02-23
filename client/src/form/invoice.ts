@@ -1,5 +1,4 @@
 import { singleInvoiceType } from '../types/invoice';
-import { singleItemTypes } from '../types/home';
 
 export const defaultSingleInvoice: singleInvoiceType = {
     firstName: '',

@@ -1,27 +1,27 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Typography from '../components/base/Typography';
-import Image from '../components/base/Image';
+import Typography from '../../components/base/Typography';
+import Image from '../../components/base/Image';
 import { AiFillCaretUp, AiFillCaretDown } from 'react-icons/ai';
 import { HiOutlineArrowNarrowLeft, HiOutlineArrowNarrowRight } from 'react-icons/hi';
-import CartUserInfoForm from '../components/cart/CartUserInfoForm';
+import CartUserInfoForm from '../../components/cart/CartUserInfoForm';
 
-import { singleItemTypes } from '../types/home';
+import { singleItemTypes } from '../../types/home';
 import {
     userAddress,
     userAddressFormErrorMessages,
     userInforFormErrorMessages, userInforFormType,
     userInformation, userPaymentFormType
-} from '../types/cart';
-import { RootState } from '../store';
-import { COMMON_CONSTANTS, HTTP_STATUS } from '../constants';
-import { convertMoney } from '../utils/misc';
-import { changeQuantityItem, deleteCart, getTotalCartPrice, removeItemFromCart } from '../store/home';
-import { setShowPopupConfirm } from '../store/common';
-import { setUserInforFormData } from '../store/cart';
-import { REDUCER_HOME_ACTION } from '../constants/reducer';
-import Stepper from '../components/base/Stepper';
+} from '../../types/cart';
+import { RootState } from '../../store';
+import { COMMON_CONSTANTS, HTTP_STATUS } from '../../constants';
+import { convertMoney } from '../../utils/misc';
+import { changeQuantityItem, deleteCart, getTotalCartPrice, removeItemFromCart } from '../../store/home';
+import { setShowPopupConfirm } from '../../store/common';
+import { setUserInforFormData } from '../../store/cart';
+import { REDUCER_HOME_ACTION } from '../../constants/reducer';
+import Stepper from '../../components/base/Stepper';
 import { useNavigate } from 'react-router-dom';
 import {
     userInformationForm,
@@ -29,11 +29,11 @@ import {
     userAddressForm,
     userAddressFormErrorMessage,
     userPaymentForm
-} from '../form/cart';
-import { checkValidateFormUserInfo, checkValidateFormUserAddress } from '../utils/cart';
-import PopupConfirm from '../components/common/PopupConfirm';
-import services from '../services';
-import { setInvoice } from '../store/invoice';
+} from '../../form/cart';
+import { checkValidateFormUserInfo, checkValidateFormUserAddress } from '../../utils/cart';
+import PopupConfirm from '../../components/common/PopupConfirm';
+import services from '../../services';
+import { setInvoice } from '../../store/invoice';
 
 const steps = [
     'cart_page.checkout_form.steppers.user_info',

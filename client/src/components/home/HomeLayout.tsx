@@ -2,13 +2,16 @@ import { useState, useEffect } from 'react';
 import services from '../../services';
 import { singleItemTypes } from '../../types/home';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 
 import ListItems from './ListItems';
 import QuickViewItem from './QuickView';
+import { setShowLoadingIcon } from '../../store/common';
 
 export default function HomeLayout(): JSX.Element {
+    const dispatch = useDispatch();
+
     const [ listItems, setListItems ] = useState<singleItemTypes[]>([]);
 
     const showQuickView = useSelector(
@@ -18,19 +21,17 @@ export default function HomeLayout(): JSX.Element {
         (state: RootState) => state.homePageReducer.itemId,
     );
 
-    const showCart = useSelector(
-        (state: RootState) => state.homePageReducer.showCart,
-    );
-
     const getListItems = async () => {
         try {
+            dispatch(setShowLoadingIcon(true));
             const res = await services.getListItems();
             if (res.data.length > 0) {
                 setListItems(res.data);
             }
         } catch (error: any) {
             console.log(error);
-        }
+        }         
+        dispatch(setShowLoadingIcon(false));
     };
 
     useEffect(() => {
