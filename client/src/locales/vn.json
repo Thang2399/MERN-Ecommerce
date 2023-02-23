@@ -70,7 +70,7 @@
       "sign_up": "Đăng kí ngay",
       "login": "Đăng nhập",
       "logout": "Đăng xuất",
-      "setting": "Cài đặt",
+      "my_account": "Tài khoản của tôi",
       "invoice_history": "Lịch sử đơn hàng",
       "logout_message": "Đăng xuất thành công"
     },
@@ -170,12 +170,51 @@
     "ship_cod": "Thanh toán khi nhận hàng (COD)",
     "Card": "Thẻ tín dụng/ghi nợ"
   },
-    "popup_confirm": {
+  "popup_confirm": {
       "confirm_buy": {
         "title": "Xác nhận",
         "label": "Bạn chắc chắn muốn mua những món đồ này?",
         "confirm": "Xác nhận",
         "cancel": "Hủy"
       }
+  },
+  "invoices_history_page" : {
+    "label": "Lịch sử đơn hàng",
+    "empty_value": {
+      "have_no_invoice": "Bạn chưa có đơn hàng nào",
+      "return_to_purchase_and_comeback_later": "Hãy quay lại mua sắm và quay lại đây sau.",
+      "purchase_now": "Tiến hành mua sắm"
+    },
+    "single_invoice": {
+      "invoice_label": "Mã hoá đơn:",
+      "full_name": "Họ và tên:",
+      "email": "Email:",
+      "phone_number": "Số điện thoại:",
+      "address": "Địa chỉ:",
+      "payment_method": {
+        "label": "Phương thức thanh toán:",
+        "method": {
+          "ship_cod": "Thanh toán khi nhận hàng (COD)",
+          "card": "Thẻ tín dụng/ghi nợ"
+        }
+      },
+      "shipping_method": {
+        "label": "Hình thức nhận hàng",
+        "method": {
+          "home": "Lấy tại địa chỉ bên trên",
+          "store": "Lấy tại cửa hàng"
+        }
+      },
+      "invoice_status": {
+        "label": "Trạng thái đơn hàng",
+        "received_order": "Tiếp nhận đơn hàng",
+        "checking_in_stock": "Kiểm tra hàng",
+        "preparing_items": "Chuẩn bị hàng",
+        "package_items": "Đóng gói xong",
+        "delivering": "Đang vận chuyển",
+        "delivered_success": "Giao hàng thành công",
+        "delivered_failed": "Giao hàng thất bại"
+      }
+    }
   }
 }

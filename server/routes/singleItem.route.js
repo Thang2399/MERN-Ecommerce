@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getListItems, getSingleItem, createItem } from '../controller/singleItem.js';
+import { getListItems, getSingleItem, createItem } from '../controller/singleItem.controller.js';
 
 const router = express.Router();
 

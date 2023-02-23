@@ -1,6 +1,6 @@
 {
   "required": "Required",
-    "login_page": {
+  "login_page": {
     "label": "Login",
     "not_have_an_account": "Not having an account yet?",
     "sign_up_now": "Sign up now",
@@ -70,7 +70,7 @@
       "sign_up": "Sign up",
       "login": "Login",
       "logout": "Log out",
-      "setting": "Setting",
+      "my_account": "My account",
       "invoice_history": "Invoice history"
     },
     "logout_message": "Logout successfully",
@@ -175,6 +175,49 @@
       "label": "Are you sure you want to buy all of this items?",
       "confirm": "Confirm",
       "cancel": "Cancel"
+    }
+  },
+  "invoices_history_page" : {
+    "label": "Invoices History",
+    "empty_value": {
+      "have_no_invoice": "You have no invoice yet.",
+      "return_to_purchase_and_comeback_later": "Please return to purchase some items and comeback later.",
+      "purchase_now": "Purchase now"
+    },
+    "single_invoice": {
+      "invoice_label": "Invoice Id:",
+      "full_name": "Full name:",
+      "email": "Email:",
+      "phone_number": "Phone Number:",
+      "address": "Address:",
+      "payment_method": {
+        "label": "Payment Method",
+        "method": {
+          "ship_cod": "Cash on Delivery (COD)",
+          "card": "Credit/Debit Card"
+        }
+      },
+      "shipping_method": {
+        "label": "Shipping Method",
+        "method": {
+          "home": "Get at your above address",
+          "store": "Get at store"
+        }
+      },
+      "invoice_status": {
+        "label": "Invoice Status",
+        "received_order": "Received order",
+        "checking_in_stock": "Checking in stock",
+        "preparing_items": "Preparing items",
+        "package_items": "Packaged items",
+        "delivering": "Delivering",
+        "delivered_success": "Delivered successfully",
+        "delivered_failed": "Delivered failed"
+      },
+      "list_bought_items": {
+        "label": "List purchased items",
+        "subtotal": "Subtotal"
+      }
     }
   }
 }

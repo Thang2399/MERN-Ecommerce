@@ -4,9 +4,9 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-import userRoutes from './routes/user.js';
-import itemRoutes from './routes/singleItem.js';
-import invoiceRoutes from './routes/invoice.js';
+import userRoutes from './routes/user.route.js';
+import itemRoutes from './routes/singleItem.route.js';
+import invoiceRoutes from './routes/invoice.route.js';
 
 const app = express();
 dotenv.config();

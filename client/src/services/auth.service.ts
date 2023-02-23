@@ -2,7 +2,6 @@ import { defaultLoginFormTypes } from '../types/login';
 import { signUpFormPayloadTypes } from '../types/signup';
 import authRequest from './service';
 
-
 const loginUser = async (payload: defaultLoginFormTypes) => {
     const response = await authRequest.post('/user/login',  payload );
     return response;

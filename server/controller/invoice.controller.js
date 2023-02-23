@@ -48,12 +48,11 @@ export const createInvoice = async (req, res) => {
 };
 
 export const getListInvoicesFromEmail = async (req, res) => {
-	console.log('checking');
+	console.log('req', req);
 	try {
-		const userEmail = req.body.email;
+		const userEmail = req.query.email;
 
 		const listInvoices = await InvoiceSchema.find({ emailAddress: userEmail });
-
 
 		return res.status(HTTP_STATUS.SUCCESS).json(listInvoices);
 	} catch (err) {

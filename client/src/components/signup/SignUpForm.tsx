@@ -85,10 +85,12 @@ export default function SignUpForm(): JSX.Element {
                     setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, data.accessToken);
                     setCookie(COMMON_CONSTANTS.USER_ID, data._id);
                     setCookie(COMMON_CONSTANTS.USER_ROLE, data.userRole);
+                    setCookie(COMMON_CONSTANTS.USER_EMAIL, loginPayload.email);
                     dispatch(setUserCommonInfor({
                         accessToken: data.accessToken,
                         role: data.role,
                         id: data._id,
+                        email: loginPayload.email
                     }));
                     await dispatch(setShowLoadingIcon(false));
                     await navigate('/');

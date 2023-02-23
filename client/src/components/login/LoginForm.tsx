@@ -16,6 +16,7 @@ import { checkValidateLoginForm } from '../../utils/login';
 import services from '../../services';
 import { setShowLoadingIcon, setShowToastMessage, setUserCommonInfor } from '../../store/common';
 import { COMMON_CONSTANTS, HTTP_STATUS } from '../../constants';
+import axiosBase from '../../services/http-common';
 
 const rememberMeOptionList = [
     {
@@ -55,11 +56,14 @@ export default function LoginForm(): JSX.Element {
                 setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, data.accessToken);
                 setCookie(COMMON_CONSTANTS.USER_ID, data._id);
                 setCookie(COMMON_CONSTANTS.USER_ROLE, data.userRole);
+                setCookie(COMMON_CONSTANTS.USER_EMAIL, payload.email);
                 dispatch(setUserCommonInfor({
                     accessToken: data.accessToken,
                     role: data.role,
                     id: data._id,
+                    email: payload.email
                 }));
+                axiosBase.defaults.headers['Authorization'] = data.accessToken;
                 await dispatch(setShowLoadingIcon(false));
                 await navigate('/');
                 await dispatch(setShowToastMessage({
