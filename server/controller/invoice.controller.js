@@ -1,9 +1,6 @@
 import InvoiceSchema from '../model/invoice.js';
 import { HTTP_STATUS } from '../constant/index.js';
 import { customAlphabet } from 'nanoid';
-import express from 'express';
-
-const router = express.Router();
 
 export const getListInvoices = async (req, res) => {
 	try {
@@ -59,5 +56,3 @@ export const getListInvoicesFromEmail = async (req, res) => {
 		return res.status(HTTP_STATUS.SERVER_ERROR).json(err);
 	}
 };
-
-export default router;

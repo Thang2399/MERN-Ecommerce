@@ -31,4 +31,4 @@ mongoose
 			console.log(`listening on port ${PORT}`);
 		})
 	)
-	.catch(err => console.log(err));
+	.catch(err => console.log('err', err));
