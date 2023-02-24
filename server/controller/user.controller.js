@@ -1,11 +1,7 @@
 import UserSchema from '../model/user.js';
 import { HTTP_RESPONSE_MESSAGE, HTTP_STATUS } from '../constant/index.js';
-import { comparePassword, hashPassword } from '../utils/index.js';
-
-import express from 'express';
+import { comparePassword, generateOtp, hashPassword, sendEmail } from '../utils/index.js';
 import jwt from 'jsonwebtoken';
-
-const router = express.Router();
 
 export const signUpUser = async (req, res) => {
 	try {
@@ -69,12 +65,71 @@ export const loginUser = async (req, res) => {
 
 			return res.status(HTTP_STATUS.CREATE_SUCCESS).json(response);
 		} else {
-			return res.status(HTTP_STATUS.UNAUTHORIZED).json({ mesage: HTTP_RESPONSE_MESSAGE.LOGIN.WRONG_USER_EMAIL_OR_PASSWORD });
+			return res.status(HTTP_STATUS.UNAUTHORIZED).json({ message: HTTP_RESPONSE_MESSAGE.LOGIN.WRONG_USER_EMAIL_OR_PASSWORD });
 		}
 	} catch (err) {
 		console.log('err', err);
-		return res.status(HTTP_STATUS.UNAUTHORIZED).json({ mesage: HTTP_RESPONSE_MESSAGE.LOGIN.WRONG_USER_EMAIL_OR_PASSWORD });
+		return res.status(HTTP_STATUS.UNAUTHORIZED).json({ message: HTTP_RESPONSE_MESSAGE.LOGIN.WRONG_USER_EMAIL_OR_PASSWORD });
 	}
 };
 
-export default router;
+export const forgotPassword = async (req, res) => {
+	try {
+		const specificUser = await UserSchema.findOne({ email: req.body.email });
+		if (specificUser) {
+			const specificEmail = specificUser.email;
+			const otp = generateOtp();
+
+			const subject = 'The Fake Shop reset password otp';
+			const text = `Your reset password OTP: ${otp}`;
+
+			const sendEmailRes = await sendEmail(specificEmail, subject, text, res);
+			if (sendEmailRes === HTTP_STATUS.SUCCESS) {
+				const hashOtp = await hashPassword(otp);
+				await UserSchema.findByIdAndUpdate(specificUser._id, {
+					otp: hashOtp
+				}, { new: true });
+
+				return res.status(HTTP_STATUS.SUCCESS).json({ message: HTTP_RESPONSE_MESSAGE.FORGET_RESET_PASSWORD.SEND_EMAIL_SUCCESS });
+			} else {
+				return res.status(HTTP_STATUS.BAD_REQUEST).json({ message: HTTP_RESPONSE_MESSAGE.FORGET_RESET_PASSWORD.SEND_EMAIL_FAIL });
+			}
+		} else {
+			return res.status(HTTP_STATUS.NOT_FOUND).json({ message: HTTP_RESPONSE_MESSAGE.LOGIN.USER_NOT_EXIST });
+		}
+	} catch (err) {
+		console.error(err);
+		return res.status(HTTP_STATUS.SERVER_ERROR).json({ message: HTTP_RESPONSE_MESSAGE.SERVER_ERROR });
+	}
+};
+
+export const resetPassword = async (req, res) => {
+	try {
+		console.log('run here');
+		const specificUser = await UserSchema.findOne({ email: req.body.email });
+		const otp = req.body.otp;
+		const newPassword = req.body.newPassword;
+
+		if (specificUser) {
+			const specificUserOtp = specificUser.otp;
+			const compareOtp = comparePassword(otp, specificUserOtp);
+			if (compareOtp) {
+				const specificUserId = specificUser._id;
+				const newHashPassword = await hashPassword(newPassword);
+
+				await UserSchema.findByIdAndUpdate(specificUserId, {
+					password: newHashPassword
+				}, { new: true });
+
+				return res.status(HTTP_STATUS.SUCCESS).json({ message: HTTP_RESPONSE_MESSAGE.AUTHENTICATION.UPDATE_SUCCESS });
+			} else {
+				return res.status(HTTP_STATUS.BAD_REQUEST).json({ message: HTTP_RESPONSE_MESSAGE.AUTHENTICATION.WRONG_OTP });
+			}
+		} else {
+			return res.status(HTTP_STATUS.BAD_REQUEST).json({ message: HTTP_RESPONSE_MESSAGE.AUTHENTICATION.WRONG_EMAIL });
+		}
+	} catch (err) {
+		console.error(err);
+		return res.status(HTTP_STATUS.SERVER_ERROR).json({ message: HTTP_RESPONSE_MESSAGE.SERVER_ERROR });
+	}
+};

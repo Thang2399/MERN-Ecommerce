@@ -1,8 +1,5 @@
 import SingleItemSchema from '../model/singleItem.js';
 import { HTTP_STATUS } from '../constant/index.js';
-import express from 'express';
-
-const router = express.Router();
 
 export const getListItems = async (req, res) => {
 	try {
@@ -43,5 +40,3 @@ export const createItem = async (req, res) => {
 		return res.status(HTTP_STATUS.BAD_REQUEST).json({ message: err.message });
 	}
 };
-
-export default router;
