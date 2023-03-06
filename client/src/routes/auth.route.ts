@@ -1,5 +1,7 @@
-import SignUpPage from '../pages/auth/SignUp';
+import SignUpPage from '../pages/auth/SignUpPage';
 import LoginPage from '../pages/auth/LoginPage';
+import ForgetPasswordPage from '../pages/auth/ForgetPasswordPage';
+import ResetPasswordPage from '../pages/auth/ResetPasswordPage';
 
 export const authRoutes = [
     // authentication routes
@@ -10,5 +12,13 @@ export const authRoutes = [
     {
         element: LoginPage,
         path: '/login'
-    }
+    },
+    {
+        element: ForgetPasswordPage,
+        path: '/forget-password'
+    },
+    {
+        element: ResetPasswordPage,
+        path: '/reset-password'
+    },
 ];

@@ -34,7 +34,7 @@ export const verifyToken = async (req, res, next) => {
 };
 
 export const generateOtp = () => {
-	const randomNumber = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+	const randomNumber = Math.floor(100000 + Math.random() * 900000);
 	return randomNumber;
 };
 

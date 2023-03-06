@@ -26,12 +26,12 @@ const loginOptions = [
 const logoutOptions = [
     {
         label: 'home_page.login_icon.my_account',
-        redirectPath: '/my_account',
+        redirectPath: '/my-account',
         isLogoutItem: false,
     },
     {
         label: 'home_page.login_icon.invoice_history',
-        redirectPath: '/invoice_history',
+        redirectPath: '/invoice-history',
         isLogoutItem: false,
     },
     {

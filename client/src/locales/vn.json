@@ -18,14 +18,14 @@
       "wrong_email_or_password": "Sai email hoặc mật khẩu"
     }
   },
-    "signup_page": {
+  "signup_page": {
     "label": "Đăng kí",
-      "signup_form": {
+    "signup_form": {
       "first_name": {
         "label": "Tên",
         "placeholder": "Tên của bạn"
       },
-      "last_name":{
+      "last_name": {
         "label": "Họ",
         "placeholder": "Họ của bạn"
       },
@@ -44,9 +44,9 @@
       "password_validate": {
         "label": "Lưu ý: Mật khẩu của bạn phải có tối thiểu 8 ký tự, bao gồm ký tự chữ, ký tự số và ký tự đặc biệt"
       },
-        "phone_number": {
-          "label": "Số điện thoại",
-          "placeholder": "Số điện thoại của bạn"
+      "phone_number": {
+        "label": "Số điện thoại",
+        "placeholder": "Số điện thoại của bạn"
       },
       "gender": {
         "label": "Giới tính",
@@ -59,8 +59,45 @@
       },
       "submit_btn": "Đăng kí"
     },
-      "already_have_account": "Đã có tài khoản?",
-      "login_now": "Đăng nhập ngay"
+    "already_have_account": "Đã có tài khoản?",
+    "login_now": "Đăng nhập ngay"
+  },
+  "forget_password_page": {
+    "label": "Quên mật khẩu",
+    "forget_password_form": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Nhập địa chỉ email"
+      },
+      "button_label": "Gửi email"
+    }
+  },
+  "reset_password_page": {
+    "popup": {
+      "title": "Thông báo",
+      "label": "Một mã OTP vừa được gửi về tài khoản emaiil của bạn. Hãy kiểm tra email của bạn.",
+      "confirm": "OK"
+    },
+    "label": "Thiết lập lại mật khẩu",
+    "reset_password_form": {
+      "otp": {
+        "label": "Mật mã dùng một lần (OTP)",
+        "placeholder": "Nhập mã otp"
+      },
+      "new_password": {
+        "label": "Mật khẩu mới",
+        "placeholder": "Nhập mật khẩu mới"
+      },
+      "confirm_password": {
+        "label": "Xác nhận mật khẩu",
+        "placeholder": "Mật khẩu xác nhận"
+      },
+      "button_label": "Thiết lập mật khẩu mới"
+    },
+    "response_message": {
+      "reset_success": "Thiết lập lại mật khẩu thành công! Hãy đăng nhập lại!",
+      "wrong_otp": "Mã OTP của bạn không đúng! Hãy kiểm tra lại"
+    }
   },
   "home_page": {
     "search_box_placeholder": "Tìm kiếm sản phẩm bạn yêu thích",
@@ -71,9 +108,9 @@
       "login": "Đăng nhập",
       "logout": "Đăng xuất",
       "my_account": "Tài khoản của tôi",
-      "invoice_history": "Lịch sử đơn hàng",
-      "logout_message": "Đăng xuất thành công"
+      "invoice_history": "Lịch sử đơn hàng"
     },
+    "logout_message": "Đăng xuất thành công",
     "cart": {
       "empty_cart": "Giỏ hàng của bạn đang trống.",
       "subtotal": "Tổng cộng",
@@ -154,7 +191,11 @@
     "city": "Thành phố",
     "district": "Quận/huyện",
     "street_address": "Địa chỉ",
-    "password": "Mật khẩu"
+    "password": "Mật khẩu",
+    "otp": "OTP",
+    "new_password": "Mật khẩu mới",
+    "confirm_password": "Mật khẩu xác nhận",
+    "repeat_password": "Mật khẩu xác nhận"
   },
   "error_messages": {
     "filed_required": "{{field}} bắt buộc",
@@ -171,14 +212,14 @@
     "Card": "Thẻ tín dụng/ghi nợ"
   },
   "popup_confirm": {
-      "confirm_buy": {
-        "title": "Xác nhận",
-        "label": "Bạn chắc chắn muốn mua những món đồ này?",
-        "confirm": "Xác nhận",
-        "cancel": "Hủy"
-      }
+    "confirm_buy": {
+      "title": "Xác nhận",
+      "label": "Bạn chắc chắn muốn mua những món đồ này?",
+      "confirm": "Xác nhận",
+      "cancel": "Hủy"
+    }
   },
-  "invoices_history_page" : {
+  "invoices_history_page": {
     "label": "Lịch sử đơn hàng",
     "empty_value": {
       "have_no_invoice": "Bạn chưa có đơn hàng nào",

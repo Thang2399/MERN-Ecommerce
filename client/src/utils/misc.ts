@@ -101,11 +101,8 @@ export const checkPassword = (data: string, field: string) => {
     return errorMessage;
 };
 
-export const checkConfirmPassword = (password: string, confirmPassword: string) => {
-    const errorMessage = {
-        message: '',
-        field: ''
-    };
+export const checkConfirmPassword = (password: string, confirmPassword: string, field: string) => {
+    const errorMessage = checkRequiredFiled(confirmPassword, field);
 
     if (password !== confirmPassword) {
         errorMessage.message = 'error_messages.confirm_password_not_match';
@@ -113,3 +110,7 @@ export const checkConfirmPassword = (password: string, confirmPassword: string) 
 
     return errorMessage;
 };
+
+// export const checkMaxLength = (data: string, field: string) => {
+//
+// }

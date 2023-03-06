@@ -25,7 +25,6 @@ export const signUpUser = async (req, res) => {
 		};
 		return res.status(HTTP_STATUS.CREATE_SUCCESS).json(response);
 	} catch (err) {
-		// console.log(err);
 		console.log('err', err);
 		const convertedError = JSON.stringify(err);
 		return res.status(HTTP_STATUS.BAD_REQUEST).send(convertedError);
@@ -85,7 +84,7 @@ export const forgotPassword = async (req, res) => {
 
 			const sendEmailRes = await sendEmail(specificEmail, subject, text, res);
 			if (sendEmailRes === HTTP_STATUS.SUCCESS) {
-				const hashOtp = await hashPassword(otp);
+				const hashOtp = await hashPassword(otp.toString());
 				await UserSchema.findByIdAndUpdate(specificUser._id, {
 					otp: hashOtp
 				}, { new: true });
@@ -105,28 +104,28 @@ export const forgotPassword = async (req, res) => {
 
 export const resetPassword = async (req, res) => {
 	try {
-		console.log('run here');
 		const specificUser = await UserSchema.findOne({ email: req.body.email });
 		const otp = req.body.otp;
 		const newPassword = req.body.newPassword;
 
 		if (specificUser) {
 			const specificUserOtp = specificUser.otp;
-			const compareOtp = comparePassword(otp, specificUserOtp);
+			const compareOtp = await comparePassword(otp, specificUserOtp);
 			if (compareOtp) {
 				const specificUserId = specificUser._id;
 				const newHashPassword = await hashPassword(newPassword);
 
 				await UserSchema.findByIdAndUpdate(specificUserId, {
-					password: newHashPassword
+					password: newHashPassword,
+					otp: ''
 				}, { new: true });
 
 				return res.status(HTTP_STATUS.SUCCESS).json({ message: HTTP_RESPONSE_MESSAGE.AUTHENTICATION.UPDATE_SUCCESS });
 			} else {
-				return res.status(HTTP_STATUS.BAD_REQUEST).json({ message: HTTP_RESPONSE_MESSAGE.AUTHENTICATION.WRONG_OTP });
+				return res.status(HTTP_STATUS.BAD_REQUEST).json({ message: HTTP_RESPONSE_MESSAGE.FORGET_RESET_PASSWORD.WRONG_OTP });
 			}
 		} else {
-			return res.status(HTTP_STATUS.BAD_REQUEST).json({ message: HTTP_RESPONSE_MESSAGE.AUTHENTICATION.WRONG_EMAIL });
+			return res.status(HTTP_STATUS.BAD_REQUEST).send({ message: HTTP_RESPONSE_MESSAGE.AUTHENTICATION.WRONG_EMAIL });
 		}
 	} catch (err) {
 		console.error(err);

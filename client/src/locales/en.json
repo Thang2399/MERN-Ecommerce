@@ -13,10 +13,10 @@
       "remember_me": "Remember me",
       "submit_btn": "Login"
     },
-      "response_message": {
-        "login_success": "Login successfully!",
-        "wrong_email_or_password": "Wrong email or password"
-      }
+    "response_message": {
+      "login_success": "Login successfully!",
+      "wrong_email_or_password": "Wrong email or password"
+    }
   },
   "signup_page": {
     "label": "Sign Up",
@@ -25,7 +25,7 @@
         "label": "First Name",
         "placeholder": "Your first name"
       },
-      "last_name":{
+      "last_name": {
         "label": "Last Name",
         "placeholder": "Your last name"
       },
@@ -61,6 +61,43 @@
     },
     "already_have_account": "Already have an account?",
     "login_now": "Login now"
+  },
+  "forget_password_page": {
+    "label": "Forget Password",
+    "forget_password_form": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "button_label": "Send email"
+    }
+  },
+  "reset_password_page": {
+    "popup": {
+      "title": "Alert",
+      "label": "An OTP code was send to your email address. Please check your email.",
+      "confirm": "OK"
+    },
+    "label": "Reset Password",
+    "reset_password_form": {
+      "otp": {
+        "label": "One time password (OTP)",
+        "placeholder": "Enter your otp"
+      },
+      "new_password": {
+        "label": "New password",
+        "placeholder": "Enter new password"
+      },
+      "confirm_password": {
+        "label": "Confirm password",
+        "placeholder": "Enter confirm password"
+      },
+      "button_label": "Reset password"
+    },
+    "response_message": {
+      "reset_success": "Reset password successfully! Please log in again!",
+      "wrong_otp": "Your OTP is incorrect! Please try again"
+    }
   },
   "home_page": {
     "search_box_placeholder": "Find your favorite item",
@@ -153,7 +190,11 @@
     "city": "city",
     "district": "district",
     "street_address": "street address",
-    "password": "password"
+    "password": "password",
+    "otp": "OTP",
+    "new_password": "new password",
+    "confirm_password": "confirm password",
+    "repeat_password": "repeat password"
   },
   "error_messages": {
     "filed_required": "This {{field}} field is required",
@@ -177,7 +218,7 @@
       "cancel": "Cancel"
     }
   },
-  "invoices_history_page" : {
+  "invoices_history_page": {
     "label": "Invoices History",
     "empty_value": {
       "have_no_invoice": "You have no invoice yet.",

@@ -44,7 +44,7 @@ export default function LoginForm(): JSX.Element {
     };
 
     const redirectToForgetPassword = () => {
-        navigate('/forget_password');
+        navigate('/forget-password');
     };
 
     const onLoginUser = async (payload: defaultLoginFormTypes) => {
@@ -64,9 +64,9 @@ export default function LoginForm(): JSX.Element {
                     email: payload.email
                 }));
                 axiosBase.defaults.headers['Authorization'] = data.accessToken;
-                await dispatch(setShowLoadingIcon(false));
-                await navigate('/');
-                await dispatch(setShowToastMessage({
+                 dispatch(setShowLoadingIcon(false));
+                 navigate('/');
+                 dispatch(setShowToastMessage({
                     show: true,
                     message: 'login_page.response_message.login_success',
                     type: 'success'
@@ -76,6 +76,11 @@ export default function LoginForm(): JSX.Element {
         catch (err: any) {
             console.log('error', err);
             dispatch(setShowLoadingIcon(false));
+            dispatch(setShowToastMessage({
+                    show: true,
+                    message: 'login_page.response_message.wrong_email_or_password',
+                    type: 'error'
+            }));
         }
     };
 

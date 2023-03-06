@@ -36,7 +36,7 @@ export const checkValidateSignUpForm = (form: defaultSignUpFormType) => {
     formError.phoneNumber = checkRequiredFiled(formData.phoneNumber, 'form.phone_number');
 
     formError.password = checkPassword(formData.password, 'form.password');
-    formError.confirmPassword = checkConfirmPassword(formData.password, formData.confirmPassword);
+    formError.confirmPassword = checkConfirmPassword(formData.password, formData.confirmPassword, 'form.repeat_password');
 
     return formError;
 };
