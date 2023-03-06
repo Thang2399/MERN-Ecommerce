@@ -4,13 +4,15 @@ import commonReducer from './common';
 import homePageReducer from './home';
 import cartPageReducer from './cart';
 import invoicePageReducer from './invoice';
+import forgetPasswordReducer from './forgetPassword';
 
 export const store = configureStore({
     reducer: {
         commonReducer: commonReducer,
         homePageReducer: homePageReducer,
         cartPageReducer: cartPageReducer,
-        invoicePageReducer: invoicePageReducer
+        invoicePageReducer: invoicePageReducer,
+        forgetPasswordReducer: forgetPasswordReducer
     },
 });
 

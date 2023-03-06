@@ -1,4 +1,4 @@
-import { AUTHENTICATION, LOGIN } from './auth';
+import { AUTHENTICATION, FORGET_RESET_PASSWORD, LOGIN } from './auth';
 
 export const COMMON_CONSTANTS = {
     I18NEXT: 'i18next',
@@ -30,5 +30,6 @@ export const HTTP_STATUS = {
 
 export const HTTP_RESPONSE_MESSAGE = {
 	AUTHENTICATION: { ...AUTHENTICATION },
-	LOGIN: { ...LOGIN }
+	LOGIN: { ...LOGIN },
+    FORGET_RESET_PASSWORD: { ...FORGET_RESET_PASSWORD },
 };

@@ -6,4 +6,4 @@ export default function PrivateLayout(): JSX.Element {
             <h1>PrivateLayout</h1>
         </div>
     );
-};
+}
