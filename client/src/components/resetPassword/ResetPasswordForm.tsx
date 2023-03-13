@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import services from '../../services';
 import { setShowLoadingIcon, setShowToastMessage } from '../../store/common';
-import {HTTP_RESPONSE_MESSAGE, HTTP_STATUS} from '../../constants';
+import { HTTP_RESPONSE_MESSAGE, HTTP_STATUS } from '../../constants';
 import { useNavigate } from 'react-router-dom';
 
 const ResetPasswordForm = () => {
