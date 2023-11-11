@@ -108,7 +108,8 @@
       "login": "Login",
       "logout": "Log out",
       "my_account": "My account",
-      "invoice_history": "Invoice history"
+      "invoice_history": "Invoice history",
+      "admin_dashboard": "Admin Dashboard"
     },
     "logout_message": "Logout successfully",
     "cart": {

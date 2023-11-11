@@ -108,7 +108,8 @@
       "login": "Đăng nhập",
       "logout": "Đăng xuất",
       "my_account": "Tài khoản của tôi",
-      "invoice_history": "Lịch sử đơn hàng"
+      "invoice_history": "Lịch sử đơn hàng",
+      "admin_dashboard": "Giao diện admin"
     },
     "logout_message": "Đăng xuất thành công",
     "cart": {

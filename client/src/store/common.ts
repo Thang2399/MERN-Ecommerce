@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { getCookie } from 'typescript-cookie';
 import { COMMON_CONSTANTS } from '../constants';
 
-export interface CommonState {
+interface CommonState {
     showPopupConfirm: boolean,
     showLoadingIcon: boolean,
     showToastMessage: {
@@ -16,7 +16,8 @@ export interface CommonState {
         role: string,
         id: string,
         email: string
-    }
+    },
+    showLoginModal: boolean,
 }
 
 const getCommonUserInfor = (name: string) => {
@@ -39,7 +40,8 @@ const initialState: CommonState = {
         role: getCommonUserInfor(COMMON_CONSTANTS.USER_ROLE),
         id: getCommonUserInfor(COMMON_CONSTANTS.USER_ID),
         email: getCommonUserInfor(COMMON_CONSTANTS.USER_EMAIL)
-    }
+    },
+    showLoginModal: false
 };
 
 export const commonSlice = createSlice({
@@ -64,6 +66,9 @@ export const commonSlice = createSlice({
         },
         setUserCommonInfor(state, action: PayloadAction<CommonState['userCommonInfor']>) {
             state.userCommonInfor = action.payload;
+        },
+        setShowLoginModal(state, action: PayloadAction<boolean>) {
+            state.showLoginModal = action.payload;
         }
     },
 });
@@ -73,7 +78,8 @@ export const {
     setShowLoadingIcon,
     setShowToastMessage,
     setHideToastMessage,
-    setUserCommonInfor
+    setUserCommonInfor,
+    setShowLoginModal
 } = commonSlice.actions;
 
 export default commonSlice.reducer;

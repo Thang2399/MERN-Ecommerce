@@ -1,5 +1,3 @@
-import { AUTHENTICATION, FORGET_RESET_PASSWORD, LOGIN } from './auth.js';
-
 export const USER_ROLE = {
 	ADMIN: 'admin',
 	USER: 'user',
@@ -26,9 +24,5 @@ export const HTTP_STATUS = {
 };
 
 export const HTTP_RESPONSE_MESSAGE = {
-	AUTHENTICATION: { ...AUTHENTICATION },
-	LOGIN: { ...LOGIN },
-	FORGET_RESET_PASSWORD: { ...FORGET_RESET_PASSWORD },
-
 	SERVER_ERROR: 'internal server error'
 };
