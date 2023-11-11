@@ -17,6 +17,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { defaultSignUpForm, defaultSignUpFormErrorMessages } from '../../form/signup';
 import { defaultSignUpFormType, signUpFormErrorMessageTypes, signUpFormPayloadTypes } from '../../types/signup';
 import { checkValidateSignUpForm } from '../../utils/signup';
+import { USER_ROUTES } from '../../routes/constants';
 
 const gendersOptions = [
     {
@@ -56,7 +57,7 @@ export default function SignUpForm(): JSX.Element {
     };
 
     const redirectToLogin = () => {
-        navigate('/login');
+        navigate(`${USER_ROUTES.LOGIN}`);
     };
     
     const handleChangeDate = (newValue: Dayjs | string) => {
@@ -92,9 +93,9 @@ export default function SignUpForm(): JSX.Element {
                         id: data._id,
                         email: loginPayload.email
                     }));
-                    await dispatch(setShowLoadingIcon(false));
-                    await navigate('/');
-                    await dispatch(setShowToastMessage({
+                    dispatch(setShowLoadingIcon(false));
+                    navigate(USER_ROUTES.DEFAULT);
+                    dispatch(setShowToastMessage({
                         show: true,
                         message: 'login_page.response_message.login_success',
                         type: 'success'

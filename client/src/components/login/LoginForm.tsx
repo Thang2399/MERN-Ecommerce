@@ -17,6 +17,7 @@ import services from '../../services';
 import { setShowLoadingIcon, setShowToastMessage, setUserCommonInfor } from '../../store/common';
 import { COMMON_CONSTANTS, HTTP_STATUS } from '../../constants';
 import axiosBase from '../../services/http-common';
+import { USER_ROUTES } from '../../routes/constants';
 
 const rememberMeOptionList = [
     {
@@ -40,11 +41,11 @@ export default function LoginForm(): JSX.Element {
     };
 
     const redirectToSignUp = () => {
-        navigate('/signup');
+        navigate(`${USER_ROUTES.SIGN_UP}`);
     };
 
     const redirectToForgetPassword = () => {
-        navigate('/forget-password');
+        navigate(`${USER_ROUTES.FORGET_PASSWORD}`);
     };
 
     const onLoginUser = async (payload: defaultLoginFormTypes) => {
