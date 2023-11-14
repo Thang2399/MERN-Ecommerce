@@ -8,6 +8,8 @@ import { store } from './store';
 
 // import i18n (needs to be bundled ;)) 
 import './i18n' ;
+import { ConfigProvider } from 'antd';
+import { theme } from '@/theme';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -15,8 +17,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <App/>
-        </Provider>
+        <ConfigProvider theme={theme}>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </ConfigProvider>
     </React.StrictMode>
 );
