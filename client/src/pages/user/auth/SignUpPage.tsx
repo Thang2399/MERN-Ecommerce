@@ -19,7 +19,7 @@ export default function SignUpPage():JSX.Element {
         checkUserLoginOrNot();
     }, [ accessToken ]);
     return (
-        <div className={'flex items-center justify-center w-full h-full'}>
+        <div className={'flex items-center justify-center w-full'}>
             <div className={'w-full flex'}>
                 <div className={'w-3/5 flex justify-center items-center'}>
                     <div className={'w-4/5'}>

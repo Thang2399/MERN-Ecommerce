@@ -64,18 +64,28 @@
   },
   "forget_password_page": {
     "label": "Forget Password",
+    "not_receive_email": "Didn't receive email?",
+    "send_email_success": {
+      "label": "Send Email Successfully",
+      "description": "An email has been send to your email address {{email}}. Please check and follow the instruction"
+    },
     "forget_password_form": {
       "email": {
         "label": "Email",
         "placeholder": "Enter your email"
       },
-      "button_label": "Send email"
+      "button_label": "Send email",
+      "button_resend_label": "Resend email"
+    },
+    "response_message": {
+      "send_mail_success": "Send email successfully!",
+      "send_mail_failed": "Send email failed!"
     }
   },
   "reset_password_page": {
     "popup": {
       "title": "Alert",
-      "label": "An OTP code was send to your email address. Please check your email.",
+      "label": "This reset password link has expired. Please try again",
       "confirm": "OK"
     },
     "label": "Reset Password",

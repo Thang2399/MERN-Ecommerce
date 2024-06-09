@@ -82,7 +82,7 @@ export default function SignUpForm(): JSX.Element {
                 const loginRes = await services.loginUser(loginPayload);
 
                 if (loginRes && loginRes.status === HTTP_STATUS.CREATE_SUCCESS) {
-                    const data = loginRes.data.data;
+                    const data = loginRes.data;
                     setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, data.accessToken);
                     setCookie(COMMON_CONSTANTS.USER_ID, data._id);
                     setCookie(COMMON_CONSTANTS.USER_ROLE, data.userRole);
@@ -154,6 +154,7 @@ export default function SignUpForm(): JSX.Element {
                             value={signUpForm.userName}
                             inputName={'userName'}
                             className={'border mb-1'}
+                            isInvalidField={!!signUpFormErrorMessages.userName.message}
                         />
                         <ErrorMessage
                             errorMessage={signUpFormErrorMessages.userName.message}
@@ -177,6 +178,7 @@ export default function SignUpForm(): JSX.Element {
                         value={signUpForm.email}
                         inputName={'email'}
                         className={'border mb-1'}
+                        isInvalidField={!!signUpFormErrorMessages.email.message}
                     />
                     <ErrorMessage
                         errorMessage={signUpFormErrorMessages.email.message}
@@ -197,6 +199,7 @@ export default function SignUpForm(): JSX.Element {
                             value={signUpForm.phoneNumber}
                             inputName={'phoneNumber'}
                             className={'border mb-1'}
+                            isInvalidField={!!signUpFormErrorMessages.phoneNumber.message}
                         />
                         <ErrorMessage
                             errorMessage={signUpFormErrorMessages.phoneNumber.message}
@@ -219,6 +222,7 @@ export default function SignUpForm(): JSX.Element {
                         inputName={'password'}
                         className={'border mb-1'}
                         isPasswordField={true}
+                        isInvalidField={!!signUpFormErrorMessages.password.message}
                     />
                     <ErrorMessage
                         errorMessage={signUpFormErrorMessages.password.message}
@@ -240,6 +244,7 @@ export default function SignUpForm(): JSX.Element {
                         inputName={'confirmPassword'}
                         className={'border mb-1'}
                         isPasswordField={true}
+                        isInvalidField={!!signUpFormErrorMessages.confirmPassword.message}
                     />
                     <ErrorMessage
                         errorMessage={signUpFormErrorMessages.confirmPassword.message}

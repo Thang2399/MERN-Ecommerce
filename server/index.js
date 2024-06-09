@@ -26,11 +26,6 @@ const routes = [
 	}
 ];
 
-// Set up proxy middleware for each route
-// routes.forEach(({ path, target }) => {
-// 	app.use(path, proxy(target, { proxyReqPathResolver: req => req.url }));
-// });
-
 // Setup authorization with microservices
 routes.forEach(({ path, target }) => {
 	app.use(path, async (req, res, next) => {
@@ -43,7 +38,7 @@ routes.forEach(({ path, target }) => {
 				headers
 			});
 			const data = response?.data;
-			// console.log('data', data);
+			console.log('data', data);
 			const { _id, userName, email, role } = data;
 			if (_id) {
 				// Include user information in the headers when forwarding the request to the main service
@@ -52,15 +47,16 @@ routes.forEach(({ path, target }) => {
 				req.headers['x-user-email'] = email || '';
 				req.headers['x-user-role'] = role || USER_ROLE.USER;
 			}
+			console.log('req.headers', req.headers);
 			// Forward the modified request to the main service
 			proxy(target, { proxyReqPathResolver: req => req.url })(req, res, next);
 		} catch (err) {
-			console.error('Error:', err);
+			req.headers['x-is-token-expired'] = 'true';
 			proxy(target, { proxyReqPathResolver: req => req.url })(req, res, next);
 		}
 	});
 });
 
 app.listen(PORT, () => {
-	console.log(`listening on port ${PORT}`);
+	console.log(`API Gateway is listening on port ${PORT}`);
 });

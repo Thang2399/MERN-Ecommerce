@@ -11,21 +11,19 @@ import { RootState } from '../../store';
 import services from '../../services';
 import { setShowLoadingIcon, setShowToastMessage } from '../../store/common';
 import { HTTP_RESPONSE_MESSAGE, HTTP_STATUS } from '../../constants';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const ResetPasswordForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const forgetPasswordEmail = useSelector((state: RootState) => state.forgetPasswordReducer.forgetPasswordEmail);
     const [ resetPasswordForm, setResetPassword ] = useState<IResetPasswordForm>(defaultForgetPasswordForm);
     const [ resetPasswordErrorMessages, setResetPasswordErrorMessages ] = useState<IResetPasswordErrorMessages>(defaultForgetPasswordErrorMessage);
+    const [ searchParams ] = useSearchParams();
+    const token = searchParams.get('token');
 
     const handleChangeResetPasswordForm = (event: React.ChangeEvent<HTMLInputElement>) => {
-        let inputValue = event.target.value;
-        if (event.target.name === 'otp') {
-            inputValue = event.target.value.replace(/\D/g, '');
-        }
+        const inputValue = event.target.value;
         setResetPassword({
             ...resetPasswordForm,
             [event.target.name]: inputValue
@@ -33,36 +31,38 @@ const ResetPasswordForm = () => {
     };
 
     const onResetPassword = async (formData: IResetPasswordForm) => {
-        dispatch(setShowLoadingIcon(true));
-        try {
-            const payload = {
-                otp: formData.otp,
-                email: forgetPasswordEmail,
-                newPassword: formData.newPassword
-            };
+        if (token) {
+            dispatch(setShowLoadingIcon(true));
+            try {
+                const payload = {
+                    token,
+                    newPassword: formData.newPassword
+                };
 
-            const res = await services.resetPassword(payload);
-            if (res && res.status === HTTP_STATUS.SUCCESS) {
+                const res = await services.resetPassword(payload);
+                if (res && res.status === HTTP_STATUS.CREATE_SUCCESS) {
+                    dispatch(setShowLoadingIcon(false));
+                    navigate('/login');
+                    dispatch(setShowToastMessage({
+                        show: true,
+                        message: 'reset_password_page.response_message.reset_success',
+                        type: 'success'
+                    }));
+                }
+            } catch (err: any) {
+                console.log(err);
+                console.log(err.response.data.message);
+                const errorMessage = err.response.data.message;
+                if (errorMessage === HTTP_RESPONSE_MESSAGE.FORGET_RESET_PASSWORD.WRONG_OTP) {
+                    dispatch(setShowToastMessage({
+                        show: true,
+                        message: 'reset_password_page.response_message.wrong_otp',
+                        type: 'error'
+                    }));
+                }
                 dispatch(setShowLoadingIcon(false));
-                 navigate('/login');
-                 dispatch(setShowToastMessage({
-                    show: true,
-                    message: 'reset_password_page.response_message.reset_success',
-                    type: 'success'
-                }));
             }
-        } catch (err: any) {
-            console.log(err);
-            console.log(err.response.data.message);
-            const errorMessage = err.response.data.message;
-            if (errorMessage === HTTP_RESPONSE_MESSAGE.FORGET_RESET_PASSWORD.WRONG_OTP) {
-                dispatch(setShowToastMessage({
-                    show: true,
-                    message: 'reset_password_page.response_message.wrong_otp',
-                    type: 'error'
-                }));
-            }
-            dispatch(setShowLoadingIcon(false));
+
         }
     };
 
@@ -94,26 +94,6 @@ const ResetPasswordForm = () => {
 
             <div className={'mt-3'}>
                 <form>
-                    <div>
-                        <Typography
-                            content={'reset_password_page.reset_password_form.otp.label'}
-                            className={'text-base mb-2'}
-                        />
-                        <InputTextField
-                            handleChange={handleChangeResetPasswordForm}
-                            placeholder={'reset_password_page.reset_password_form.otp.placeholder'}
-                            type={'text'}
-                            value={resetPasswordForm.otp}
-                            inputName={'otp'}
-                            className={'border mb-1'}
-                            maxLength={6}
-                        />
-                        <ErrorMessage
-                            errorMessage={resetPasswordErrorMessages.otp.message}
-                            field={resetPasswordErrorMessages.otp.field}
-                        />
-                    </div>
-
                     <div className={'mt-2'}>
                         <Typography
                             content={'reset_password_page.reset_password_form.new_password.label'}
@@ -127,6 +107,7 @@ const ResetPasswordForm = () => {
                             inputName={'newPassword'}
                             className={'border mb-1'}
                             isPasswordField={true}
+                            isInvalidField={!!resetPasswordErrorMessages.newPassword.message}
                         />
                         <ErrorMessage
                             errorMessage={resetPasswordErrorMessages.newPassword.message}
@@ -147,6 +128,7 @@ const ResetPasswordForm = () => {
                             inputName={'confirmPassword'}
                             className={'border mb-1'}
                             isPasswordField={true}
+                            isInvalidField={!!resetPasswordErrorMessages.confirmPassword.message}
                         />
                         <ErrorMessage
                             errorMessage={resetPasswordErrorMessages.confirmPassword.message}
