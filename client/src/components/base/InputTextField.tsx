@@ -12,6 +12,7 @@ type Props = {
     minLength?: number,
     maxLength?: number,
     isPasswordField?: boolean,
+    isInvalidField?: boolean
 };
 
 const InputTextField: React.FC<Props> =
@@ -22,8 +23,10 @@ const InputTextField: React.FC<Props> =
          placeholder,
          inputName,
          className,
-         minLength, maxLength,
+         minLength,
+         maxLength,
          isPasswordField,
+        isInvalidField
      }) => {
         const { t } = useTranslation();
         const [ showPassword, setShowPassword ] = useState<boolean>(false);
@@ -43,7 +46,7 @@ const InputTextField: React.FC<Props> =
                                     type={showPassword ? 'text' : 'password'}
                                     name={inputName}
                                     placeholder={t(placeholder)}
-                                    className={`py-3 pl-2 pr-10 rounded w-full hover:border hover:border-black focus:outline-4 focus:outline-primary ${className}`}
+                                    className={`py-3 pl-2 pr-10 rounded w-full hover:border hover:border-black focus:outline-4 focus:outline-primary ${isInvalidField ? 'border-red-500 hover:border-red-500' : ''} ${className}`}
                                     onChange={handleChange}
                                     minLength={minLength}
                                     maxLength={maxLength}
@@ -62,7 +65,7 @@ const InputTextField: React.FC<Props> =
                                 type={type}
                                 name={inputName}
                                 placeholder={t(placeholder)}
-                                className={`py-3 px-2 rounded w-full hover:border hover:border-black focus:outline-4 focus:outline-primary ${className}`}
+                                className={`py-3 px-2 rounded w-full hover:border hover:border-black focus:outline-4 focus:outline-primary ${isInvalidField ? 'border-red-500 hover:border-red-500' : ''} ${className}`}
                                 onChange={handleChange}
                                 minLength={minLength}
                                 maxLength={maxLength}
@@ -77,7 +80,8 @@ const InputTextField: React.FC<Props> =
 InputTextField.defaultProps = {
     minLength: 1,
     maxLength: 255,
-    isPasswordField: false
+    isPasswordField: false,
+    isInvalidField: false
 };
 
 export default InputTextField;

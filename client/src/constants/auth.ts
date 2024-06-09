@@ -21,5 +21,7 @@ export const FORGET_RESET_PASSWORD = {
 	RESET_PASSWORD_FAIL: 'reset password failed',
 
 	WRONG_OTP: 'wrong otp',
-	WRONG_EMAIL: 'wrong email'
+	WRONG_EMAIL: 'wrong email',
+
+	INVALID_LINK: 'invalid link'
 };

@@ -53,7 +53,7 @@ export default function LoginForm(): JSX.Element {
         try {
             const res = await services.loginUser(payload);
             if (res && res.status === HTTP_STATUS.CREATE_SUCCESS){
-                const data = res.data.data;
+                const data = res.data;
                 setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, data.accessToken);
                 setCookie(COMMON_CONSTANTS.USER_ID, data._id);
                 setCookie(COMMON_CONSTANTS.USER_ROLE, data.userRole);
@@ -121,6 +121,7 @@ export default function LoginForm(): JSX.Element {
                         value={loginForm.email}
                         inputName={'email'}
                         className={'border mb-1'}
+                        isInvalidField={!!loginFormErrorMessages.email.message}
                     />
                     <ErrorMessage
                         errorMessage={loginFormErrorMessages.email.message}
@@ -141,6 +142,7 @@ export default function LoginForm(): JSX.Element {
                         inputName={'password'}
                         className={'border mb-1'}
                         isPasswordField={true}
+                        isInvalidField={!!loginFormErrorMessages.password.message}
                     />
                     <ErrorMessage
                         errorMessage={loginFormErrorMessages.password.message}

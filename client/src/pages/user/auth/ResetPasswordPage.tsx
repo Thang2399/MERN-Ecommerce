@@ -2,32 +2,56 @@ import React, { useState, useEffect } from 'react';
 import Image from '../../../components/base/Image';
 import PopupAlert from '../../../components/common/PopupAlert';
 import ResetPasswordForm from '../../../components/resetPassword/ResetPasswordForm';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import services from '@/services';
+import { setShowLoadingIcon } from '@/store/common';
 
 export default function ResetPasswordPage(): JSX.Element {
     const navigate = useNavigate();
-    const forgetPasswordEmail = useSelector((state: RootState) => state.forgetPasswordReducer.forgetPasswordEmail);
-    const [ isUserClickOkButton, setIsUserClickOkButton ] = useState<boolean>(false);
+    const dispatch = useDispatch();
+    const [ searchParams ] = useSearchParams();
+    const token = searchParams.get('token');
+    const [ isTokenInUsed, setIsTokenInUsed ] = useState<boolean>(false);
     
     const handleNavigateToForgetPasswordPage = () => {
-        if (!forgetPasswordEmail) {
-            navigate('/forget-password');
+        navigate('/forget-password');
+    };
+
+    const handleCheckTokenInUse = async () => {
+        if (token) {
+            try {
+                dispatch(setShowLoadingIcon(true));
+                const payload = { token };
+                const res = await services.checkTokenInUsed(payload);
+                if (res) {
+                    setIsTokenInUsed(res.data.isInUsed);
+                }
+            } catch (err) {
+                console.log(err);
+                setIsTokenInUsed(true);
+            }
+            dispatch(setShowLoadingIcon(false));
         }
+
     };
 
     useEffect(() => {
-        handleNavigateToForgetPasswordPage();
+        if (token) {
+            handleCheckTokenInUse();
+        } else {
+            handleNavigateToForgetPasswordPage();
+        }
     }, []);
 
     const handleOk = () => {
-        setIsUserClickOkButton(true);
+        handleNavigateToForgetPasswordPage();
     };
     return (
         <>
             {
-                isUserClickOkButton
+                !isTokenInUsed
                     ? (
                         <div className={'flex items-center justify-center w-full h-full'}>
                             <div className={'w-full flex'}>
