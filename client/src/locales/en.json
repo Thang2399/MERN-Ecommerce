@@ -22,8 +22,8 @@
     "label": "Sign Up",
     "signup_form": {
       "first_name": {
-        "label": "First Name",
-        "placeholder": "Your first name"
+        "label": "User Name",
+        "placeholder": "Your name"
       },
       "last_name": {
         "label": "Last Name",
@@ -194,7 +194,7 @@
     "first_name": "firstname",
     "last_name": "lastname",
     "full_name": "fullname",
-    "user_name": "username",
+    "user_name": "user name",
     "phone_number": "phone number",
     "email_address": "email",
     "country": "country",

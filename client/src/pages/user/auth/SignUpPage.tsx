@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store';
 import Image from '../../../components/base/Image';
 import SignUpForm from '../../../components/signup/SignUpForm';
+import { getCookie } from 'typescript-cookie';
+import { COMMON_CONSTANTS } from '@/constants';
 
 export default function SignUpPage():JSX.Element {
     const navigate = useNavigate();
-    const accessToken = useSelector((state: RootState) => state.commonReducer.userCommonInfor.accessToken);
+    const accessToken = getCookie(COMMON_CONSTANTS.ACCESS_TOKEN);
+
 
     const checkUserLoginOrNot = () => {
         if (accessToken) {

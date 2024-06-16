@@ -68,7 +68,7 @@ export default function ForgetPasswordForm(): JSX.Element {
                             content={'forget_password_page.send_email_success.label'}
                             className={'text-3xl font-semibold mb-4'}
                         />
-                        <Typography content={t('forget_password_page.send_email_success.description', { email: email })} />
+                        <Typography content={t('forget_password_page.send_email_success.description', { email: email })} dataTest={'send-email-success-text'}/>
 
                         <div className="my-3 flex items-center">
                             <Typography
@@ -79,6 +79,7 @@ export default function ForgetPasswordForm(): JSX.Element {
                                 <Typography
                                 content={'forget_password_page.forget_password_form.button_resend_label'}
                                 className={'text-sm text-gray-400 hover:underline'}
+                                dataTest={'resendEmail'}
                             />
                             </div>
                         </div>
@@ -106,10 +107,12 @@ export default function ForgetPasswordForm(): JSX.Element {
                                         inputName={'email'}
                                         className={'border mb-1'}
                                         isInvalidField={!!forgetPasswordEmailErrorMessage}
+                                        dataTest={'email'}
                                     />
                                     <ErrorMessage
                                         errorMessage={forgetPasswordEmailErrorMessage}
                                         field={'form.email_address'}
+                                        dataTest={'emailErrMessage'}
                                     />
                                 </div>
 
@@ -118,6 +121,7 @@ export default function ForgetPasswordForm(): JSX.Element {
                                         handleClick={handleSubmitEmailForgetPassword}
                                         content={'forget_password_page.forget_password_form.button_label'}
                                         typoClassName={'text-white text-2xl'}
+                                        dataTest={'forgetPasswordBtn'}
                                     />
                                 </div>
                             </form>

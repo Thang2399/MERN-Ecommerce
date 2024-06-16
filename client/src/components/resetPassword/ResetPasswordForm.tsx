@@ -108,10 +108,12 @@ const ResetPasswordForm = () => {
                             className={'border mb-1'}
                             isPasswordField={true}
                             isInvalidField={!!resetPasswordErrorMessages.newPassword.message}
+                            dataTest={'password'}
                         />
                         <ErrorMessage
                             errorMessage={resetPasswordErrorMessages.newPassword.message}
                             field={resetPasswordErrorMessages.newPassword.field}
+                            dataTest={'passwordErrMessage'}
                         />
                     </div>
 
@@ -129,10 +131,12 @@ const ResetPasswordForm = () => {
                             className={'border mb-1'}
                             isPasswordField={true}
                             isInvalidField={!!resetPasswordErrorMessages.confirmPassword.message}
+                            dataTest={'confirmPassword'}
                         />
                         <ErrorMessage
                             errorMessage={resetPasswordErrorMessages.confirmPassword.message}
                             field={resetPasswordErrorMessages.confirmPassword.field}
+                            dataTest={'confirmPasswordErrMessage'}
                         />
                     </div>
 
@@ -145,6 +149,7 @@ const ResetPasswordForm = () => {
                             handleClick={handleSubmitResetPassword}
                             content={'reset_password_page.reset_password_form.button_label'}
                             typoClassName={'text-white text-2xl'}
+                            dataTest={'resetPasswordBtn'}
                         />
                     </div>
                 </form>

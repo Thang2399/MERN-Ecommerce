@@ -16,11 +16,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <React.StrictMode>
+    <>
         <ConfigProvider theme={theme}>
             <Provider store={store}>
                 <App/>
             </Provider>
         </ConfigProvider>
-    </React.StrictMode>
+    </>
 );

@@ -7,23 +7,25 @@ import { IoIosClose } from 'react-icons/io';
 import Typography from '../base/Typography';
 import Image from '../base/Image';
 
-import { singleItemTypes } from '../../types/home';
-import { RootState } from '../../store';
+import { singleItemTypes } from '@/types/home';
+import { RootState } from '@/store';
 import { showCart, changeQuantityItem, removeItemFromCart, getTotalCartPrice, deleteCart } from '../../store/home';
-import { convertMoney } from '../../utils/misc';
-import { COMMON_CONSTANTS } from '../../constants';
-import { REDUCER_HOME_ACTION } from '../../constants/reducer';
+import { convertMoney } from '@/utils/misc';
+import { COMMON_CONSTANTS } from '@/constants';
+import { REDUCER_HOME_ACTION } from '@/constants/reducer';
 import Button from '../base/Button';
 
-const Cart: React.FC = () => {
+interface ICart {
+    toggleDrawer: (param: boolean) => void
+}
+
+const Cart: React.FC<ICart> = ({ toggleDrawer }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const carItemsList = useSelector(
         (state: RootState) => state.homePageReducer.cartItemsList,
     );
-
-    console.log('carItemsLis123123123t', carItemsList);
 
     const currentLanguageCode = useSelector(
         (state: RootState) => state.homePageReducer.currentLanguage,
@@ -38,7 +40,7 @@ const Cart: React.FC = () => {
     );
 
     const handleCloseQuickView = () => {
-        dispatch(showCart(false));
+        toggleDrawer(false);
     };
 
     const handleGetTotalCartPrice = () => {
@@ -83,12 +85,8 @@ const Cart: React.FC = () => {
     };
 
     return (
-        <div className={'w-full h-full flex pt-16'}>
-            <div
-                className={'w-3/4'}
-                onClick={() => handleCloseQuickView()}
-            />
-            <div className={'bg-white w-1/4 h-full p-5'}>
+        <div className={'w-full h-full flex'}>
+            <div className={'bg-white w-full h-full p-5'}>
                 <div
                     className={'flex justify-end mb-4 cursor-pointer text-3xl'}
                     onClick={() => handleCloseQuickView()}>

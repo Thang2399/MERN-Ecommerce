@@ -84,15 +84,6 @@ export default function SignUpForm(): JSX.Element {
                 if (loginRes && loginRes.status === HTTP_STATUS.CREATE_SUCCESS) {
                     const data = loginRes.data;
                     setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, data.accessToken);
-                    setCookie(COMMON_CONSTANTS.USER_ID, data._id);
-                    setCookie(COMMON_CONSTANTS.USER_ROLE, data.userRole);
-                    setCookie(COMMON_CONSTANTS.USER_EMAIL, loginPayload.email);
-                    dispatch(setUserCommonInfor({
-                        accessToken: data.accessToken,
-                        role: data.role,
-                        id: data._id,
-                        email: loginPayload.email
-                    }));
                     dispatch(setShowLoadingIcon(false));
                     navigate(USER_ROUTES.DEFAULT);
                     dispatch(setShowToastMessage({
@@ -155,10 +146,12 @@ export default function SignUpForm(): JSX.Element {
                             inputName={'userName'}
                             className={'border mb-1'}
                             isInvalidField={!!signUpFormErrorMessages.userName.message}
+                            dataTest={'userName'}
                         />
                         <ErrorMessage
                             errorMessage={signUpFormErrorMessages.userName.message}
                             field={signUpFormErrorMessages.userName.field}
+                            dataTest={'userNameErrMessage'}
                         />
                     </div>
 
@@ -179,10 +172,12 @@ export default function SignUpForm(): JSX.Element {
                         inputName={'email'}
                         className={'border mb-1'}
                         isInvalidField={!!signUpFormErrorMessages.email.message}
+                        dataTest={'email'}
                     />
                     <ErrorMessage
                         errorMessage={signUpFormErrorMessages.email.message}
                         field={signUpFormErrorMessages.email.field}
+                        dataTest={'emailErrMessage'}
                     />
                     </div>
 
@@ -200,10 +195,12 @@ export default function SignUpForm(): JSX.Element {
                             inputName={'phoneNumber'}
                             className={'border mb-1'}
                             isInvalidField={!!signUpFormErrorMessages.phoneNumber.message}
+                            dataTest={'phoneNumber'}
                         />
                         <ErrorMessage
                             errorMessage={signUpFormErrorMessages.phoneNumber.message}
                             field={signUpFormErrorMessages.phoneNumber.field}
+                            dataTest={'phoneNumberErrMessage'}
                         />
                     </div>
                 </div>
@@ -223,10 +220,12 @@ export default function SignUpForm(): JSX.Element {
                         className={'border mb-1'}
                         isPasswordField={true}
                         isInvalidField={!!signUpFormErrorMessages.password.message}
+                        dataTest={'password'}
                     />
                     <ErrorMessage
                         errorMessage={signUpFormErrorMessages.password.message}
                         field={signUpFormErrorMessages.password.field}
+                        dataTest={'passwordErrMessage'}
                     />
                 </div>
 
@@ -245,10 +244,12 @@ export default function SignUpForm(): JSX.Element {
                         className={'border mb-1'}
                         isPasswordField={true}
                         isInvalidField={!!signUpFormErrorMessages.confirmPassword.message}
+                        dataTest={'confirmPassword'}
                     />
                     <ErrorMessage
                         errorMessage={signUpFormErrorMessages.confirmPassword.message}
                         field={signUpFormErrorMessages.confirmPassword.field}
+                        dataTest={'confirmPasswordErrMessage'}
                     />
                 </div>
                 
@@ -288,6 +289,7 @@ export default function SignUpForm(): JSX.Element {
                         handleClick={handleSignUp}
                         content={'signup_page.signup_form.submit_btn'}
                         typoClassName={'text-white text-2xl'}
+                        dataTest={'sign-up-btn'}
                     />
                 </div>
 
@@ -300,6 +302,7 @@ export default function SignUpForm(): JSX.Element {
                             <Typography
                                 content={'signup_page.login_now'}
                                 className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
+                                dataTest={'navigate-to-login'}
                             />
                         </div>
                     </div>

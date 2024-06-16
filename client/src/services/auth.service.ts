@@ -30,5 +30,17 @@ const resetPassword = async (payload: IResetPasswordFormPayload) => {
     return response;
 };
 
-const authService = { loginUser, signUpUser, forgetPassword, checkTokenInUsed, resetPassword };
+const getUserInfor = async () => {
+    const response = await authRequest.post(`${authEndpoint}/me`);
+    return response;
+};
+
+const authService = {
+    loginUser,
+    signUpUser,
+    forgetPassword,
+    checkTokenInUsed,
+    resetPassword,
+    getUserInfor
+};
 export default authService;

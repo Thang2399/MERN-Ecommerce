@@ -27,12 +27,10 @@ export default function Navbar(): JSX.Element {
                     placeholder={'home_page.search_box_placeholder'}
                 />
             </div>
-            <div className={'flex items-center gap-3'}>
+            <div className={'flex items-center gap-5'}>
                 <LocalesSwitcher/>
-                <div className={'flex items-center gap-5'}>
-                    <CartIcon />
-                    <LoginButton />
-                </div>
+                <CartIcon/>
+                <LoginButton/>
 
             </div>
         </div>

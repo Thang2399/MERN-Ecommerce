@@ -12,7 +12,6 @@ interface CommonState {
         type: string,
     },
     userCommonInfor: {
-        accessToken: string,
         role: string,
         id: string,
         email: string
@@ -36,10 +35,9 @@ const initialState: CommonState = {
         type: '',
     },
     userCommonInfor: {
-        accessToken: getCommonUserInfor(COMMON_CONSTANTS.ACCESS_TOKEN),
-        role: getCommonUserInfor(COMMON_CONSTANTS.USER_ROLE),
-        id: getCommonUserInfor(COMMON_CONSTANTS.USER_ID),
-        email: getCommonUserInfor(COMMON_CONSTANTS.USER_EMAIL)
+        role: '',
+        id: '',
+        email: ''
     },
     showLoginModal: false
 };

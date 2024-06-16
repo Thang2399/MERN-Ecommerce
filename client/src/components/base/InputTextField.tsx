@@ -12,7 +12,8 @@ type Props = {
     minLength?: number,
     maxLength?: number,
     isPasswordField?: boolean,
-    isInvalidField?: boolean
+    isInvalidField?: boolean,
+    dataTest?: string
 };
 
 const InputTextField: React.FC<Props> =
@@ -26,7 +27,8 @@ const InputTextField: React.FC<Props> =
          minLength,
          maxLength,
          isPasswordField,
-        isInvalidField
+        isInvalidField,
+        dataTest
      }) => {
         const { t } = useTranslation();
         const [ showPassword, setShowPassword ] = useState<boolean>(false);
@@ -50,6 +52,7 @@ const InputTextField: React.FC<Props> =
                                     onChange={handleChange}
                                     minLength={minLength}
                                     maxLength={maxLength}
+                                    data-test={dataTest}
                                 />
                                 <div className={'absolute top-0 right-0 h-full pr-2.5 text-2xl flex justify-center items-center text-gray-400 cursor-pointer'} onClick={handleShowPassword}>
                                     <div>
@@ -69,6 +72,7 @@ const InputTextField: React.FC<Props> =
                                 onChange={handleChange}
                                 minLength={minLength}
                                 maxLength={maxLength}
+                                data-test={dataTest}
                             />
                         )
                 }
@@ -81,7 +85,8 @@ InputTextField.defaultProps = {
     minLength: 1,
     maxLength: 255,
     isPasswordField: false,
-    isInvalidField: false
+    isInvalidField: false,
+    dataTest: ''
 };
 
 export default InputTextField;
