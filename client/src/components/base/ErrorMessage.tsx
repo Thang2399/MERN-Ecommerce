@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 interface Props {
     errorMessage: string,
-    field?: string
+    field?: string,
+    dataTest?: string
 }
 
-const ErrorMessage: React.FC<Props> = ({ errorMessage, field }) => {
+const ErrorMessage: React.FC<Props> = ({ errorMessage, field, dataTest }) => {
     const { t } = useTranslation();
 
     const generateErrorMessage = (message: string, field: string|undefined) => {
@@ -16,10 +17,15 @@ const ErrorMessage: React.FC<Props> = ({ errorMessage, field }) => {
     };
 
     return (
-        <p className={'text-red-500'}>
+        <p className={'text-red-500'} data-test={dataTest}>
             { generateErrorMessage(errorMessage, field) }
         </p>
     );
+};
+
+ErrorMessage.defaultProps = {
+    field: '',
+    dataTest: ''
 };
 
 export default ErrorMessage;

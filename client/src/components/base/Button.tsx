@@ -7,6 +7,7 @@ type Props = {
     buttonClassName?: string;
     typoClassName?: string;
 	handleClick: (params: any) => any;
+	dataTest?: string;
 };
 
 const Button: React.FC<Props> = ({
@@ -15,12 +16,15 @@ const Button: React.FC<Props> = ({
     buttonClassName,
     typoClassName,
 	handleClick,
+	dataTest
 }) => {
 	return (
 		<>
 			<button
 				className={`p-2 w-full rounded-lg ${buttonClassName}`}
-				onClick={handleClick}>
+				onClick={handleClick}
+				data-test={dataTest}
+			>
 				<Typography
 					content={content}
 					needTranslate={needTranslate}
@@ -32,7 +36,8 @@ const Button: React.FC<Props> = ({
 };
 
 Button.defaultProps = {
-	buttonClassName: 'bg-gray-400'
+	buttonClassName: 'bg-gray-400',
+	dataTest: ''
 };
 
 

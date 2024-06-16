@@ -10,7 +10,8 @@ const axiosBase = axios.create({
     transformRequest: [ (data, headers) => {
         const convertedData = JSON.stringify(data);
         return convertedData;
-    }, ]
+    },
+    ]
 });
 
 const token = getCookie(COMMON_CONSTANTS.ACCESS_TOKEN) || '';
@@ -23,6 +24,12 @@ axiosBase.defaults.headers['Content-Type'] = 'application/json';
 // request interceptors
 axiosBase.interceptors.request.use(
     (config: any) => {
+        const token = getCookie(COMMON_CONSTANTS.ACCESS_TOKEN); // Replace with the actual cookie name
+        if (token) {
+            // Attach the token to the Authorization header
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+
         console.log('config', config);
         return config;
     },

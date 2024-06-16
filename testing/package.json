@@ -1,0 +1,11 @@
+{
+  "name": "cypress_project",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@cypress/webpack-preprocessor": "^6.0.2",
+    "@types/node": "^20.14.2",
+    "cypress": "^13.11.0",
+    "dotenv": "^16.4.5",
+    "typescript": "^5.4.5"
+  }
+}

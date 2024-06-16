@@ -1,13 +1,15 @@
 import authService from './auth.service';
-import homeService from './home.service';
+import itemService from './item.service';
 import cartService from './cart.service';
 import invoiceService from './invoice.service';
+import brandService from '@/services/brand.service';
 
 const services = {
     ...authService,
-    ...homeService,
+    ...itemService,
     ...cartService,
-    ...invoiceService
+    ...invoiceService,
+    ...brandService
 };
 
 export default services;

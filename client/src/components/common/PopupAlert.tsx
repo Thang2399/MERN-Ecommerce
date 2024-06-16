@@ -7,13 +7,15 @@ interface IPopupAlert {
     popupLabel: string;
     confirmButtonLabel: string;
     handleConfirm: (params: any) => void;
+    dataTestBtn?: string
 }
 
 const PopupAlert: React.FC<IPopupAlert> = ({
     popupTitle,
     popupLabel,
     confirmButtonLabel,
-    handleConfirm
+    handleConfirm,
+    dataTestBtn
 }) => {
     return (
         <div className={'w-screen h-screen bg-black bg-opacity-40'}>
@@ -49,6 +51,7 @@ const PopupAlert: React.FC<IPopupAlert> = ({
                                         handleClick={handleConfirm}
                                         content={confirmButtonLabel}
                                         buttonClassName={'bg-gray-400 border text-white hover:bg-white hover:text-gray-400'}
+                                        dataTest={dataTestBtn}
                                     />
                                 </div>
                             </div>
@@ -59,6 +62,10 @@ const PopupAlert: React.FC<IPopupAlert> = ({
             </div>
         </div>
     );
+};
+
+PopupAlert.defaultProps = {
+    dataTestBtn: 'okBtn'
 };
 
 export default PopupAlert;

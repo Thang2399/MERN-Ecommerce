@@ -14,19 +14,20 @@ export default function HomePageComponent(): JSX.Element {
 
     const [ listItems, setListItems ] = useState<singleItemTypes[]>([]);
 
-    const showQuickView = useSelector(
-        (state: RootState) => state.homePageReducer.showQuickView,
-    );
-    const specificItemId = useSelector(
-        (state: RootState) => state.homePageReducer.itemId,
-    );
-
     const getListItems = async () => {
         try {
+            const query = {
+                page: 1,
+                limit: 100,
+                orderBy: 'desc',
+                orderType: 'updatedAt'
+            };
+
             dispatch(setShowLoadingIcon(true));
-            const res = await services.getListItems();
-            if (res.data.length > 0) {
-                setListItems(res.data);
+            const res = await services.getListItems(query);
+            if (res.data.data.length > 0) {
+                console.log('res.data', res.data);
+                setListItems(res.data.data);
             }
         } catch (error: any) {
             console.log(error);
@@ -46,14 +47,6 @@ export default function HomePageComponent(): JSX.Element {
                     <ListItems listItems={listItems}/>
                 </div>
             </div>
-            {showQuickView && (
-                <div
-                    className={
-                        'absolute top-0 left-0 bg-black bg-opacity-40 overflow-hidden'
-                    }>
-                    <QuickViewItem id={specificItemId}/>
-                </div>
-            )}
         </div>
     );
 }

@@ -55,15 +55,6 @@ export default function LoginForm(): JSX.Element {
             if (res && res.status === HTTP_STATUS.CREATE_SUCCESS){
                 const data = res.data;
                 setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, data.accessToken);
-                setCookie(COMMON_CONSTANTS.USER_ID, data._id);
-                setCookie(COMMON_CONSTANTS.USER_ROLE, data.userRole);
-                setCookie(COMMON_CONSTANTS.USER_EMAIL, payload.email);
-                dispatch(setUserCommonInfor({
-                    accessToken: data.accessToken,
-                    role: data.role,
-                    id: data._id,
-                    email: payload.email
-                }));
                 axiosBase.defaults.headers['Authorization'] = data.accessToken;
                  dispatch(setShowLoadingIcon(false));
                  navigate('/');
@@ -106,6 +97,7 @@ export default function LoginForm(): JSX.Element {
             <Typography
                 content={'login_page.label'}
                 className={'text-3xl font-semibold mb-4'}
+                dataTest={'login-title'}
             />
 
             <form>
@@ -122,10 +114,12 @@ export default function LoginForm(): JSX.Element {
                         inputName={'email'}
                         className={'border mb-1'}
                         isInvalidField={!!loginFormErrorMessages.email.message}
+                        dataTest={'email'}
                     />
                     <ErrorMessage
                         errorMessage={loginFormErrorMessages.email.message}
                         field={loginFormErrorMessages.email.field}
+                        dataTest={'emailErrMessage'}
                     />
                 </div>
 
@@ -143,10 +137,12 @@ export default function LoginForm(): JSX.Element {
                         className={'border mb-1'}
                         isPasswordField={true}
                         isInvalidField={!!loginFormErrorMessages.password.message}
+                        dataTest={'password'}
                     />
                     <ErrorMessage
                         errorMessage={loginFormErrorMessages.password.message}
                         field={loginFormErrorMessages.password.field}
+                        dataTest={'passwordErrMessage'}
                     />
                 </div>
 
@@ -157,6 +153,7 @@ export default function LoginForm(): JSX.Element {
                         <Typography
                             content={'login_page.forgot_password'}
                             className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
+                            dataTest={'navigate-to-forgot-pass'}
                         />
                         </div>
                 </div>
@@ -166,6 +163,7 @@ export default function LoginForm(): JSX.Element {
                         handleClick={handleLogin} 
                         content={'login_page.login_form.submit_btn'}
                         typoClassName={'text-white text-2xl'}
+                        dataTest={'loginBtn'}
                     />
                 </div>
 
@@ -178,6 +176,7 @@ export default function LoginForm(): JSX.Element {
                             <Typography
                                 content={'login_page.sign_up_now'}
                                 className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
+                                dataTest={'navigate-to-sign-up'}
                             />
                         </div>
                     </div>
