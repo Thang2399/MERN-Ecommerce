@@ -38,12 +38,10 @@ const SingleItem: React.FC<Props> = ({ item }) => {
 
     return (
         <div
-            className={
-                'w-full h-full p-4 bg-white shadow-2xl transition delay-150 cursor-pointer rounded'
-            }>
+            className={'w-full h-full p-4 bg-white cursor-pointer rounded-xl border'}>
             <div>
                 <div className={'w-full'}>
-                    <Image imgUrl={item.imageUrl} className={'w-60 h-56'}/>
+                    <Image imgUrl={item.imageUrl}/>
                 </div>
                 <Typography
                     content={item.name}

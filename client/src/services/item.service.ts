@@ -1,12 +1,12 @@
-import authRequest from './service';
+import baseRequest from './service';
 
 const getListItems = async (query: any) => {
-    const response = await authRequest.get('/items', { params: query });
+    const response = await baseRequest.get('/items', { params: query });
     return response;
 };
 
 const getSingleItem = async (id: string) => {
-    const response = await authRequest.get(`/items/${id}`);
+    const response = await baseRequest.get(`/items/${id}`);
 
     return response;
 };
