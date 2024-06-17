@@ -4,7 +4,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import proxy from 'express-http-proxy';
 import axios from 'axios';
-import { USER_ROLE } from './constant/index.js';
 
 const app = express();
 dotenv.config();
@@ -44,7 +43,7 @@ routes.forEach(({ path, target }) => {
 				req.headers['x-user-id'] = _id || '';
 				req.headers['x-user-name'] = userName || '';
 				req.headers['x-user-email'] = email || '';
-				req.headers['x-user-role'] = role || USER_ROLE.USER;
+				req.headers['x-user-role'] = role || '';
 			}
 			// Forward the modified request to the main service
 			proxy(target, { proxyReqPathResolver: req => req.url })(req, res, next);

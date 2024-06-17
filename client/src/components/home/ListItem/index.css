@@ -1,0 +1,25 @@
+.slick-slide {
+    padding: 0 5px;
+}
+
+.slick-arrow {
+    background: rgb(156 163 175) !important;
+    padding: 5px !important;
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 50%;
+
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+.slick-prev::after {
+    position: relative !important;
+    top: 0 !important;
+}
+
+.slick-next::after {
+    top: 7px !important;
+    left: 5px !important;
+}

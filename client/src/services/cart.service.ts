@@ -1,8 +1,8 @@
 import { userInforFormType } from '../types/cart';
-import authRequest from './service';
+import baseRequest from './service';
 
 const createInvoice = async ( payload: userInforFormType ) => {
-    const response = await authRequest.post('/invoices', payload);
+    const response = await baseRequest.post('/invoices', payload);
 
     return response;
 };

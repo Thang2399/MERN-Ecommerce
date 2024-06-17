@@ -1,30 +1,29 @@
 import { useState, useEffect } from 'react';
 import services from '../../services';
-import { singleItemTypes } from '../../types/home';
+import { singleCategoryWithTypicalItemTypes } from '@/types/home';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store';
+import { useDispatch } from 'react-redux';
 
-import ListItems from './ListItems';
-import QuickViewItem from './QuickView';
-import { setShowLoadingIcon } from '../../store/common';
+import ListItems from './ListItem/ListItems';
+import { setShowLoadingIcon } from '@/store/common';
 
 export default function HomePageComponent(): JSX.Element {
     const dispatch = useDispatch();
 
-    const [ listItems, setListItems ] = useState<singleItemTypes[]>([]);
+    const [ listItems, setListItems ] = useState<singleCategoryWithTypicalItemTypes[]>([]);
 
     const getListItems = async () => {
         try {
             const query = {
                 page: 1,
-                limit: 100,
+                limit: 10,
                 orderBy: 'desc',
-                orderType: 'updatedAt'
+                orderType: 'updatedAt',
+                filterByRootId: 'true'
             };
 
             dispatch(setShowLoadingIcon(true));
-            const res = await services.getListItems(query);
+            const res = await services.getListCategoriesWithTypicalItems(query);
             if (res.data.data.length > 0) {
                 console.log('res.data', res.data);
                 setListItems(res.data.data);
@@ -42,10 +41,8 @@ export default function HomePageComponent(): JSX.Element {
 
     return (
         <div className='h-full'>
-            <div className={'w-full h-full'}>
-                <div className={'w-full h-1/3'}>
-                    <ListItems listItems={listItems}/>
-                </div>
+            <div className={'w-full h-full p-5'}>
+                <ListItems listItems={listItems}/>
             </div>
         </div>
     );

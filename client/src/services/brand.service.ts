@@ -1,13 +1,13 @@
-import authRequest from '@/services/service';
+import baseRequest from '@/services/service';
 
 const getListBrands = async () => {
-    const response = await authRequest.get('/brand');
+    const response = await baseRequest.get('/brand');
 
     return response;
 };
 
 const getSpecificBrand = async (id: string) => {
-    const response = await authRequest.get(`/brand/${id}`);
+    const response = await baseRequest.get(`/brand/${id}`);
     return response;
 };
 

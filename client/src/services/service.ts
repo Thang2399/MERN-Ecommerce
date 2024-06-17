@@ -1,5 +1,5 @@
 import AxiosBase from './http-common';
 
-const authRequest = AxiosBase;
+const baseRequest = AxiosBase;
 
-export default authRequest;
+export default baseRequest;
