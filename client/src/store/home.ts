@@ -63,7 +63,7 @@ export const homePageSlice = createSlice({
             setCookie(COMMON_CONSTANTS.I18NEXT, action.payload);
             state.currency = state.currentLanguage === COMMON_CONSTANTS.VN ? 'đ' : '$';
         },
-        showQuickView: (state, action: PayloadAction<boolean>) => {
+        setShowQuickView: (state, action: PayloadAction<boolean>) => {
             state.showQuickView = action.payload;
         },
         getDetailItem: (state, action: PayloadAction<string>) => {
@@ -138,7 +138,7 @@ export const homePageSlice = createSlice({
 
 export const {
     changeLanguage,
-    showQuickView,
+    setShowQuickView,
     getDetailItem,
     addItemToCart,
     showCart,
