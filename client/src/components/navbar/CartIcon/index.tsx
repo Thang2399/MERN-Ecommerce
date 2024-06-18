@@ -4,7 +4,7 @@ import { RootState } from '@/store';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
 import { Badge, Drawer } from '@mui/material';
-import Cart from '@/components/home/Cart';
+import CartDrawer from '@/components/home/CartDrawer';
 
 export default function CartNavbarIcon() {
     const [ open, setOpen ] = useState<boolean>(false);
@@ -39,8 +39,9 @@ export default function CartNavbarIcon() {
                 open={open}
                 onClose={toggleDrawer(false)}
             >
-                <Cart toggleDrawer={toggleDrawer}/>
+                <CartDrawer setOpen={setOpen}/>
             </Drawer>
+
         </>
     );
 }

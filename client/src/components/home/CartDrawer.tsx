@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,17 +9,18 @@ import Image from '../base/Image';
 
 import { singleItemTypes } from '@/types/home';
 import { RootState } from '@/store';
-import { showCart, changeQuantityItem, removeItemFromCart, getTotalCartPrice, deleteCart } from '../../store/home';
+import { changeQuantityItem, removeItemFromCart, getTotalCartPrice, deleteCart } from '@/store/home';
 import { convertMoney } from '@/utils/misc';
 import { COMMON_CONSTANTS } from '@/constants';
 import { REDUCER_HOME_ACTION } from '@/constants/reducer';
 import Button from '../base/Button';
+import RenderCurrency from '@/components/base/RenderCurrency';
 
 interface ICart {
-    toggleDrawer: (param: boolean) => void
+    setOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const Cart: React.FC<ICart> = ({ toggleDrawer }) => {
+const CartDrawer: React.FC<ICart> = ({ setOpen }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -40,25 +41,12 @@ const Cart: React.FC<ICart> = ({ toggleDrawer }) => {
     );
 
     const handleCloseQuickView = () => {
-        toggleDrawer(false);
+        setOpen(false);
     };
 
     const handleGetTotalCartPrice = () => {
         dispatch(getTotalCartPrice());
     };
-
-    useEffect(() => {
-        const handleEsc = (event: any) => {
-            if (event.keyCode === 27) {
-                handleCloseQuickView();
-            }
-        };
-        window.addEventListener('keydown', handleEsc);
-
-        return () => {
-            window.removeEventListener('keydown', handleEsc);
-        };
-    }, []);
 
     useEffect(() => {
         handleGetTotalCartPrice();
@@ -127,31 +115,7 @@ const Cart: React.FC<ICart> = ({ toggleDrawer }) => {
 
                                                     <IoIosClose/>
 
-                                                    <div className={'flex'}>
-                                                        {currentLanguageCode === COMMON_CONSTANTS.EN && (
-                                                            <>
-                                                                <Typography
-                                                                    content={item.currency && convertMoney(item.price, item.currency, currentLanguageCode)?.currency || item.currency}
-                                                                    needTranslate={false}
-                                                                    className={'mr-0.5'}
-                                                                />
-                                                            </>
-                                                        )}
-                                                        <Typography
-                                                            content={item.price && convertMoney(item.price, item.currency, currentLanguageCode)?.price || item.price}
-                                                            className={'font-semibold'}
-                                                            needTranslate={false}
-                                                        />
-                                                        {currentLanguageCode === COMMON_CONSTANTS.VN && (
-                                                            <>
-                                                                <Typography
-                                                                    content={item.currency && convertMoney(item.price, item.currency, currentLanguageCode)?.currency || item.currency}
-                                                                    needTranslate={false}
-                                                                    className={'ml-1'}
-                                                                />
-                                                            </>
-                                                        )}
-                                                    </div>
+                                                    <RenderCurrency item={item} />
                                                 </div>
 
                                                 <div className={'flex items-center'}>
@@ -236,11 +200,9 @@ const Cart: React.FC<ICart> = ({ toggleDrawer }) => {
                             </div>
                         </div>
                     )}
-
-
             </div>
         </div>
     );
 };
 
-export default Cart;
+export default CartDrawer;

@@ -51,7 +51,6 @@ const ListItems: React.FC<Props> = ({ listItems }) => {
                                     })}
                                 </Carousel>
 
-
                             </div>
                         )}
                     </div>

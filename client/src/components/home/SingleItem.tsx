@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { showQuickView, getDetailItem, addItemToCart, getTotalCartPrice } from '../../store/home';
-import { singleItemTypes } from '../../types/home';
+import { getDetailItem, addItemToCart, getTotalCartPrice, setShowQuickView } from '../../store/home';
+import { singleItemTypes } from '@/types/home';
 
 import Typography from '../base/Typography';
 import Image from '../base/Image';
 import Button from '../base/Button';
-import { RootState } from '../../store';
-import { convertMoney } from '../../utils/misc';
-import { COMMON_CONSTANTS } from '../../constants';
+import { RootState } from '@/store';
+import { convertMoney } from '@/utils/misc';
+import { COMMON_CONSTANTS } from '@/constants';
+import RenderCurrency from '@/components/base/RenderCurrency';
 
 type Props = {
     item: singleItemTypes;
@@ -18,12 +19,8 @@ type Props = {
 const SingleItem: React.FC<Props> = ({ item }) => {
     const dispatch = useDispatch();
 
-    const currentLanguageCode = useSelector(
-        (state: RootState) => state.homePageReducer.currentLanguage,
-    );
-
     const handleViewDetailItem = (id: string) => {
-        dispatch(showQuickView(true));
+        dispatch(setShowQuickView(true));
         dispatch(getDetailItem(id));
     };
 
@@ -50,29 +47,7 @@ const SingleItem: React.FC<Props> = ({ item }) => {
                     needTranslate={false}
                 />
                 <div className={'flex mt-3'}>
-                    {currentLanguageCode === COMMON_CONSTANTS.EN && (
-                        <>
-                            <Typography
-                                content={item.currency && convertMoney(item.price, item.currency, currentLanguageCode)?.currency || item.currency}
-                                needTranslate={false}
-                                className={'mr-1'}
-                            />
-                        </>
-                    )}
-                        <Typography
-                            content={item.price && convertMoney(item.price, item.currency, currentLanguageCode)?.price || item.price}
-                            className={'text-2xl font-semibold'}
-                            needTranslate={false}
-                        />
-                    {currentLanguageCode === COMMON_CONSTANTS.VN && (
-                        <>
-                            <Typography
-                                content={item.currency && convertMoney(item.price, item.currency, currentLanguageCode)?.currency || item.currency}
-                                needTranslate={false}
-                                className={'ml-1'}
-                            />
-                        </>
-                    )}
+                    <RenderCurrency item={item} />
                 </div>
             </div>
 

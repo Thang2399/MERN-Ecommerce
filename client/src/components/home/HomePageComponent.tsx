@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import ListItems from './ListItem/ListItems';
 import { setShowLoadingIcon } from '@/store/common';
+import QuickViewItem from '@/components/home/QuickView';
 
 export default function HomePageComponent(): JSX.Element {
     const dispatch = useDispatch();
@@ -25,7 +26,6 @@ export default function HomePageComponent(): JSX.Element {
             dispatch(setShowLoadingIcon(true));
             const res = await services.getListCategoriesWithTypicalItems(query);
             if (res.data.data.length > 0) {
-                console.log('res.data', res.data);
                 setListItems(res.data.data);
             }
         } catch (error: any) {
@@ -44,6 +44,8 @@ export default function HomePageComponent(): JSX.Element {
             <div className={'w-full h-full p-5'}>
                 <ListItems listItems={listItems}/>
             </div>
+
+            <QuickViewItem />
         </div>
     );
 }
