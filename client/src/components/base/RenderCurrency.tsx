@@ -7,38 +7,45 @@ import React from 'react';
 import { singleItemTypes } from '@/types/home';
 
 interface IRenderCurrency {
-    item: singleItemTypes
+    currency?: string,
+    price: string
 }
 
-const RenderCurrency: React.FC<IRenderCurrency> = ({ item }) => {
+const RenderCurrency: React.FC<IRenderCurrency> = ({ currency = '$', price }) => {
     const currentLanguageCode = useSelector((state: RootState) => state.homePageReducer.currentLanguage,
     );
 
     return (
         <>
-            {currentLanguageCode === COMMON_CONSTANTS.EN && (
-                <>
-                    <Typography
-                        content={item.currency && convertMoney(item.price, item.currency, currentLanguageCode)?.currency || item.currency}
-                        needTranslate={false}
-                        className={'mr-1'}
-                    />
-                </>
-            )}
+            {/*{currentLanguageCode === COMMON_CONSTANTS.EN && (*/}
+            {/*    <>*/}
+            {/*        <Typography*/}
+            {/*            content={currency && convertMoney(price, currency, currentLanguageCode)?.currency || currency}*/}
+            {/*            needTranslate={false}*/}
+            {/*            className={'mr-1'}*/}
+            {/*        />*/}
+            {/*    </>*/}
+            {/*)}*/}
             <Typography
-                content={item.price && convertMoney(item.price, item.currency, currentLanguageCode)?.price || item.price}
+                content={currency && convertMoney(price, currency, currentLanguageCode)?.currency || currency}
+                needTranslate={false}
+                className={'mr-1'}
+            />
+
+            <Typography
+                content={price && convertMoney(price, currency, currentLanguageCode)?.price || price}
                 className={'text-2xl font-semibold'}
                 needTranslate={false}
             />
-            {currentLanguageCode === COMMON_CONSTANTS.VN && (
-                <>
-                    <Typography
-                        content={item.currency && convertMoney(item.price, item.currency, currentLanguageCode)?.currency || item.currency}
-                        needTranslate={false}
-                        className={'ml-1'}
-                    />
-                </>
-            )}
+            {/*{currentLanguageCode === COMMON_CONSTANTS.VN && (*/}
+            {/*    <>*/}
+            {/*        <Typography*/}
+            {/*            content={currency && convertMoney(price, currency, currentLanguageCode)?.currency || currency}*/}
+            {/*            needTranslate={false}*/}
+            {/*            className={'ml-1'}*/}
+            {/*        />*/}
+            {/*    </>*/}
+            {/*)}*/}
         </>
     );
 };

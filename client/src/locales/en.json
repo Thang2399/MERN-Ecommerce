@@ -11,7 +11,8 @@
       "password": "Password",
       "password_placeholder": "Your password",
       "remember_me": "Remember me",
-      "submit_btn": "Login"
+      "submit_btn": "Login",
+      "login_with_google": "Login with Google"
     },
     "response_message": {
       "login_success": "Login successfully!",

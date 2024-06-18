@@ -47,7 +47,7 @@ const SingleItem: React.FC<Props> = ({ item }) => {
                     needTranslate={false}
                 />
                 <div className={'flex mt-3'}>
-                    <RenderCurrency item={item} />
+                    <RenderCurrency currency={item.currency} price={item.price} />
                 </div>
             </div>
 

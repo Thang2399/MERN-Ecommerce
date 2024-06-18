@@ -23,7 +23,7 @@ export default function Navbar(): JSX.Element {
                     value={searchValue}
                     handleChange={handleChange}
                     inputName={'searchValue'}
-                    type={'text'}
+                    
                     placeholder={'home_page.search_box_placeholder'}
                 />
             </div>

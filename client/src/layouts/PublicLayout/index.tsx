@@ -1,28 +1,62 @@
 import Navbar from '../../components/navbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { getCookie } from 'typescript-cookie';
 import { COMMON_CONSTANTS } from '@/constants';
 import services from '@/services';
 import { useEffect } from 'react';
+import { authRoutesArr, privateRoutesArr, USER_ROUTES } from '@/routes/constants';
+import { useDispatch } from 'react-redux';
+import { setUserCommonInfor } from '@/store/common';
 
 export default function PublicLayout(): JSX.Element {
     const accessToken = getCookie(COMMON_CONSTANTS.ACCESS_TOKEN);
-    const pathname = window.location.pathname;
+    const location = useLocation();
+    const pathname = location.pathname;
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleGetUserInfor = async () => {
         try {
             const res = await services.getUserInfor();
-            console.log('handleGetUserInfor res', res);
+            const data = res.data;
+            dispatch(setUserCommonInfor({
+                role: data.role,
+                id: data._id,
+                email: data.email,
+                userName: data.userName
+            }));
         } catch (err) {
             console.log('err', err);
+            dispatch(setUserCommonInfor({
+                role: '',
+                id: '',
+                email: '',
+                userName: ''
+            }));
+        }
+    };
+
+    const handleNavigateRoute = () => {
+        //     private routes
+        const isPrivateRoute = privateRoutesArr.includes(pathname);
+        if (isPrivateRoute && !accessToken) {
+            navigate(USER_ROUTES.DEFAULT);
+            return;
+        }
+        //     auth routes
+        const isAuthRoute = authRoutesArr.includes(pathname);
+        if (isAuthRoute && accessToken) {
+            navigate(USER_ROUTES.DEFAULT);
+            return;
         }
     };
 
     useEffect(() => {
+        handleNavigateRoute();
         if (accessToken) {
             handleGetUserInfor();
         }
-    });
+    }, [ pathname, accessToken ]);
 
     return (
         <div className={'w-full h-screen relative'}>
@@ -30,10 +64,8 @@ export default function PublicLayout(): JSX.Element {
                     <Navbar/>
                 </div>
 
-                <div className={'w-full h-full'}>
-                    <div className={'pt-20 px-20 h-full'}>
-                        <Outlet />
-                    </div>
+                <div className={'w-full p-24 overflow-auto'}>
+                    <Outlet />
                 </div>
         </div>
     );

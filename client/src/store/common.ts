@@ -14,7 +14,8 @@ interface CommonState {
     userCommonInfor: {
         role: string,
         id: string,
-        email: string
+        email: string,
+        userName: string
     },
     showLoginModal: boolean,
 }
@@ -37,7 +38,8 @@ const initialState: CommonState = {
     userCommonInfor: {
         role: '',
         id: '',
-        email: ''
+        email: '',
+        userName: ''
     },
     showLoginModal: false
 };

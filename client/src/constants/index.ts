@@ -5,6 +5,7 @@ export const COMMON_CONSTANTS = {
     VN: 'vn',
     EN: 'en',
     ACCESS_TOKEN: 'access_token',
+    REFRESH_TOKEN: 'refresh_token',
     USER_ID: 'user_id',
     USER_ROLE: 'user_role',
     USER_EMAIL: 'user_email'

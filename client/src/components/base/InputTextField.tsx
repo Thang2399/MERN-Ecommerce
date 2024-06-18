@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import TextField from '@mui/material/TextField';
 
-type Props = {
+export type InputProps = {
+    id?: string,
+    label?: string,
     value: string,
     handleChange: (params: any) => any,
-    type: string,
     placeholder: string,
     inputName: string,
     className?: string,
@@ -13,70 +14,40 @@ type Props = {
     maxLength?: number,
     isPasswordField?: boolean,
     isInvalidField?: boolean,
-    dataTest?: string
+    dataTest?: string,
+    helpText?: any
 };
 
-const InputTextField: React.FC<Props> =
+const InputTextField: React.FC<InputProps> =
     ({
+         id,
+         label,
          value,
          handleChange,
-         type,
          placeholder,
          inputName,
          className,
-         minLength,
-         maxLength,
-         isPasswordField,
-        isInvalidField,
-        dataTest
-     }) => {
+         isInvalidField,
+         dataTest,
+        helpText
+    }) => {
         const { t } = useTranslation();
-        const [ showPassword, setShowPassword ] = useState<boolean>(false);
-
-        const handleShowPassword = () => {
-            setShowPassword((show: boolean) => !show);
-        };
 
         return (
             <>
-                {
-                    isPasswordField
-                        ? (
-                            <div className={'relative'}>
-                                <input
-                                    value={value}
-                                    type={showPassword ? 'text' : 'password'}
-                                    name={inputName}
-                                    placeholder={t(placeholder)}
-                                    className={`py-3 pl-2 pr-10 rounded w-full hover:border hover:border-black focus:outline-4 focus:outline-primary ${isInvalidField ? 'border-red-500 hover:border-red-500' : ''} ${className}`}
-                                    onChange={handleChange}
-                                    minLength={minLength}
-                                    maxLength={maxLength}
-                                    data-test={dataTest}
-                                />
-                                <div className={'absolute top-0 right-0 h-full pr-2.5 text-2xl flex justify-center items-center text-gray-400 cursor-pointer'} onClick={handleShowPassword}>
-                                    <div>
-                                        {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-                                    </div>
-                                </div>
-                            </div>
-
-                        )
-                        : (
-                            <input
-                                value={value}
-                                type={type}
-                                name={inputName}
-                                placeholder={t(placeholder)}
-                                className={`py-3 px-2 rounded w-full hover:border hover:border-black focus:outline-4 focus:outline-primary ${isInvalidField ? 'border-red-500 hover:border-red-500' : ''} ${className}`}
-                                onChange={handleChange}
-                                minLength={minLength}
-                                maxLength={maxLength}
-                                data-test={dataTest}
-                            />
-                        )
-                }
-
+                <TextField
+                    id={id}
+                    label={label}
+                    variant={'outlined'}
+                    placeholder={t(placeholder)}
+                    className={`w-full bg-white rounded ${className}`}
+                    name={inputName}
+                    data-test={dataTest}
+                    error={isInvalidField}
+                    value={value}
+                    onChange={handleChange}
+                    helperText={helpText}
+                />
             </>
         );
     };
@@ -86,7 +57,7 @@ InputTextField.defaultProps = {
     maxLength: 255,
     isPasswordField: false,
     isInvalidField: false,
-    dataTest: ''
+    dataTest: '',
 };
 
 export default InputTextField;

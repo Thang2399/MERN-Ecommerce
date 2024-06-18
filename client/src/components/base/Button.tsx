@@ -6,8 +6,10 @@ type Props = {
 	needTranslate?: boolean;
     buttonClassName?: string;
     typoClassName?: string;
-	handleClick: (params: any) => any;
+	handleClick?: (params?: any) => any;
 	dataTest?: string;
+	btnType?: 'submit' | 'button' | 'reset' | undefined;
+	icon?: any
 };
 
 const Button: React.FC<Props> = ({
@@ -16,20 +18,38 @@ const Button: React.FC<Props> = ({
     buttonClassName,
     typoClassName,
 	handleClick,
-	dataTest
+	dataTest,
+	btnType = 'button',
+	icon
 }) => {
+	const onClick = () => {
+		if (handleClick) {
+			handleClick();
+		}
+	};
+
 	return (
 		<>
 			<button
+				type={btnType}
 				className={`p-2 w-full rounded-lg ${buttonClassName}`}
-				onClick={handleClick}
+				onClick={() => onClick()}
 				data-test={dataTest}
 			>
-				<Typography
-					content={content}
-					needTranslate={needTranslate}
-					className={typoClassName}
-				/>
+				<div className={'flex justify-center'}>
+					{icon && (
+						<div className={'mr-2 flex justify-center items-center text-2xl'}>
+							{icon}
+						</div>
+					)}
+
+					<Typography
+						content={content}
+						needTranslate={needTranslate}
+						className={typoClassName}
+					/>
+				</div>
+
 			</button>
 		</>
 	);

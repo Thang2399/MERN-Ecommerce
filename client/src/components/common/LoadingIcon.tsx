@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactLoading from 'react-loading';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { RootState } from '@/store';
+import Modal from '@mui/material/Modal';
 
 export default function LoadingIcon(): JSX.Element {
     const showLoadingIcon = useSelector((state: RootState) => state.commonReducer.showLoadingIcon);
@@ -9,13 +10,20 @@ export default function LoadingIcon(): JSX.Element {
     return (
         <>
             {showLoadingIcon && (
-                <div className={'absolute top-0 left-0 z-50'}>
-                    <div className={'w-screen h-screen bg-white bg-opacity-90'}>
-                        <div className={'w-full h-full flex justify-center items-center'}>
-                            <ReactLoading type={'spin'} color={'#374151'} width={'80px'} height={'80px'}/>
-                        </div>
-                    </div>
-                </div>
+                <>
+                    <Modal
+                        open={true}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <>
+                            <div className={'flex justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'}>
+                                <ReactLoading type={'spin'} color={'#ffffff'} width={'80px'} height={'80px'}/>
+                            </div>
+                        </>
+                    </Modal>
+                </>
+
             )}
         </>
     );

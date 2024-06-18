@@ -102,7 +102,7 @@ export default function ForgetPasswordForm(): JSX.Element {
                                     <InputTextField
                                         handleChange={handleChangeEmail}
                                         placeholder={'login_page.login_form.email_placeholder'}
-                                        type={'email'}
+                                        
                                         value={email}
                                         inputName={'email'}
                                         className={'border mb-1'}

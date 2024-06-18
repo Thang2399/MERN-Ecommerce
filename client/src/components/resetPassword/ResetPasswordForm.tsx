@@ -102,7 +102,7 @@ const ResetPasswordForm = () => {
                         <InputTextField
                             handleChange={handleChangeResetPasswordForm}
                             placeholder={'reset_password_page.reset_password_form.new_password.placeholder'}
-                            type={'password'}
+                            
                             value={resetPasswordForm.newPassword}
                             inputName={'newPassword'}
                             className={'border mb-1'}
@@ -125,7 +125,7 @@ const ResetPasswordForm = () => {
                         <InputTextField
                             handleChange={handleChangeResetPasswordForm}
                             placeholder={'reset_password_page.reset_password_form.confirm_password.placeholder'}
-                            type={'password'}
+                            
                             value={resetPasswordForm.confirmPassword}
                             inputName={'confirmPassword'}
                             className={'border mb-1'}

@@ -7,20 +7,18 @@ import { AiFillCaretUp, AiFillCaretDown } from 'react-icons/ai';
 import { HiOutlineArrowNarrowLeft, HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import CartUserInfoForm from '../../../components/cart/CartUserInfoForm';
 
-import { singleItemTypes } from '../../../types/home';
+import { singleItemTypes } from '@/types/home';
 import {
     userAddress,
     userAddressFormErrorMessages,
     userInforFormErrorMessages, userInforFormType,
     userInformation, userPaymentFormType
-} from '../../../types/cart';
-import { RootState } from '../../../store';
-import { COMMON_CONSTANTS, HTTP_STATUS } from '../../../constants';
-import { convertMoney } from '../../../utils/misc';
-import { changeQuantityItem, deleteCart, getTotalCartPrice, removeItemFromCart } from '../../../store/home';
-import { setShowPopupConfirm } from '../../../store/common';
-import { setUserInforFormData } from '../../../store/cart';
-import { REDUCER_HOME_ACTION } from '../../../constants/reducer';
+} from '@/types/cart';
+import { RootState } from '@/store';
+import { HTTP_STATUS } from '@/constants';
+import { changeQuantityItem, deleteCart, getTotalCartPrice, removeItemFromCart } from '@/store/home';
+import { setShowPopupConfirm } from '@/store/common';
+import { REDUCER_HOME_ACTION } from '@/constants/reducer';
 import Stepper from '../../../components/base/Stepper';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -29,11 +27,12 @@ import {
     userAddressForm,
     userAddressFormErrorMessage,
     userPaymentForm
-} from '../../../form/cart';
-import { checkValidateFormUserInfo, checkValidateFormUserAddress } from '../../../utils/cart';
+} from '@/form/cart';
+import { checkValidateFormUserInfo, checkValidateFormUserAddress } from '@/utils/cart';
 import PopupConfirm from '../../../components/common/PopupConfirm';
 import services from '../../../services';
-import { setInvoice } from '../../../store/invoice';
+import { setInvoice } from '@/store/invoice';
+import RenderCurrency from '@/components/base/RenderCurrency';
 
 const steps = [
     'cart_page.checkout_form.steppers.user_info',
@@ -248,29 +247,7 @@ export default function CartPage(): JSX.Element {
                                             />
 
                                             <div className={'flex'}>
-                                                {currentLanguageCode === COMMON_CONSTANTS.EN && (
-                                                    <>
-                                                        <Typography
-                                                            content={item.currency && convertMoney(item.price, item.currency, currentLanguageCode)?.currency || item.currency}
-                                                            needTranslate={false}
-                                                            className={'mr-0.5'}
-                                                        />
-                                                    </>
-                                                )}
-                                                <Typography
-                                                    content={item.price && convertMoney(item.price, item.currency, currentLanguageCode)?.price || item.price}
-                                                    className={'font-semibold'}
-                                                    needTranslate={false}
-                                                />
-                                                {currentLanguageCode === COMMON_CONSTANTS.VN && (
-                                                    <>
-                                                        <Typography
-                                                            content={item.currency && convertMoney(item.price, item.currency, currentLanguageCode)?.currency || item.currency}
-                                                            needTranslate={false}
-                                                            className={'ml-1'}
-                                                        />
-                                                    </>
-                                                )}
+                                                <RenderCurrency price={item.price} currency={item.currency} />
                                             </div>
 
                                             <div
@@ -312,55 +289,31 @@ export default function CartPage(): JSX.Element {
 
                     <div className={'mt-4 flex justify-between items-center'}>
                         <div className={'flex'}>
-                            <Typography
+                            <div>
+                                <Typography
                                 content={'home_page.cart.subtotal'}
-                                variant="h2"
-                                className={'text-2xl font-semibold mr-1'}
+                                variant="span"
+                                className={'text-2xl font-semibold'}
                             />
-                            (
+                                {' - '}
                             <Typography
                                 content={quantityInCart}
-                                variant="h2"
+                                variant="span"
                                 className={'text-2xl font-semibold mr-1'}
                             />
                             <Typography
                                 content={'home_page.cart.items'}
-                                variant="h2"
+                                variant="span"
                                 className={'text-2xl font-semibold'}
                             />
-                            ):
-
+                            :
+                            </div>
                         </div>
 
                         <div className={'flex'}>
-                            {currentLanguageCode === COMMON_CONSTANTS.EN && (
-                                <>
-                                    <Typography
-                                        content={currency}
-                                        needTranslate={false}
-                                        className={'mr-0.5'}
-                                        variant={'span'}
-                                    />
-                                </>
-                            )}
-                            <Typography
-                                content={totalPriceInCart && convertMoney(totalPriceInCart, currency, currentLanguageCode)?.price || totalPriceInCart}
-                                needTranslate={false}
-                                className={'font-semibold text-2xl'}
-                            />
-                            {currentLanguageCode === COMMON_CONSTANTS.VN && (
-                                <>
-                                    <Typography
-                                        content={currency}
-                                        needTranslate={false}
-                                        className={'ml-0.5'}
-                                        variant={'span'}
-                                    />
-                                </>
-                            )}
+                            <RenderCurrency price={totalPriceInCart} />
                         </div>
                     </div>
-
                 </div>
 
                 <div className={'w-1/2 pl-8'}>

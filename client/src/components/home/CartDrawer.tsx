@@ -115,7 +115,7 @@ const CartDrawer: React.FC<ICart> = ({ setOpen }) => {
 
                                                     <IoIosClose/>
 
-                                                    <RenderCurrency item={item} />
+                                                    <RenderCurrency currency={item.currency} price={item.price} />
                                                 </div>
 
                                                 <div className={'flex items-center'}>
