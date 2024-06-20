@@ -23,6 +23,7 @@
     "antd": "^5.11.1",
     "axios": "^1.1.2",
     "dayjs": "^1.11.7",
+    "formik": "^2.4.6",
     "i18next": "^21.10.0",
     "i18next-browser-languagedetector": "^6.1.8",
     "i18next-http-backend": "^1.4.4",
@@ -39,7 +40,8 @@
     "styled-components": "^6.1.1",
     "typescript": "^4.8.4",
     "typescript-cookie": "^1.0.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "start": "craco start",

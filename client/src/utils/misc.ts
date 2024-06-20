@@ -40,20 +40,24 @@ export const changeMoney = ( price: string, currentLanguage: string) =>{
 
 export const convertMoney = (money: string, currency: string, currentLanguage: string) => {
         const moneyData = money;
-        if (currentLanguage === COMMON_CONSTANTS.VN) {
-            const convertPrice = changeMoney(moneyData, currentLanguage);
-            if (convertPrice) {
-                return {
-                    price: convertPrice.price,
-                    currency: convertPrice.currency,
-                };
-            }
-        } else {
-            return {
-                price: formatMoney(moneyData),
-                currency
-            };
-        }
+        // if (currentLanguage === COMMON_CONSTANTS.VN) {
+        //     const convertPrice = changeMoney(moneyData, currentLanguage);
+        //     if (convertPrice) {
+        //         return {
+        //             price: convertPrice.price,
+        //             currency: convertPrice.currency,
+        //         };
+        //     }
+        // } else {
+        //     return {
+        //         price: formatMoney(moneyData),
+        //         currency
+        //     };
+        // }
+    return {
+        price: formatMoney(moneyData),
+        currency
+    };
     };
 
 export const checkRequiredFiled = (data: string, field: string) => {

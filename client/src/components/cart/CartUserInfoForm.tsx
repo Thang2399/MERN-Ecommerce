@@ -103,7 +103,6 @@ const CartUserInfoForm: React.FC<Props> = ({
                             <InputTextField
                                 value={userInforForm.firstName}
                                 handleChange={handleChangeUserInfor}
-                                type={'text'}
                                 inputName={'firstName'}
                                 placeholder={'cart_page.checkout_form.customer_information.first_name_placeholder'}
                                 className={'border mb-1'}
@@ -123,7 +122,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                             <InputTextField
                                 value={userInforForm.lastName}
                                 handleChange={handleChangeUserInfor}
-                                type={'text'}
+                                
                                 inputName={'lastName'}
                                 placeholder={'cart_page.checkout_form.customer_information.last_name_placeholder'}
                                 className={'border mb-1'}
@@ -143,7 +142,6 @@ const CartUserInfoForm: React.FC<Props> = ({
                             <InputTextField
                                 value={userInforForm.phoneNumber}
                                 handleChange={handleChangeUserInfor}
-                                type={'text'}
                                 inputName={'phoneNumber'}
                                 placeholder={'cart_page.checkout_form.customer_information.phone_number'}
                                 className={'border mb-1'}
@@ -163,7 +161,6 @@ const CartUserInfoForm: React.FC<Props> = ({
                             <InputTextField
                                 value={userInforForm.emailAddress}
                                 handleChange={handleChangeUserInfor}
-                                type={'email'}
                                 inputName={'emailAddress'}
                                 placeholder={'cart_page.checkout_form.customer_information.email_address'}
                                 className={'border mb-1'}
@@ -195,7 +192,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                             <InputTextField
                                 value={userAddressInforForm.country}
                                 handleChange={handleChangeUserAddress}
-                                type={'text'}
+                                
                                 inputName={'country'}
                                 placeholder={'cart_page.checkout_form.address.country'}
                                 className={'border mb-1'}
@@ -215,7 +212,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                             <InputTextField
                                 value={userAddressInforForm.city}
                                 handleChange={handleChangeUserAddress}
-                                type={'text'}
+                                
                                 inputName={'city'}
                                 placeholder={'cart_page.checkout_form.address.city'}
                                 className={'border mb-1'}
@@ -235,7 +232,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                             <InputTextField
                                 value={userAddressInforForm.district}
                                 handleChange={handleChangeUserAddress}
-                                type={'text'}
+                                
                                 inputName={'district'}
                                 placeholder={'cart_page.checkout_form.address.district'}
                                 className={'border mb-1'}
@@ -255,7 +252,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                             <InputTextField
                                 value={userAddressInforForm.streetAddress}
                                 handleChange={handleChangeUserAddress}
-                                type={'text'}
+                                
                                 inputName={'streetAddress'}
                                 placeholder={'cart_page.checkout_form.address.street_address'}
                                 className={'border mb-1'}
@@ -301,7 +298,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                             <InputTextField
                                 value={userPaymentInforForm.discountCode}
                                 handleChange={handleChangeUserPayment}
-                                type={'text'}
+                                
                                 inputName={'discountCode'}
                                 placeholder={'cart_page.checkout_form.checkout.discount_code'}
                                 className={'border mb-1'}
@@ -336,7 +333,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                         <InputTextField
                                             value={userPaymentInforForm.cardHolderName}
                                             handleChange={handleChangeUserPayment}
-                                            type={'text'}
+                                            
                                             inputName={'cardHolderName'}
                                             placeholder={'cart_page.checkout_form.checkout.payment_method.credit_card.card_holder_name'}
                                             className={'border mb-1'}
@@ -358,7 +355,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                             <InputTextField
                                                 value={userPaymentInforForm.cardNumber}
                                                 handleChange={handleChangeUserPayment}
-                                                type={'text'}
+                                                
                                                 inputName={'cardNumber'}
                                                 placeholder={'cart_page.checkout_form.checkout.payment_method.credit_card.card_number'}
                                                 className={'border mb-1'}
@@ -379,7 +376,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                             <InputTextField
                                                 value={userPaymentInforForm.cardSecurityCode}
                                                 handleChange={handleChangeUserPayment}
-                                                type={'text'}
+                                                
                                                 inputName={'cardSecurityCode'}
                                                 placeholder={'cart_page.checkout_form.checkout.payment_method.credit_card.card_security_code'}
                                                 className={'border mb-1'}
@@ -402,7 +399,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                                         <InputTextField
                                                             value={userPaymentInforForm.cardExpirationMonth}
                                                             handleChange={handleChangeUserPayment}
-                                                            type={'text'}
+                                                            
                                                             inputName={'cardExpirationMonth'}
                                                             placeholder={'cart_page.checkout_form.checkout.payment_method.credit_card.card_expiry_month'}
                                                             className={'border mb-1'}
@@ -419,7 +416,7 @@ const CartUserInfoForm: React.FC<Props> = ({
                                                         <InputTextField
                                                             value={userPaymentInforForm.cardExpirationYear}
                                                             handleChange={handleChangeUserPayment}
-                                                            type={'text'}
+                                                            
                                                             inputName={'cardExpirationYear'}
                                                             placeholder={'cart_page.checkout_form.checkout.payment_method.credit_card.card_expiry_year'}
                                                             className={'border mb-1'}

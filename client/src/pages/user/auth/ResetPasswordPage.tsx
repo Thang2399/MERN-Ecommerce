@@ -52,18 +52,9 @@ export default function ResetPasswordPage(): JSX.Element {
             {
                 !isTokenInUsed
                     ? (
-                        <div className={'flex items-center justify-center w-full h-full'}>
-                            <div className={'w-full flex'}>
-                                <div className={'w-3/5 flex justify-center items-center'}>
-                                    <div className={'w-4/5'}>
-                                        <Image imgUrl={'/assets/images/signup-image.jpeg'}/>
-                                    </div>
-                                </div>
-                                <div className={'w-2/5'}>
-                                    <ResetPasswordForm />
-                                </div>
-                            </div>
-                        </div>
+                        <>
+                            <ResetPasswordForm />
+                        </>
                     )
                     : (
                         <div className={'absolute top-0 left-0 z-50'}>

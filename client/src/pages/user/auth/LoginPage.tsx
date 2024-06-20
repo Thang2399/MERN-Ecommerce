@@ -6,34 +6,11 @@ import LoginForm from '../../../components/login/LoginForm';
 import { USER_ROUTES } from '@/routes/constants';
 import { getCookie } from 'typescript-cookie';
 import { COMMON_CONSTANTS } from '@/constants';
+import AuthenLayoutWrapper from '@/layouts/AuthenLayoutWrapper';
 
-export default function LoginPage(): JSX.Element {
-    const navigate = useNavigate();
-    const accessToken = getCookie(COMMON_CONSTANTS.ACCESS_TOKEN);
+const LoginPage = () => {
+    return <LoginForm />;
+};
 
-    const checkUserLoginOrNot = () => {
-        if (accessToken) {
-            navigate(USER_ROUTES.DEFAULT);
-        }
-    };
-
-    useEffect(() => {
-        checkUserLoginOrNot();
-    }, [ accessToken ]);
-
-    return (
-        <div className={'flex items-center justify-center w-full h-full'}>
-            <div className={'w-full flex'}>
-                <div className={'w-3/5 flex justify-center items-center'}>
-                    <div className={'w-4/5'}>
-                        <Image imgUrl={'/assets/images/login-image.jpeg'}/>
-                    </div>
-                </div>
-                <div className={'w-2/5'}>
-                    <LoginForm />
-                </div>
-            </div>
-        </div>
-    );
-}
+export default LoginPage;
 

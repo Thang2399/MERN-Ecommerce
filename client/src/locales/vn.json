@@ -11,7 +11,8 @@
       "password": "Mật khẩu",
       "password_placeholder": "Mật khẩu của bạn",
       "remember_me": "Lưu mật khẩu",
-      "submit_btn": "Đăng nhập"
+      "submit_btn": "Đăng nhập",
+      "login_with_google": "Đăng nhập với Google"
     },
     "response_message": {
       "login_success": "Đăng nhập thành công",

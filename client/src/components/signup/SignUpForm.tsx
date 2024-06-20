@@ -141,7 +141,7 @@ export default function SignUpForm(): JSX.Element {
                         <InputTextField
                             handleChange={handleChangeSignUpForm}
                             placeholder={'signup_page.signup_form.first_name.placeholder'}
-                            type={'text'}
+                            
                             value={signUpForm.userName}
                             inputName={'userName'}
                             className={'border mb-1'}
@@ -167,7 +167,7 @@ export default function SignUpForm(): JSX.Element {
                     <InputTextField
                         handleChange={handleChangeSignUpForm}
                         placeholder={'signup_page.signup_form.email.placeholder'}
-                        type={'email'}
+                        
                         value={signUpForm.email}
                         inputName={'email'}
                         className={'border mb-1'}
@@ -190,7 +190,7 @@ export default function SignUpForm(): JSX.Element {
                         <InputTextField
                             handleChange={handleChangeSignUpForm}
                             placeholder={'signup_page.signup_form.phone_number.placeholder'}
-                            type={'text'}
+                            
                             value={signUpForm.phoneNumber}
                             inputName={'phoneNumber'}
                             className={'border mb-1'}
@@ -214,7 +214,7 @@ export default function SignUpForm(): JSX.Element {
                     <InputTextField
                         handleChange={handleChangeSignUpForm}
                         placeholder={'signup_page.signup_form.password.placeholder'}
-                        type={'password'}
+                        
                         value={signUpForm.password}
                         inputName={'password'}
                         className={'border mb-1'}
@@ -238,7 +238,7 @@ export default function SignUpForm(): JSX.Element {
                     <InputTextField
                         handleChange={handleChangeSignUpForm}
                         placeholder={'signup_page.signup_form.repeat_password.placeholder'}
-                        type={'password'}
+                        
                         value={signUpForm.confirmPassword}
                         inputName={'confirmPassword'}
                         className={'border mb-1'}

@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface Props {
-    errorMessage: string,
+    errorMessage: any,
     field?: string,
     dataTest?: string
 }
@@ -17,7 +17,7 @@ const ErrorMessage: React.FC<Props> = ({ errorMessage, field, dataTest }) => {
     };
 
     return (
-        <p className={'text-red-500'} data-test={dataTest}>
+        <p className={'mt-1 text-red-500'} data-test={dataTest}>
             { generateErrorMessage(errorMessage, field) }
         </p>
     );

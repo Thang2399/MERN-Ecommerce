@@ -117,7 +117,7 @@ const QuickViewItem: React.FC = () => {
                                             needTranslate={false}
                                         />
                                         <div className={'flex mt-3'}>
-                                            <RenderCurrency item={item}/>
+                                            <RenderCurrency currency={item.currency} price={item.price} />
                                         </div>
 
                                         <div className={'flex justify-between items-center mt-3 w-full'}>

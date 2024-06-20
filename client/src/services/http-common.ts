@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { getCookie } from 'typescript-cookie';
-import { COMMON_CONSTANTS } from '../constants';
+import { getCookie, setCookie } from 'typescript-cookie';
+import { COMMON_CONSTANTS, HTTP_STATUS } from '@/constants';
 
 const endpoint = process.env.REACT_APP_SERVER_END_POINT;
 
@@ -45,8 +45,29 @@ axiosBase.interceptors.response.use(
         console.log('res', res);
         return res;
     },
-    (err: any) => {
+    async (err: any) => {
         console.log('Something went wrong with response', err);
+        if (err.response.status === HTTP_STATUS.UNAUTHORIZED) {
+            const refreshToken = localStorage.getItem(COMMON_CONSTANTS.REFRESH_TOKEN);
+            if (!refreshToken) {
+                window.location.href = '/';
+            } else {
+                const payload = { token: refreshToken };
+                try {
+                    const res = await axios.post(`${endpoint}/auth/generate/new-token`, payload);
+                    const data = res.data;
+                    if (data.accessToken && data.refreshToken) {
+                        setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, data.accessToken);
+                        localStorage.setItem(COMMON_CONSTANTS.REFRESH_TOKEN, data.refreshToken);
+                        window.location.href = window.location.pathname;
+                    }
+                } catch (err) {
+                    localStorage.removeItem(COMMON_CONSTANTS.REFRESH_TOKEN);
+                    setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, '');
+                    window.location.href = '/';
+                }
+            }
+        }
         return Promise.reject(err);
     }
 );

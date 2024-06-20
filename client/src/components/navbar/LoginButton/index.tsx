@@ -3,11 +3,12 @@ import Typography from '../../base/Typography';
 import { useNavigate } from 'react-router-dom';
 import { getCookie, setCookie } from 'typescript-cookie';
 import { COMMON_CONSTANTS } from '@/constants';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setShowToastMessage, setUserCommonInfor } from '@/store/common';
 import Button from '../../base/Button';
 import { Avatar, Tooltip } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
+import { RootState } from '@/store';
 
 const logoutOptions = [
     {
@@ -45,10 +46,12 @@ const TooltipOptionComponent: React.FC = () => {
             navigate(redirectPath);
         } else {
             setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, '');
+            localStorage.removeItem(COMMON_CONSTANTS.REFRESH_TOKEN);
             dispatch(setUserCommonInfor({
                     role: '',
                     id: '',
                     email: '',
+                    userName: ''
                 }));
             dispatch(setShowToastMessage({
                     show: true,
@@ -81,12 +84,31 @@ const TooltipOptionComponent: React.FC = () => {
 
 export default function LoginButton(): JSX.Element {
     const navigate = useNavigate();
-
     const accessToken = getCookie(COMMON_CONSTANTS.ACCESS_TOKEN);
-
+    const userCommonInfor = useSelector((state: RootState) => state.commonReducer.userCommonInfor);
 
     const handleLogin = () => {
         navigate('/login');
+    };
+
+    const stringToColor = (string: string) => {
+        let hash = 0;
+        let i;
+
+        /* eslint-disable no-bitwise */
+        for (i = 0; i < string.length; i += 1) {
+            hash = string.charCodeAt(i) + ((hash << 5) - hash);
+        }
+
+        let color = '#';
+
+        for (i = 0; i < 3; i += 1) {
+            const value = (hash >> (i * 8)) & 0xff;
+            color += `00${value.toString(16)}`.slice(-2);
+        }
+        /* eslint-enable no-bitwise */
+
+        return color;
     };
 
     return (
@@ -110,8 +132,8 @@ export default function LoginButton(): JSX.Element {
                                 title={<TooltipOptionComponent />}
                                 className={'cursor-pointer'}
                             >
-                                <Avatar sx={{ bgcolor: deepOrange[500] }}>
-                                    <span data-test={'userNameText'}>T</span>
+                                <Avatar sx={{ bgcolor: stringToColor(userCommonInfor.userName) }}>
+                                    <span data-test={'userNameText'}>{userCommonInfor.userName[0]}</span>
                                 </Avatar>
                             </Tooltip>
 
