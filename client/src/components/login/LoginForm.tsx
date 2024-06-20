@@ -109,6 +109,13 @@ export default function LoginForm(): JSX.Element {
         onLoginUser(payload);
     };
 
+    const handleLoginWithGoogle = () => {
+        const newPath = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
+        const redirectRoute = `${process.env.REACT_APP_SERVER_END_POINT}/auth/google/redirect?redirect_url=${newPath}`;
+        console.log('redirectRoute', redirectRoute);
+        window.location.href = redirectRoute;
+    };
+
     return (
         <div className={'w-full border p-5 rounded-md'}>
             <Typography
@@ -169,6 +176,7 @@ export default function LoginForm(): JSX.Element {
                                 dataTest={'loginGoogleBtn'}
                                 icon={<FcGoogle/>}
                                 buttonClassName={'border border-gray-400 text-black'}
+                                handleClick={() => handleLoginWithGoogle()}
                             />
 
                             <Button

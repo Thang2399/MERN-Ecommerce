@@ -16,7 +16,8 @@
     },
     "response_message": {
       "login_success": "Login successfully!",
-      "wrong_email_or_password": "Wrong email or password"
+      "wrong_email_or_password": "Wrong email or password",
+      "login_failed": "Login failed!"
     }
   },
   "signup_page": {

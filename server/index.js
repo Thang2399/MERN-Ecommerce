@@ -37,11 +37,10 @@ routes.forEach(({ path, target }) => {
 				headers
 			});
 			const data = response?.data;
-			const { _id, userName, email, role } = data;
+			const { _id, email, role } = data;
 			if (_id) {
 				// Include user information in the headers when forwarding the request to the main service
 				req.headers['x-user-id'] = _id || '';
-				req.headers['x-user-name'] = userName || '';
 				req.headers['x-user-email'] = email || '';
 				req.headers['x-user-role'] = role || '';
 			}

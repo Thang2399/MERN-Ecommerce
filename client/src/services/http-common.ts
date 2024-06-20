@@ -24,7 +24,8 @@ axiosBase.defaults.headers['Content-Type'] = 'application/json';
 // request interceptors
 axiosBase.interceptors.request.use(
     (config: any) => {
-        const token = getCookie(COMMON_CONSTANTS.ACCESS_TOKEN); // Replace with the actual cookie name
+        const token = getCookie(COMMON_CONSTANTS.ACCESS_TOKEN);
+
         if (token) {
             // Attach the token to the Authorization header
             config.headers.Authorization = `Bearer ${token}`;
@@ -73,3 +74,6 @@ axiosBase.interceptors.response.use(
 );
 
 export default axiosBase;
+
+
+//http://localhost:4400/login?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzQyMDMwNzMzMzI1ZGVkOGY4MzJjNSIsImVtYWlsIjoidG9hbnRoYW5nMTk5OWhwQGdtYWlsLmNvbSIsImlhdCI6MTcxODg4NzE0NiwiZXhwIjoxNzE4OTczNTQ2fQ.6ntamkicYTdPQ85ZsgSq5XyXcZBuYO5tGL5ZYqEBr0A&refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzQyMDMwNzMzMzI1ZGVkOGY4MzJjNSIsImVtYWlsIjoidG9hbnRoYW5nMTk5OWhwQGdtYWlsLmNvbSIsImlhdCI6MTcxODg4NzE0NiwiZXhwIjoxNzE5NDkxOTQ2fQ.liVExhz9Hn5EJMFFMMDPbhytwzSP4NBWDhp-pQpsPjI
