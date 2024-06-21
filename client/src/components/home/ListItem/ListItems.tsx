@@ -5,14 +5,23 @@ import Button from '@/components/base/Button';
 import { Carousel } from 'antd';
 import './index.css';
 import Typography from '@/components/base/Typography';
+import useScreenSize from '@/hook/useScreenSize';
 
 type Props = {
     listItems: singleCategoryWithTypicalItemTypes[];
 };
 
 const ListItems: React.FC<Props> = ({ listItems }) => {
+    const { width } = useScreenSize();
+
     const handleClickBrand = () => {
         console.log('handleClickBrand');
+    };
+
+    const renderNumberOfShowSlides = () => {
+        if (width >= 1600) return 5;
+        else if (width < 1600 && width > 600) return 3;
+        else return 2;
     };
 
     return (
@@ -41,7 +50,7 @@ const ListItems: React.FC<Props> = ({ listItems }) => {
 
                         {item.listFavoriteItems.length > 0 && (
                             <div className={'mt-4'}>
-                                <Carousel autoplay={true} infinite={false} arrows={true} dots={false} slidesToShow={5}>
+                                <Carousel autoplay={true} infinite={true} arrows={true} dots={false} slidesToShow={renderNumberOfShowSlides()}>
                                     {item.listFavoriteItems.map((favoriteItem: singleItemTypes) => {
                                         return (
                                             <div key={favoriteItem._id}>

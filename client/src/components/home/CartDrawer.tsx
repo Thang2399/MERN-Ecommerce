@@ -190,7 +190,7 @@ const CartDrawer: React.FC<ICart> = ({ setOpen }) => {
                                 <Button
                                     content={'home_page.cart.checkout'}
                                     handleClick={handleCheckout}
-                                    buttonClassName={'text-gray-300 bg-white border border-gray-300 mb-2'}
+                                    buttonClassName={'text-gray-400 bg-white border border-gray-300 mb-2'}
                                 />
                                 <Button
                                     content={'home_page.cart.delete_cart'}

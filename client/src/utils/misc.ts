@@ -1,6 +1,9 @@
 import { getCookie } from 'typescript-cookie';
 import { COMMON_CONSTANTS, REGEX } from '../constants';
 import { useTranslation } from 'react-i18next';
+import { date } from 'yup';
+import dayjs from 'dayjs';
+import { DATE_TIME_FORMAT } from '@/constants/datetime';
 
 export const getCookieData = (name: string) => {
     let result = '';
@@ -115,6 +118,26 @@ export const checkConfirmPassword = (password: string, confirmPassword: string, 
     return errorMessage;
 };
 
-// export const checkMaxLength = (data: string, field: string) => {
-//
-// }
+export const stringToColor = (string: string) => {
+    let hash = 0;
+    let i;
+
+    /* eslint-disable no-bitwise */
+    for (i = 0; i < string.length; i += 1) {
+        hash = string.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    let color = '#';
+
+    for (i = 0; i < 3; i += 1) {
+        const value = (hash >> (i * 8)) & 0xff;
+        color += `00${value.toString(16)}`.slice(-2);
+    }
+    /* eslint-enable no-bitwise */
+
+    return color;
+};
+
+export const formatDateTime = (value: string, format = DATE_TIME_FORMAT.M_DD_YYYY) => {
+    return dayjs(value).format(format);
+};

@@ -273,5 +273,56 @@
         "subtotal": "Subtotal"
       }
     }
+  },
+  "my_account_page": {
+    "label": "My Account",
+    "form": {
+      "user_name": {
+        "label": "User Name",
+        "placeholder": "Your name"
+      },
+      "email": {"label": "Email"},
+      "gender": {
+        "label": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "other": "Other"
+      },
+      "phone_number": {
+        "label": "Phone Number",
+        "placeholder": "Your phone number"
+      },
+      "date_of_birth": {
+        "label": "Date of Birth"
+      },
+      "button": {
+        "go_back": "Go Back",
+        "update": "Update"
+      },
+      "response": {
+        "update_success": "Update user information successfully!",
+        "update_failed": "Update user information failed!"
+      }
+    },
+    "change_password": {
+      "label": "Change My Password",
+      "form": {
+        "current_password": {
+          "label": "Current Password",
+          "placeholder": "Your current password"
+        },
+        "new_password": {
+          "label": "New Password",
+          "placeholder": "Your new password"
+        },
+        "confirm_password": {
+          "label": "Confirm Password",
+          "placeholder": "Your confirm password"
+        }
+      }
+    }
+  },
+  "my_addresses_page": {
+      "label": "My List Addresses"
   }
 }

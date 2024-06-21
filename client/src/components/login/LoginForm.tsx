@@ -112,7 +112,6 @@ export default function LoginForm(): JSX.Element {
     const handleLoginWithGoogle = () => {
         const newPath = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
         const redirectRoute = `${process.env.REACT_APP_SERVER_END_POINT}/auth/google/redirect?redirect_url=${newPath}`;
-        console.log('redirectRoute', redirectRoute);
         window.location.href = redirectRoute;
     };
 

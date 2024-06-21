@@ -1,4 +1,4 @@
-import baseRequest from './service';
+import baseRequest from './config/service';
 
 const getListInvoices = async (payload: {email: string}) => {
     const response = await baseRequest.get('/invoices', { params: payload });

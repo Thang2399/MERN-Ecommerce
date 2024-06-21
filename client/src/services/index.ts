@@ -4,6 +4,7 @@ import cartService from './cart.service';
 import invoiceService from './invoice.service';
 import brandService from '@/services/brand.service';
 import categoryService from '@/services/category.service';
+import userServices from '@/services/user.service';
 
 const services = {
     ...authService,
@@ -12,6 +13,7 @@ const services = {
     ...invoiceService,
     ...brandService,
     ...categoryService,
+    ...userServices
 };
 
 export default services;

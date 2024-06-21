@@ -1,4 +1,4 @@
-import baseRequest from '@/services/service';
+import baseRequest from '@/services/config/service';
 
 const getListBrands = async () => {
     const response = await baseRequest.get('/brand');

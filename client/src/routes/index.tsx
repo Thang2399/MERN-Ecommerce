@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { USER_ROUTES } from './constants';
 import PublicLayout from '@/layouts/PublicLayout';
+import AuthenLayoutWrapper from '@/layouts/AuthenLayoutWrapper';
+import UserLayout from '@/layouts/UserLayout';
 
 import HomePage from '@/pages/user/public/HomePage';
 import LoginPage from '@/pages/user/auth/LoginPage';
@@ -11,7 +13,7 @@ import PaymentPage from '@/pages/user/public/PaymentPage';
 import CartPage from '@/pages/user/public/CartPage';
 import MyAccountPage from '@/pages/user/private/MyAccountPage';
 import InvoiceHistoryPage from '@/pages/user/private/InvoiceHistoryPage';
-import AuthenLayoutWrapper from '@/layouts/AuthenLayoutWrapper';
+import MyAddressPage from '@/pages/user/private/MyAddressPage';
 
 const router: any = createBrowserRouter([
     {
@@ -71,11 +73,33 @@ const router: any = createBrowserRouter([
             },
             {
                 path: USER_ROUTES.MY_ACCOUNT,
-                element: <MyAccountPage />
+                element: <UserLayout />,
+                children: [
+                    {
+                        path: USER_ROUTES.MY_ACCOUNT,
+                        element: <MyAccountPage/>
+                    },
+                ]
             },
             {
                 path: USER_ROUTES.INVOICE_HISTORY,
-                element: <InvoiceHistoryPage />
+                element: <UserLayout />,
+                children: [
+                    {
+                        path: USER_ROUTES.INVOICE_HISTORY,
+                        element: <InvoiceHistoryPage/>
+                    },
+                ]
+            },
+            {
+                path: USER_ROUTES.MY_ADDRESS,
+                element: <UserLayout />,
+                children: [
+                    {
+                        path: USER_ROUTES.MY_ADDRESS,
+                        element: <MyAddressPage/>
+                    },
+                ]
             }
         ],
     },
