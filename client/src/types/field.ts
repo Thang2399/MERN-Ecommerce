@@ -8,5 +8,9 @@ export type FieldProps = {
     dataTest: string,
     errorMessageField?: string,
     errorMessageDataTest?: string,
-    checkboxList?: any[]
+    checkboxList?: any[],
+    disabledField?: boolean,
+    isRowRadio?: boolean,
+    handleChange?: (setFieldValue?: any, value?: any) => void,
+    isPhoneNumberInput?: boolean
 }

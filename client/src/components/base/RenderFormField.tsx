@@ -8,6 +8,8 @@ import InputPasswordField from '@/components/base/InputPasswordField';
 import { FormikErrors, FormikTouched } from 'formik';
 import ErrorMessage from '@/components/base/ErrorMessage';
 import BaseCheckbox from '@/components/base/Checkbox';
+import DatePicker from '@/components/base/DatePicker';
+import BaseRadioButtons from '@/components/base/RadioButtons';
 
 interface IRenderFormField {
     field: FieldProps,
@@ -30,10 +32,12 @@ const RenderFormField: React.FC<IRenderFormField> = ({ field, formikValues, erro
         dataTest,
         errorMessageField = '',
         errorMessageDataTest = '',
-        checkboxList = []
+        checkboxList = [],
+        disabledField = false,
+        isRowRadio = false,
+        handleChange,
+        isPhoneNumberInput
     } = field;
-
-    console.log('formikValues', formikValues);
 
     return (
         <>
@@ -41,7 +45,7 @@ const RenderFormField: React.FC<IRenderFormField> = ({ field, formikValues, erro
                 <InputLabel shrink htmlFor={htmlFor}>
                     <Typography
                         content={label}
-                        className={'text-2xl mb-2 text-black'}
+                        className={'text-2xl mb-2 text-black cursor-pointer w-fit'}
                     />
                 </InputLabel>
             )}
@@ -55,7 +59,10 @@ const RenderFormField: React.FC<IRenderFormField> = ({ field, formikValues, erro
                     placeholder={placeholder}
                     value={formikValues[`${inputName}`]}
                     dataTest={dataTest}
-                    isInvalidField={touched[`${inputName}`] && Boolean(errors[`${inputName}`])}
+                    isInvalidField={Boolean(errors[`${inputName}`])}
+                    disabled={disabledField}
+                    setFieldValue={setFieldValue}
+                    isPhoneNumberInput={isPhoneNumberInput}
                 />
             )}
 
@@ -77,6 +84,25 @@ const RenderFormField: React.FC<IRenderFormField> = ({ field, formikValues, erro
                     inputName={inputName}
                     value={formikValues[`${inputName}`]}
                     handleChange={handleChangeForm}
+                    setFieldValue={setFieldValue}
+                />
+            )}
+
+            {fieldType === FIELD_TYPE.RADIO && (
+                <BaseRadioButtons
+                    fieldName={inputName}
+                    handleSelect={handleChange}
+                    optionsList={checkboxList}
+                    defaultValue={formikValues[`${inputName}`]}
+                    isRow={isRowRadio}
+                    setFieldValue={setFieldValue}
+                />
+            )}
+
+            {fieldType === FIELD_TYPE.CALENDAR && (
+                <DatePicker
+                    handleChangeDate={handleChange}
+                    selectedDay={formikValues[`${inputName}`]}
                     setFieldValue={setFieldValue}
                 />
             )}

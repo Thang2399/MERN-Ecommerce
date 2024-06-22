@@ -259,5 +259,56 @@
         "delivered_failed": "Giao hàng thất bại"
       }
     }
+  },
+  "my_account_page": {
+    "label": "Tài Khoản Của Tôi",
+    "form": {
+      "user_name": {
+        "label": "Họ và Tên",
+        "placeholder": "Tên của bạn"
+      },
+      "email": {"label": "Email"},
+      "gender": {
+        "label": "Giới Tính",
+        "male": "Nam",
+        "female": "Nữ",
+        "other": "Khác"
+      },
+      "phone_number": {
+        "label": "Số Điện Thoại",
+        "placeholder": "Số điện thoại của bạn"
+      },
+      "date_of_birth": {
+        "label": "Ngày Sinh"
+      },
+      "button": {
+        "go_back": "Quay về",
+        "update": "Thay đổi"
+      },
+      "response": {
+        "update_success": "Đổi thông tin thành công!",
+        "update_failed": "Đổi thông tin thất bại!"
+      }
+    },
+    "change_password": {
+      "label": "Đổi Mật Khẩu",
+      "form": {
+        "current_password": {
+          "label": "Mật Khẩu Hiện Tại",
+          "placeholder": "Mật khẩu hiện tại của bạn"
+        },
+        "new_password": {
+          "label": "Mật Khẩu Mới",
+          "placeholder": "Mật khẩu mới"
+        },
+        "confirm_password": {
+          "label": "Xác Nhận Mật Khẩu Mới",
+          "placeholder": "Xác nhận mật khẩu mới"
+        }
+      }
+    }
+  },
+  "my_addresses_page": {
+      "label": "Danh Sách Địa Chỉ"
   }
 }

@@ -9,6 +9,7 @@ import Button from '../../base/Button';
 import { Avatar, Tooltip } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 import { RootState } from '@/store';
+import { stringToColor } from '@/utils/misc';
 
 const logoutOptions = [
     {
@@ -89,26 +90,6 @@ export default function LoginButton(): JSX.Element {
 
     const handleLogin = () => {
         navigate('/login');
-    };
-
-    const stringToColor = (string: string) => {
-        let hash = 0;
-        let i;
-
-        /* eslint-disable no-bitwise */
-        for (i = 0; i < string.length; i += 1) {
-            hash = string.charCodeAt(i) + ((hash << 5) - hash);
-        }
-
-        let color = '#';
-
-        for (i = 0; i < 3; i += 1) {
-            const value = (hash >> (i * 8)) & 0xff;
-            color += `00${value.toString(16)}`.slice(-2);
-        }
-        /* eslint-enable no-bitwise */
-
-        return color;
     };
 
     return (

@@ -4,5 +4,6 @@ export const FIELD_TYPE = {
     SELECT: 'select',
     TEXTAREA: 'textarea',
     CHECKBOX: 'checkbox',
-    RADIO: 'radio'
+    RADIO: 'radio',
+    CALENDAR: 'calendar'
 };

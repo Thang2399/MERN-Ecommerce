@@ -1,4 +1,4 @@
-import baseRequest from './service';
+import baseRequest from './config/service';
 
 const getListItems = async (query: any) => {
     const response = await baseRequest.get('/items', { params: query });

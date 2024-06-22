@@ -13,6 +13,7 @@ export const USER_ROUTES = {
     // private routes
     MY_ACCOUNT: '/my-account',
     INVOICE_HISTORY: '/invoice-history',
+    MY_ADDRESS: '/my-address'
 };
 
 export const ADMIN_ROUTES = {

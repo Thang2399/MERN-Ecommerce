@@ -18,21 +18,8 @@ import { defaultSignUpForm, defaultSignUpFormErrorMessages } from '../../form/si
 import { defaultSignUpFormType, signUpFormErrorMessageTypes, signUpFormPayloadTypes } from '../../types/signup';
 import { checkValidateSignUpForm } from '../../utils/signup';
 import { USER_ROUTES } from '../../routes/constants';
+import { gendersOptions } from '@/constants/user';
 
-const gendersOptions = [
-    {
-        label: 'signup_page.signup_form.gender.male',
-        value: 'male'
-    },
-    {
-        label: 'signup_page.signup_form.gender.female',
-        value: 'female'
-    },
-    {
-        label: 'signup_page.signup_form.gender.other',
-        value: 'other'
-    },
-];
 export default function SignUpForm(): JSX.Element {
     const navigate = useNavigate();
     const dispatch = useDispatch();
