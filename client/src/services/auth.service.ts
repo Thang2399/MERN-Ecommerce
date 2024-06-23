@@ -1,7 +1,7 @@
-import { defaultLoginFormTypes } from '../types/login';
-import { signUpFormPayloadTypes } from '../types/signup';
+import { defaultLoginFormTypes } from '@/types/login';
+import { signUpFormPayloadTypes } from '@/types/signup';
 import baseRequest from './config/service';
-import { IResetPasswordFormPayload } from '../types/resetPassword';
+import { IResetPasswordFormPayload } from '@/types/resetPassword';
 
 const authEndpoint = '/auth';
 

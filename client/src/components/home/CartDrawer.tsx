@@ -28,16 +28,8 @@ const CartDrawer: React.FC<ICart> = ({ setOpen }) => {
         (state: RootState) => state.homePageReducer.cartItemsList,
     );
 
-    const currentLanguageCode = useSelector(
-        (state: RootState) => state.homePageReducer.currentLanguage,
-    );
-
     const totalPriceInCart = useSelector(
         (state: RootState) => state.homePageReducer.totalPriceInCart,
-    );
-
-    const currency = useSelector(
-        (state: RootState) => state.homePageReducer.currency,
     );
 
     const handleCloseQuickView = () => {
@@ -68,7 +60,7 @@ const CartDrawer: React.FC<ICart> = ({ setOpen }) => {
     };
 
     const handleCheckout = () => {
-        navigate('/cart');
+        navigate('/checkout');
         handleCloseQuickView();
     };
 
@@ -157,31 +149,7 @@ const CartDrawer: React.FC<ICart> = ({ setOpen }) => {
                                     className={'mr-1'}
                                 />
                                 <div className={'flex'}>
-                                    {currentLanguageCode === COMMON_CONSTANTS.EN && (
-                                        <>
-                                            <Typography
-                                                content={currency}
-                                                needTranslate={false}
-                                                className={'mr-0.5'}
-                                                variant={'span'}
-                                            />
-                                        </>
-                                    )}
-                                    <Typography
-                                        content={totalPriceInCart && convertMoney(totalPriceInCart, currency, currentLanguageCode)?.price || totalPriceInCart}
-                                        needTranslate={false}
-                                        className={'font-semibold text-2xl'}
-                                    />
-                                    {currentLanguageCode === COMMON_CONSTANTS.VN && (
-                                        <>
-                                            <Typography
-                                                content={currency}
-                                                needTranslate={false}
-                                                className={'ml-0.5'}
-                                                variant={'span'}
-                                            />
-                                        </>
-                                    )}
+                                    <RenderCurrency price={totalPriceInCart} currency={'$'} />
                                 </div>
 
                             </div>

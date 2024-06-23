@@ -126,6 +126,8 @@
     "checkout": "Thanh toán",
     "checkout_form": {
       "customer_information": {
+        "user_name": "Tên khách hàng",
+        "user_name_placeholder": "Tên khách hàng",
         "label": "Thông tin khách hàng",
         "full_name": "Họ và tên",
         "first_name": "Tên",
@@ -133,14 +135,19 @@
         "last_name": "Họ",
         "last_name_placeholder": "Họ của bạn",
         "phone_number": "Số điện thoại",
-        "email_address": "Địa chỉ email"
+        "email_address": "Địa chỉ email",
+        "email_address_placeholder": "Địa chỉ email"
       },
       "address": {
         "label": "Địa chỉ",
         "country": "Quốc gia",
+        "country_placeholder": "Quốc gia",
         "city": "Thành phố",
+        "city_placeholder": "Thành phố",
         "district": "Quận",
-        "street_address": "Địa chỉ cụ thể"
+        "district_placeholder": "Quận",
+        "street_address": "Địa chỉ cụ thể",
+        "street_address_placeholder": "Địa chỉ cụ thể"
       },
       "shipping_method": {
         "label": "Phương thức giao hàng"
@@ -165,7 +172,7 @@
         "next": "Tiếp tục",
         "back_home": "Về trang chủ",
         "back": "Quay lại",
-        "submit": "Gửi"
+        "submit": "Thanh toán"
       },
       "steppers": {
         "user_info": "Thông tin khách hàng",
@@ -179,6 +186,10 @@
         "store": "Lấy hàng tại cửa hàng",
         "ship_cod": "Thanh toán khi nhận hàng (COD)",
         "card": "Thẻ tín dụng/ghi nợ"
+      },
+      "response": {
+        "create_invoice_success": "Đặt hàng thành công!",
+        "create_invoice_failed": "Đặt hàng thất bại!"
       }
     }
   },
@@ -197,7 +208,8 @@
     "otp": "OTP",
     "new_password": "Mật khẩu mới",
     "confirm_password": "Mật khẩu xác nhận",
-    "repeat_password": "Mật khẩu xác nhận"
+    "repeat_password": "Mật khẩu xác nhận",
+    "customer_name": "Tên khách hàng"
   },
   "error_messages": {
     "filed_required": "{{field}} bắt buộc",

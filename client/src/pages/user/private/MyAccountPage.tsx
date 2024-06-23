@@ -195,9 +195,9 @@ const MyAccountPage = () => {
                         <div className={'flex gap-5'}>
                             <div className={'w-1/4'}>
                                 <Button
-                                content={'my_account_page.form.button.go_back'}
-                                buttonClassName={'border rounded-xl'}
-                                handleClick={() => navigate('/')}
+                                    content={'my_account_page.form.button.go_back'}
+                                    buttonClassName={'border rounded-xl'}
+                                    handleClick={() => navigate('/')}
                             />
                             </div>
 

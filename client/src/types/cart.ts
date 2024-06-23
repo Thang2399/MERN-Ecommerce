@@ -78,3 +78,18 @@ export type userInforFormType = {
     cardExpirationMonth: string,
     cardExpirationYear: string
 }
+
+export type checkoutFormType = {
+    userName: string,
+    email: string,
+    phoneNumber: string,
+    shippingMethod: string,
+    paymentMethod: string,
+    country: string,
+    city: string,
+    district: string,
+    streetAddress: string,
+    redirectUrl?: string,
+    listPurchaseItems?: {itemId: string, itemQuantity: number}[],
+    totalPrice?: number
+}

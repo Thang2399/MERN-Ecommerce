@@ -2,14 +2,18 @@ import { useState, useEffect } from 'react';
 import services from '../../services';
 import { singleCategoryWithTypicalItemTypes } from '@/types/home';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ListItems from './ListItem/ListItems';
 import { setShowLoadingIcon } from '@/store/common';
 import QuickViewItem from '@/components/home/QuickView';
+import { RootState } from '@/store';
 
 export default function HomePageComponent(): JSX.Element {
     const dispatch = useDispatch();
+    const showQuickView = useSelector(
+        (state: RootState) => state.homePageReducer.showQuickView,
+    );
 
     const [ listItems, setListItems ] = useState<singleCategoryWithTypicalItemTypes[]>([]);
 
@@ -45,7 +49,8 @@ export default function HomePageComponent(): JSX.Element {
                 <ListItems listItems={listItems}/>
             </div>
 
-            <QuickViewItem />
+            {showQuickView && (<QuickViewItem />)}
+
         </div>
     );
 }
