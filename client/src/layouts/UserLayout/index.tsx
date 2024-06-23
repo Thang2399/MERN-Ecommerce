@@ -8,7 +8,7 @@ export default function UserLayout(): JSX.Element {
                     <UserSidebar />
                 </div>
 
-                <div className={'w-3/5 py-6'}>
+                <div className={'w-3/4 py-6 pr-6'}>
                     <Outlet />
                 </div>
         </div>

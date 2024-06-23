@@ -14,6 +14,7 @@ import CheckoutPage from '@/pages/user/public/CheckoutPage';
 import MyAccountPage from '@/pages/user/private/MyAccountPage';
 import InvoiceHistoryPage from '@/pages/user/private/InvoiceHistoryPage';
 import MyAddressPage from '@/pages/user/private/MyAddressPage';
+import DetailInvoiceHistoryPage from '@/pages/user/private/DetailInvoiceHistoryPage';
 
 const router: any = createBrowserRouter([
     {
@@ -88,6 +89,10 @@ const router: any = createBrowserRouter([
                     {
                         path: USER_ROUTES.INVOICE_HISTORY,
                         element: <InvoiceHistoryPage/>
+                    },
+                    {
+                        path: USER_ROUTES.DETAIL_INVOICE_HISTORY,
+                        element: <DetailInvoiceHistoryPage/>
                     },
                 ]
             },

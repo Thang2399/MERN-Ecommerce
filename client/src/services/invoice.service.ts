@@ -14,5 +14,10 @@ const createInvoice = async ( payload: checkoutFormType ) => {
     return response;
 };
 
-const invoiceService = { getListInvoices, createInvoice };
+const getDetailInvoice = async (id: string) => {
+    const response = await baseRequest.get(`${endpoint}/${id}`);
+    return response;
+};
+
+const invoiceService = { getListInvoices, createInvoice, getDetailInvoice };
 export default invoiceService;

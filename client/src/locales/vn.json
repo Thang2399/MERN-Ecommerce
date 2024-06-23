@@ -189,7 +189,8 @@
       },
       "response": {
         "create_invoice_success": "Đặt hàng thành công!",
-        "create_invoice_failed": "Đặt hàng thất bại!"
+        "create_invoice_failed": "Đặt hàng thất bại!",
+        "create_payment_failed": "Không thể tiến hành thanh toán! Hãy thử lại sau!"
       }
     }
   },
@@ -270,6 +271,12 @@
         "delivered_success": "Giao hàng thành công",
         "delivered_failed": "Giao hàng thất bại"
       }
+    }
+  },
+  "detail_invoice_history_page": {
+    "payment": {
+      "success": "Thanh toán thành công!!",
+      "failed": "Thanh toán thất bại! Hãy thử lại sau!"
     }
   },
   "my_account_page": {

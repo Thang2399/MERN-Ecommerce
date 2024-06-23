@@ -200,7 +200,8 @@
       },
       "response": {
         "create_invoice_success": "Order successfully!",
-        "create_invoice_failed": "Order failed!"
+        "create_invoice_failed": "Order failed!",
+        "create_payment_failed": "Can not process payment now! Please try later!"
       }
     }
   },
@@ -285,6 +286,12 @@
         "label": "List purchased items",
         "subtotal": "Subtotal"
       }
+    }
+  },
+  "detail_invoice_history_page": {
+    "payment": {
+      "success": "Payment successfully!",
+      "failed": "Payment failed! Please try again later"
     }
   },
   "my_account_page": {
