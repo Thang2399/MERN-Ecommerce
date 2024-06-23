@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { stringToColor } from '@/utils/misc';
@@ -49,7 +49,7 @@ const UserSidebar: React.FC = () => {
     const userCommonInfor = useSelector((state: RootState) => state.commonReducer.userCommonInfor);
 
     const renderSelectedBackground = (pathname: string, route: string) => {
-        if (pathname === route) {
+        if (route && pathname.includes(route)) {
             return 'text-white bg-gray-700/75';
         }
     };

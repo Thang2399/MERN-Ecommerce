@@ -13,6 +13,7 @@ export const USER_ROUTES = {
     // private routes
     MY_ACCOUNT: '/my-account',
     INVOICE_HISTORY: '/invoice-history',
+    DETAIL_INVOICE_HISTORY: '/invoice-history/:id',
     MY_ADDRESS: '/my-address'
 };
 

@@ -24,6 +24,7 @@ import services from '@/services';
 import { setShowLoadingIcon, setShowToastMessage } from '@/store/common';
 import { HTTP_STATUS } from '@/constants';
 import { deleteCart } from '@/store/home';
+import { USER_ROUTES } from '@/routes/constants';
 
 const CheckoutForm: React.FC = () => {
     const dispatch = useDispatch();
@@ -195,10 +196,12 @@ const CheckoutForm: React.FC = () => {
             itemQuantity: item.quantity
         }));
 
+        const redirectUrl = `${window.location.protocol}//${window.location.host}${USER_ROUTES.INVOICE_HISTORY}`;
+
         const payload = {
             ...values,
             totalPrice: totalPriceInCart,
-            redirectUrl: '',
+            redirectUrl,
             listPurchaseItems
         };
 
@@ -215,6 +218,19 @@ const CheckoutForm: React.FC = () => {
                         type: 'success'
                     }));
                     navigate('/');
+                } else {
+                    const stripePaymentUrl = res.data.redirect_url;
+                    if (stripePaymentUrl) {
+                        dispatch(deleteCart());
+                        window.location.href = stripePaymentUrl;
+                    } else {
+                        dispatch(setShowLoadingIcon(false));
+                        dispatch(setShowToastMessage({
+                            show: true,
+                            message: 'cart_page.checkout_form.response.create_payment_failed',
+                            type: 'error'
+                        }));
+                    }
                 }
             }
         } catch (err) {
