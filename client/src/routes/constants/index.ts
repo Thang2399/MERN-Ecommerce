@@ -2,7 +2,7 @@ export const USER_ROUTES = {
     // public routes
     DEFAULT: '/',
     PAYMENT: '/payment',
-    CART: '/cart',
+    CHECKOUT: '/checkout',
 
     // auth routes
     LOGIN: '/login',
@@ -20,6 +20,6 @@ export const ADMIN_ROUTES = {
     DEFAULT: '/admin',
 };
 
-export const publicRoutesArr = [ USER_ROUTES.DEFAULT, USER_ROUTES.PAYMENT, USER_ROUTES.CART ];
+export const publicRoutesArr = [ USER_ROUTES.DEFAULT, USER_ROUTES.PAYMENT, USER_ROUTES.CHECKOUT ];
 export const authRoutesArr = [ USER_ROUTES.LOGIN, USER_ROUTES.SIGN_UP, USER_ROUTES.FORGET_PASSWORD, USER_ROUTES.RESET_PASSWORD ];
 export const privateRoutesArr = [ USER_ROUTES.MY_ACCOUNT, USER_ROUTES.INVOICE_HISTORY ];

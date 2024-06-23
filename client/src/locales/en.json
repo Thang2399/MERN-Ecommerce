@@ -137,20 +137,28 @@
     "checkout": "Checkout",
     "checkout_form": {
       "customer_information": {
+        "user_name": "Customer Name",
+        "user_name_placeholder": "Enter Customer Name",
         "label": "Customer Information",
         "first_name": "First Name",
         "first_name_placeholder": "First Name",
         "last_name": "Last Name",
         "last_name_placeholder": "Last Name",
         "phone_number": "Phone Number",
-        "email_address": "Email Address"
+        "phone_number_placeholder": "Enter Phone Number",
+        "email_address": "Email Address",
+        "email_address_placeholder": "Enter Email Address"
       },
       "address": {
         "label": "Address",
         "country": "Country",
+        "country_placeholder": "Enter Country",
         "city": "City",
+        "city_placeholder": "Enter City",
         "district": "District",
-        "street_address": "Street Address"
+        "district_placeholder": "Enter District",
+        "street_address": "Street Address",
+        "street_address_placeholder": "Street Address"
       },
       "shipping_method": {
         "label": "Shipping Method"
@@ -175,7 +183,7 @@
         "next": "Next",
         "back_home": "Back home",
         "back": "Back",
-        "submit": "Submit"
+        "submit": "Checkout"
       },
       "steppers": {
         "user_info": "User Information",
@@ -189,6 +197,10 @@
         "store": "Get at store",
         "ship_cod": "Cash on delivery (COD)",
         "card": "Credit/Debit Card"
+      },
+      "response": {
+        "create_invoice_success": "Order successfully!",
+        "create_invoice_failed": "Order failed!"
       }
     }
   },
@@ -207,7 +219,8 @@
     "otp": "OTP",
     "new_password": "new password",
     "confirm_password": "confirm password",
-    "repeat_password": "repeat password"
+    "repeat_password": "repeat password",
+    "customer_name": "customer name"
   },
   "error_messages": {
     "filed_required": "This {{field}} field is required",

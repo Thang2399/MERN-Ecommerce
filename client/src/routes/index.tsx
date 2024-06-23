@@ -10,7 +10,7 @@ import SignUpPage from '@/pages/user/auth/SignUpPage';
 import ForgetPasswordPage from '@/pages/user/auth/ForgetPasswordPage';
 import ResetPasswordPage from '@/pages/user/auth/ResetPasswordPage';
 import PaymentPage from '@/pages/user/public/PaymentPage';
-import CartPage from '@/pages/user/public/CartPage';
+import CheckoutPage from '@/pages/user/public/CheckoutPage';
 import MyAccountPage from '@/pages/user/private/MyAccountPage';
 import InvoiceHistoryPage from '@/pages/user/private/InvoiceHistoryPage';
 import MyAddressPage from '@/pages/user/private/MyAddressPage';
@@ -24,8 +24,8 @@ const router: any = createBrowserRouter([
                 element: <HomePage />
             },
             {
-                path: USER_ROUTES.CART,
-                element: <CartPage />
+                path: USER_ROUTES.CHECKOUT,
+                element: <CheckoutPage />
             },
             {
                 path: USER_ROUTES.PAYMENT,
