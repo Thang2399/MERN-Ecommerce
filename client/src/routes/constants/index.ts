@@ -14,7 +14,8 @@ export const USER_ROUTES = {
     MY_ACCOUNT: '/my-account',
     INVOICE_HISTORY: '/invoice-history',
     DETAIL_INVOICE_HISTORY: '/invoice-history/:id',
-    MY_ADDRESS: '/my-address'
+    MY_ADDRESS: '/my-address',
+    CHANGE_PASSWORD: '/change-password'
 };
 
 export const ADMIN_ROUTES = {

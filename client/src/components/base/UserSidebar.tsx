@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { setCookie } from 'typescript-cookie';
 import { COMMON_CONSTANTS } from '@/constants';
 import { setShowToastMessage, setUserCommonInfor } from '@/store/common';
-
+import { IoMdKey } from 'react-icons/io';
 
 const sidebarRoutesArr = [
     {
@@ -29,6 +29,11 @@ const sidebarRoutesArr = [
         label: 'invoices_history_page.label',
         route: USER_ROUTES.INVOICE_HISTORY,
         icon: <MdOutlinePaid />
+    },
+    {
+        label: 'change_password_page.label',
+        route: USER_ROUTES.CHANGE_PASSWORD,
+        icon: <IoMdKey />
     },
     {
         label: 'home_page.login_icon.logout',
@@ -106,7 +111,7 @@ const UserSidebar: React.FC = () => {
                             </div>
 
                             <Typography
-                                className={'text-xl'}
+                                className={'text-xl capitalize'}
                                 content={sidebarItem.label}
                                 needTranslate={true}
                             />

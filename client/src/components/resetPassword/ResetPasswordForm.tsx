@@ -53,7 +53,7 @@ const ResetPasswordForm = () => {
                 console.log(err);
                 console.log(err.response.data.message);
                 const errorMessage = err.response.data.message;
-                if (errorMessage === HTTP_RESPONSE_MESSAGE.FORGET_RESET_PASSWORD.WRONG_OTP) {
+                if (errorMessage === HTTP_RESPONSE_MESSAGE.FORGET_RESET_CHANGE_PASSWORD.WRONG_OTP) {
                     dispatch(setShowToastMessage({
                         show: true,
                         message: 'reset_password_page.response_message.wrong_otp',

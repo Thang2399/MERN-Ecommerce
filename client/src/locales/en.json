@@ -218,6 +218,8 @@
     "street_address": "street address",
     "password": "password",
     "otp": "OTP",
+    "current_password": "current password",
+    "current_password_lowercase": "current password",
     "new_password": "new password",
     "confirm_password": "confirm password",
     "repeat_password": "repeat password",
@@ -227,7 +229,12 @@
     "filed_required": "This {{field}} field is required",
     "wrong_email_validate": "Wrong email format",
     "wrong_password_validate": "Wrong password format",
-    "confirm_password_not_match": "The password field and the confirm password field do not match"
+    "confirm_password_not_match": "The password field and the confirm password field do not match",
+    "not_enough_length": "This {{field}} must have at least {{min}} characters",
+    "contain_at_least_one_number": "This {{field}} must have at least one number",
+    "contain_at_least_one_letter": "This {{field}} must have at least one letter",
+    "contain_at_least_one_special_character": "This {{field}} must have at least one special character",
+    "not_match_current_password": "This {{field}} must not equal to {{currentPassword}}"
   },
   "payment_page": {
     "billing": "Billing",
@@ -323,8 +330,12 @@
         "update_success": "Update user information successfully!",
         "update_failed": "Update user information failed!"
       }
-    },
-    "change_password": {
+    }
+  },
+  "my_addresses_page": {
+      "label": "My List Addresses"
+  },
+  "change_password_page": {
       "label": "Change My Password",
       "form": {
         "current_password": {
@@ -333,16 +344,18 @@
         },
         "new_password": {
           "label": "New Password",
-          "placeholder": "Your new password"
+          "placeholder": "Your new password",
+          "validation": "Note: Your password must contain at least 8 characters, including letters, numbers, special characters and can not be duplicated with current password"
         },
         "confirm_password": {
           "label": "Confirm Password",
           "placeholder": "Your confirm password"
+        },
+        "response": {
+          "success": "Change password successfully! You will need to login again to continue",
+          "failed": "Change password failed!",
+          "duplicate_password": "Change password failed due to duplicate with current password!"
         }
       }
     }
-  },
-  "my_addresses_page": {
-      "label": "My List Addresses"
-  }
 }
