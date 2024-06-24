@@ -207,6 +207,8 @@
     "street_address": "Địa chỉ",
     "password": "Mật khẩu",
     "otp": "OTP",
+    "current_password": "Mật khẩu hiện tại",
+    "current_password_lowercase": "mật khẩu hiện tại",
     "new_password": "Mật khẩu mới",
     "confirm_password": "Mật khẩu xác nhận",
     "repeat_password": "Mật khẩu xác nhận",
@@ -216,7 +218,12 @@
     "filed_required": "{{field}} bắt buộc",
     "wrong_email_validate": "Sai format email",
     "wrong_password_validate": "Sai format mật khẩu",
-    "confirm_password_not_match": "Mật khẩu và mật khẩu xác nhận không khớp"
+    "confirm_password_not_match": "Mật khẩu và mật khẩu xác nhận không khớp",
+    "not_enough_length": "{{field}} cần có ít nhất {{min}} ký tự",
+    "contain_at_least_one_number": "{{field}} cần có ít nhất 1 kí tự số",
+    "contain_at_least_one_letter": "{{field}} cần có ít nhất 1 kí tự chữ",
+    "contain_at_least_one_special_character": "{{field}} cần có ít nhất 1 kí tự đặc biệt",
+        "not_match_current_password": "{{field}} không được trùng với {{currentPassword}}"
   },
   "payment_page": {
     "billing": "Hóa đơn",
@@ -329,5 +336,28 @@
   },
   "my_addresses_page": {
       "label": "Danh Sách Địa Chỉ"
-  }
+  },
+  "change_password_page": {
+      "label": "Thay đổi mật khẩu",
+      "form": {
+        "current_password": {
+          "label": "Mật khẩu hiện tại",
+          "placeholder": "Mật khẩu hiện tại"
+        },
+        "new_password": {
+          "label": "Mật khẩu mới",
+          "placeholder": "Mật khẩu mới",
+          "validation": "Lưu ý: Mật khẩu của bạn phải có tối thiểu 8 ký tự, bao gồm ký tự chữ, ký tự số, ký tự đặc biệt và không được trùng với mật khẩu hiện tại"
+        },
+        "confirm_password": {
+          "label": "Xác nhận mật khẩu mới",
+          "placeholder": "Xác nhận mật khẩu mới"
+        },
+        "response": {
+          "success": "Đổi mật khẩu thành công! Bạn cần đăng nhập lại để tiếp tục",
+          "failed": "Đổi mật khẩu thất bại!",
+          "duplicate_password": "Đổi mật khẩu thất bại vì trùng mới mật khẩu hiện tại!"
+        }
+      }
+    }
 }

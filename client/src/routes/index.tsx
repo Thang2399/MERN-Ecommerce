@@ -15,6 +15,7 @@ import MyAccountPage from '@/pages/user/private/MyAccountPage';
 import InvoiceHistoryPage from '@/pages/user/private/InvoiceHistoryPage';
 import MyAddressPage from '@/pages/user/private/MyAddressPage';
 import DetailInvoiceHistoryPage from '@/pages/user/private/DetailInvoiceHistoryPage';
+import ChangePasswordPage from '@/pages/user/public/ChangePasswordPage';
 
 const router: any = createBrowserRouter([
     {
@@ -103,6 +104,16 @@ const router: any = createBrowserRouter([
                     {
                         path: USER_ROUTES.MY_ADDRESS,
                         element: <MyAddressPage/>
+                    },
+                ]
+            },
+            {
+                path: USER_ROUTES.CHANGE_PASSWORD,
+                element: <UserLayout />,
+                children: [
+                    {
+                        path: USER_ROUTES.CHANGE_PASSWORD,
+                        element: <ChangePasswordPage/>
                     },
                 ]
             }

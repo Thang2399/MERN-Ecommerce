@@ -5,7 +5,7 @@ export type updateUserTypes = {
     dateOfBirth: string
 }
 
-export type changeUserTypes = {
+export type changeUserPasswordTypes = {
     userId: string,
     currentPassword: string,
     newPassword: string

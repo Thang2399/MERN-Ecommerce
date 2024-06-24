@@ -45,7 +45,7 @@ const RenderFormField: React.FC<IRenderFormField> = ({ field, formikValues, erro
                 <InputLabel shrink htmlFor={htmlFor}>
                     <Typography
                         content={label}
-                        className={'text-2xl mb-2 text-black cursor-pointer w-fit'}
+                        className={'text-2xl mb-2 text-black cursor-pointer w-fit capitalize'}
                     />
                 </InputLabel>
             )}
@@ -74,7 +74,7 @@ const RenderFormField: React.FC<IRenderFormField> = ({ field, formikValues, erro
                     placeholder={placeholder}
                     value={formikValues[`${inputName}`]}
                     dataTest={dataTest}
-                    isInvalidField={touched[`${inputName}`] && Boolean(errors[`${inputName}`])}
+                    isInvalidField={Boolean(errors[`${inputName}`])}
                 />
             )}
 

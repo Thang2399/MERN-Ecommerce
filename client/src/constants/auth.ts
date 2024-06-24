@@ -13,7 +13,7 @@ export const LOGIN = {
 	WRONG_USER_EMAIL_OR_PASSWORD: 'wrong user email or password',
 };
 
-export const FORGET_RESET_PASSWORD = {
+export const FORGET_RESET_CHANGE_PASSWORD = {
 	SEND_EMAIL_SUCCESS: 'send email success',
 	SEND_EMAIL_FAIL: 'send email',
 
@@ -23,5 +23,6 @@ export const FORGET_RESET_PASSWORD = {
 	WRONG_OTP: 'wrong otp',
 	WRONG_EMAIL: 'wrong email',
 
-	INVALID_LINK: 'invalid link'
+	INVALID_LINK: 'invalid link',
+	DUPLICATE_NEW_CURRENT_PASSWORD: 'DUPLICATE_NEW_CURRENT_PASSWORD',
 };
