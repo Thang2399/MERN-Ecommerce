@@ -3,3 +3,9 @@ export type supportsLanguagesArrTypes = {
     language: string,
     flag: string
 };
+
+export type paginationDataType = {
+    total: number,
+    currentPage: number,
+    pageSize: number,
+}

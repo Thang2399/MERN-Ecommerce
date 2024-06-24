@@ -20,6 +20,7 @@ export type InputProps = {
     disabled?: boolean,
     isPhoneNumberInput?: boolean,
     setFieldValue?: (field: string, value: any, shouldValidate?: (boolean | undefined)) => Promise<void | FormikErrors<any>>
+    variant?: 'standard' | 'filled' | 'outlined' | undefined
 };
 
 const InputTextField: React.FC<InputProps> =
@@ -36,7 +37,8 @@ const InputTextField: React.FC<InputProps> =
         helpText,
         disabled,
         isPhoneNumberInput,
-        setFieldValue
+        setFieldValue,
+        variant
     }) => {
         const { t } = useTranslation();
 
@@ -57,7 +59,7 @@ const InputTextField: React.FC<InputProps> =
                 <TextField
                     id={id}
                     label={label}
-                    variant={'outlined'}
+                    variant={variant}
                     placeholder={t(placeholder)}
                     className={`w-full bg-white rounded ${className}`}
                     name={inputName}
@@ -79,7 +81,8 @@ InputTextField.defaultProps = {
     isInvalidField: false,
     dataTest: '',
     disabled: false,
-    isPhoneNumberInput: false
+    isPhoneNumberInput: false,
+    variant: 'outlined'
 };
 
 export default InputTextField;
