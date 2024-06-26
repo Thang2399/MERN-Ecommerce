@@ -8,6 +8,12 @@ export enum Payment_Method_Enum {
     CARD = 'card',
 }
 
+export enum Payment_Status {
+    PENDING = 'PENDING',
+    SUCCESS = 'SUCCESS',
+    FAILED = 'FAILED',
+}
+
 export const optionsListShippingMethod = [
     {
         label: 'cart_page.checkout_form.card_options_list.home',

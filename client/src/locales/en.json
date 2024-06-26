@@ -120,7 +120,7 @@
       "login": "Login",
       "logout": "Log out",
       "my_account": "My account",
-      "invoice_history": "Invoice history",
+      "invoice_history": "Purchase history",
       "admin_dashboard": "Admin Dashboard"
     },
     "logout_message": "Logout successfully",
@@ -253,14 +253,15 @@
     }
   },
   "invoices_history_page": {
-    "label": "Invoices History",
+    "label": "Purchase History",
     "empty_value": {
       "have_no_invoice": "You have no invoice yet.",
       "return_to_purchase_and_comeback_later": "Please return to purchase some items and comeback later.",
       "purchase_now": "Purchase now"
     },
     "single_invoice": {
-      "invoice_label": "Invoice Id:",
+      "invoice_label": "Invoice Id",
+      "customer_name": "Customer Name",
       "full_name": "Full name:",
       "email": "Email:",
       "phone_number": "Phone Number:",
@@ -275,7 +276,7 @@
       "shipping_method": {
         "label": "Shipping Method",
         "method": {
-          "home": "Get at your above address",
+          "home": "Get at my address",
           "store": "Get at store"
         }
       },
@@ -287,12 +288,23 @@
         "package_items": "Packaged items",
         "delivering": "Delivering",
         "delivered_success": "Delivered successfully",
-        "delivered_failed": "Delivered failed"
+        "delivered_failed": "Delivered failed",
+        "cancel_out_of_stock": "Cancel due to some items are out of stock"
       },
       "list_bought_items": {
+        "number_of_purchased_item": "Number of items",
         "label": "List purchased items",
         "subtotal": "Subtotal"
-      }
+      },
+      "payment_status": {
+        "label": "Payment Status",
+        "success": "Success",
+        "pending": "Pending",
+        "failed": "Failed"
+      },
+      "total_price": "Total Price",
+      "created_at": "Created At",
+      "updated_at": "Updated At"
     }
   },
   "detail_invoice_history_page": {
@@ -357,5 +369,8 @@
           "duplicate_password": "Change password failed due to duplicate with current password!"
         }
       }
-    }
+    },
+  "pagination": {
+    "show_total": "{{start}} - {{end}} of {{total}} items"
+  }
 }

@@ -14,6 +14,7 @@ const InputPasswordField: React.FC<InputProps> = ({
          className,
          isInvalidField,
          dataTest,
+        variant
     }) => {
     const { t } = useTranslation();
     const [ showPassword, setShowPassword ] = useState<boolean>(false);
@@ -28,7 +29,7 @@ const InputPasswordField: React.FC<InputProps> = ({
                 id={id}
                 type={showPassword ? 'text' : 'password'}
                 label={label}
-                variant={'outlined'}
+                variant={variant}
                 placeholder={t(placeholder)}
                 className={`w-full bg-white rounded ${className}`}
                 name={inputName}

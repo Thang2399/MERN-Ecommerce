@@ -24,9 +24,10 @@ export type singleInvoiceType = {
 }
 
 export type detailSingleInvoiceType = {
-    _id: string,
+    id: string,
     firstName: string,
     lastName: string,
+    customerName: string,
     phoneNumber: string,
     emailAddress: string,
     country: string,
@@ -39,5 +40,5 @@ export type detailSingleInvoiceType = {
     invoiceId: string,
     totalPrice: string,
 	listBoughtItems: singleItemTypes[],
-	invoiceStatus: string
+	invoiceStatus: string,
 }

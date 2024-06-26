@@ -109,7 +109,7 @@
       "login": "Đăng nhập",
       "logout": "Đăng xuất",
       "my_account": "Tài khoản của tôi",
-      "invoice_history": "Lịch sử đơn hàng",
+      "invoice_history": "Lịch sử mua hàng",
       "admin_dashboard": "Giao diện admin"
     },
     "logout_message": "Đăng xuất thành công",
@@ -242,20 +242,21 @@
     }
   },
   "invoices_history_page": {
-    "label": "Lịch sử đơn hàng",
+    "label": "Lịch sử mua hàng",
     "empty_value": {
       "have_no_invoice": "Bạn chưa có đơn hàng nào",
       "return_to_purchase_and_comeback_later": "Hãy quay lại mua sắm và quay lại đây sau.",
       "purchase_now": "Tiến hành mua sắm"
     },
     "single_invoice": {
-      "invoice_label": "Mã hoá đơn:",
-      "full_name": "Họ và tên:",
+      "invoice_label": "Mã hoá đơn",
+      "customer_name": "Tên khách hàng",
+      "full_name": "Họ và tên",
       "email": "Email:",
       "phone_number": "Số điện thoại:",
       "address": "Địa chỉ:",
       "payment_method": {
-        "label": "Phương thức thanh toán:",
+        "label": "Phương thức thanh toán",
         "method": {
           "ship_cod": "Thanh toán khi nhận hàng (COD)",
           "card": "Thẻ tín dụng/ghi nợ"
@@ -264,7 +265,7 @@
       "shipping_method": {
         "label": "Hình thức nhận hàng",
         "method": {
-          "home": "Lấy tại địa chỉ bên trên",
+          "home": "Lấy tại địa chỉ của tôi",
           "store": "Lấy tại cửa hàng"
         }
       },
@@ -276,8 +277,23 @@
         "package_items": "Đóng gói xong",
         "delivering": "Đang vận chuyển",
         "delivered_success": "Giao hàng thành công",
-        "delivered_failed": "Giao hàng thất bại"
-      }
+        "delivered_failed": "Giao hàng thất bại",
+        "cancel_out_of_stock": "Bị huỷ vì một số sản phẩm hết hàng"
+      },
+      "list_bought_items": {
+        "number_of_purchased_item": "Số lượng sản phẩm",
+        "label": "Số lượng sản phẩm",
+        "subtotal": "Subtotal"
+      },
+      "payment_status": {
+        "label": "Trạng thái thanh toán",
+        "success": "Thành công",
+        "pending": "Đang chờ",
+        "failed": "Thất bại"
+      },
+      "total_price": "Tổng giá tiền",
+      "created_at": "Ngày tạo",
+      "updated_at": "Ngày cập nhật"
     }
   },
   "detail_invoice_history_page": {
@@ -335,7 +351,7 @@
     }
   },
   "my_addresses_page": {
-      "label": "Danh Sách Địa Chỉ"
+      "label": "Địa Chỉ Của Tôi"
   },
   "change_password_page": {
       "label": "Thay đổi mật khẩu",
@@ -359,5 +375,8 @@
           "duplicate_password": "Đổi mật khẩu thất bại vì trùng mới mật khẩu hiện tại!"
         }
       }
-    }
+    },
+  "pagination": {
+    "show_total": "{{start}} - {{end}} của {{total}} sản phẩm"
+  }
 }

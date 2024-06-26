@@ -21,11 +21,6 @@ const sidebarRoutesArr = [
         icon: <AiOutlineUser />
     },
     {
-        label: 'my_addresses_page.label',
-        route: USER_ROUTES.MY_ADDRESS,
-        icon: <GoLocation />
-    },
-    {
         label: 'invoices_history_page.label',
         route: USER_ROUTES.INVOICE_HISTORY,
         icon: <MdOutlinePaid />
@@ -34,6 +29,11 @@ const sidebarRoutesArr = [
         label: 'change_password_page.label',
         route: USER_ROUTES.CHANGE_PASSWORD,
         icon: <IoMdKey />
+    },
+    {
+        label: 'my_addresses_page.label',
+        route: USER_ROUTES.MY_ADDRESS,
+        icon: <GoLocation />
     },
     {
         label: 'home_page.login_icon.logout',

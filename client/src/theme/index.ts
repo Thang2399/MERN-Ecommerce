@@ -1,7 +1,7 @@
 import { ThemeConfig } from 'antd/es/config-provider/context';
 
-const colorPrimary = '#006666';
-const colorSecondary = '#66b2b2';
+const colorPrimary = '#131317';
+const colorSecondary = '#09173B';
 
 export const theme: ThemeConfig = {
   components: {
