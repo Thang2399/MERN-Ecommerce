@@ -3,63 +3,147 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Typography from '../base/Typography';
-import InputTextField from '../base/InputTextField';
-import ErrorMessage from '../base/ErrorMessage';
 import Button from '../base/Button';
 
 import { setCookie } from 'typescript-cookie';
 import services from '../../services';
-import { setShowLoadingIcon, setShowToastMessage, setUserCommonInfor } from '../../store/common';
-import { COMMON_CONSTANTS, HTTP_STATUS } from '../../constants';
-import BaseRadioButtons from '../base/RadioButtons';
-import DatePicker from '../base/DatePicker';
-import dayjs, { Dayjs } from 'dayjs';
-import { defaultSignUpForm, defaultSignUpFormErrorMessages } from '../../form/signup';
-import { defaultSignUpFormType, signUpFormErrorMessageTypes, signUpFormPayloadTypes } from '../../types/signup';
-import { checkValidateSignUpForm } from '../../utils/signup';
-import { USER_ROUTES } from '../../routes/constants';
+import { setShowLoadingIcon, setShowToastMessage } from '@/store/common';
+import { COMMON_CONSTANTS, HTTP_STATUS, REGEX } from '@/constants';
+import { defaultSignUpForm } from '@/form/signup';
+import { defaultSignUpFormType, signUpFormPayloadTypes } from '@/types/signup';
+import { USER_ROUTES } from '@/routes/constants';
 import { gendersOptions } from '@/constants/user';
+import { FieldProps } from '@/types/field';
+import { FIELD_TYPE } from '@/constants/field';
+import { Form, Formik, FormikErrors } from 'formik';
+import { formatDateTime } from '@/utils/misc';
+import RenderFormField from '@/components/base/RenderFormField';
+import { FcGoogle } from 'react-icons/fc';
+import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 export default function SignUpForm(): JSX.Element {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [ gender, setGender ] = useState<string>(gendersOptions[0].value);
-    
     const [ signUpForm, setSignUpForm ] = useState<defaultSignUpFormType>(defaultSignUpForm);
-    const [ signUpFormErrorMessages, setSignUpFormErrorMessages ] = useState<signUpFormErrorMessageTypes>(defaultSignUpFormErrorMessages);
-    const [ dateOfBirth, setDateOfBirth ] = useState<Dayjs | string>(dayjs());
 
-    const handleChangeSignUpForm = (e: any) => {
-        let inputValue = e.target.value;
+    const formFieldsUsernameArr: FieldProps[] = [
+        {
+            label: 'signup_page.signup_form.first_name.label',
+            htmlFor: 'userName',
+            fieldType: FIELD_TYPE.INPUT,
+            placeholder: 'signup_page.signup_form.first_name.placeholder',
+            inputName: 'userName',
+            dataTest: 'userName',
+            errorMessageField: 'form.user_name',
+            errorMessageDataTest: 'errorUserName'
+        },
+        {
+            label: 'signup_page.signup_form.email.label',
+            htmlFor: 'email',
+            fieldType: FIELD_TYPE.INPUT,
+            placeholder: 'signup_page.signup_form.email.placeholder',
+            inputName: 'email',
+            dataTest: 'email',
+            errorMessageField: 'form.email_address',
+            errorMessageDataTest: 'errorEmail'
+        },
+        {
+            label: 'signup_page.signup_form.phone_number.label',
+            htmlFor: 'phoneNumber',
+            fieldType: FIELD_TYPE.INPUT,
+            placeholder: 'signup_page.signup_form.phone_number.placeholder',
+            inputName: 'phoneNumber',
+            dataTest: 'phoneNumber',
+            errorMessageField: 'form.phone_number',
+            errorMessageDataTest: 'errorPhoneNumber',
+            isPhoneNumberInput: true
+        },
+    ];
 
-        if (e.target.name === 'phoneNumber') {
-            inputValue = e.target.value.replace(/\D/g, '');
-        }
+    const formPasswordFieldsArr: FieldProps[] = [
+        {
+            label: 'signup_page.signup_form.password.label',
+            htmlFor: 'password',
+            fieldType: FIELD_TYPE.PASSWORD,
+            placeholder: 'signup_page.signup_form.password.placeholder',
+            inputName: 'password',
+            dataTest: 'password',
+            errorMessageField: 'form.password',
+            errorMessageDataTest: 'errorPassword'
+        },
+        {
+            label: 'signup_page.signup_form.repeat_password.label',
+            htmlFor: 'confirmPassword',
+            fieldType: FIELD_TYPE.PASSWORD,
+            placeholder: 'signup_page.signup_form.repeat_password.placeholder',
+            inputName: 'confirmPassword',
+            dataTest: 'confirmPassword',
+            errorMessageField: 'form.confirm_password',
+            errorMessageDataTest: 'errorConfirmPassword'
+        },
+    ];
 
-        setSignUpForm({
-            ...signUpForm,
-            [e.target.name]: inputValue
-        });
-    };
+    const formGenderDateFieldsArr: FieldProps[] = [
+        {
+            label: 'signup_page.signup_form.gender.label',
+            htmlFor: 'gender',
+            fieldType: FIELD_TYPE.RADIO,
+            placeholder: '',
+            inputName: 'gender',
+            dataTest: 'gender',
+            errorMessageField: 'form.gender',
+            errorMessageDataTest: 'errorGender',
+            checkboxList: gendersOptions,
+            isRowRadio: true,
+            handleChange: (setFieldValue: (field: string, value: any, shouldValidate?: (boolean | undefined)) => Promise<void | FormikErrors<any>>, value: string) => {
+                setFieldValue('gender', value);
+            }
+        },
+        {
+            label: 'signup_page.signup_form.date_of_birth.label',
+            htmlFor: 'dateOfBirth',
+            fieldType: FIELD_TYPE.CALENDAR,
+            placeholder: '',
+            inputName: 'dateOfBirth',
+            dataTest: 'dateOfBirth',
+            errorMessageField: 'form.date_of_birth',
+            errorMessageDataTest: 'errorDateOfBirth',
+            handleChange: (setFieldValue: (field: string, value: any, shouldValidate?: (boolean | undefined)) => Promise<void | FormikErrors<any>>, value: string) => {
+                const convertDate = formatDateTime(value);
+                setFieldValue('dateOfBirth', convertDate);
+            }
+        },
+    ];
+
+    const signUpValidationSchema = yup.object({
+        userName: yup.string().required('error_messages.filed_required'),
+        email: yup
+            .string()
+            .required('error_messages.filed_required')
+            .email('error_messages.wrong_email_validate'),
+        phoneNumber: yup.string().required('error_messages.filed_required'),
+        password: yup.string()
+            .min(8,  t('error_messages.not_enough_length', { min: '8' }))
+            .matches(REGEX.CONTAIN_AT_LEAST_ONE_NUMBER, 'error_messages.contain_at_least_one_number')
+            .matches(REGEX.CONTAIN_AT_LEAST_ONE_LETTER, 'error_messages.contain_at_least_one_letter')
+            .matches(REGEX.CONTAIN_AT_LEAST_ONE_SPECIAL_CHARACTER, 'error_messages.contain_at_least_one_special_character')
+            .required('error_messages.filed_required'),
+        confirmPassword: yup.string().equals([ yup.ref('password') ], 'Password must match').required('error_messages.filed_required'),
+        dateOfBirth: yup.string().required('error_messages.filed_required'),
+    });
 
     const redirectToLogin = () => {
         navigate(`${USER_ROUTES.LOGIN}`);
-    };
-    
-    const handleChangeDate = (newValue: Dayjs | string) => {
-        setDateOfBirth(newValue);
-    };
-
-    const handleSelectGender = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setGender((event.target as HTMLInputElement).value);
     };
 
     const onSignUpUser = async (payload: signUpFormPayloadTypes) => {
         dispatch(setShowLoadingIcon(true));
         try {
             const res = await services.signUpUser(payload);
-            if (res && res.status === HTTP_STATUS.CREATE_SUCCESS){
+            if (res && res.status === HTTP_STATUS.CREATE_SUCCESS) {
                 console.log('res', res);
                 const loginPayload = {
                     email: payload.email,
@@ -71,6 +155,7 @@ export default function SignUpForm(): JSX.Element {
                 if (loginRes && loginRes.status === HTTP_STATUS.CREATE_SUCCESS) {
                     const data = loginRes.data;
                     setCookie(COMMON_CONSTANTS.ACCESS_TOKEN, data.accessToken);
+                    localStorage.setItem(COMMON_CONSTANTS.REFRESH_TOKEN, data.refreshToken);
                     dispatch(setShowLoadingIcon(false));
                     navigate(USER_ROUTES.DEFAULT);
                     dispatch(setShowToastMessage({
@@ -81,33 +166,20 @@ export default function SignUpForm(): JSX.Element {
                 }
 
             }
-        }
-        catch (err: any) {
+        } catch (err: any) {
             console.log('error', err);
             dispatch(setShowLoadingIcon(false));
         }
     };
 
-    const handleSignUp = (e: any) => {
-        e.preventDefault();
-        const formattedDate = dayjs(dateOfBirth).format('DD/MM/YYYY');
-        const formPayload = {
-            ...signUpForm,
-            gender,
-            dateOfBirth: formattedDate
-        };
-        const errorMessages = checkValidateSignUpForm(formPayload);
-        setSignUpFormErrorMessages(errorMessages);
+    const handleSignUp = (values: any) => {
+        onSignUpUser(values);
+    };
 
-        let error = 0;
-        let key: keyof signUpFormErrorMessageTypes;
-        for (key in errorMessages) {
-            if (errorMessages[key].message !== '') error ++;
-        }
-
-        if (error === 0) {
-            onSignUpUser(formPayload);
-        }
+    const handleLoginWithGoogle = () => {
+        const newPath = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
+        const redirectRoute = `${process.env.REACT_APP_SERVER_END_POINT}/auth/google/redirect?redirect_url=${newPath}`;
+        window.location.href = redirectRoute;
     };
 
     return (
@@ -117,183 +189,117 @@ export default function SignUpForm(): JSX.Element {
                 className={'text-3xl font-semibold mb-4'}
             />
 
-            <form>
-                {/*Username*/}
-                <div className={''}>
-                    <div className={''}>
-                        <Typography
-                            content={'signup_page.signup_form.first_name.label'}
-                            className={'text-base mb-2'}
-                        />
-                        <InputTextField
-                            handleChange={handleChangeSignUpForm}
-                            placeholder={'signup_page.signup_form.first_name.placeholder'}
-                            
-                            value={signUpForm.userName}
-                            inputName={'userName'}
-                            className={'border mb-1'}
-                            isInvalidField={!!signUpFormErrorMessages.userName.message}
-                            dataTest={'userName'}
-                        />
-                        <ErrorMessage
-                            errorMessage={signUpFormErrorMessages.userName.message}
-                            field={signUpFormErrorMessages.userName.field}
-                            dataTest={'userNameErrMessage'}
-                        />
-                    </div>
+            <div className={'my-6'}>
+                <Button
+                    content={'login_page.login_form.login_with_google'}
+                    typoClassName={'text-gray-600 text-2xl'}
+                    dataTest={'loginGoogleBtn'}
+                    icon={<FcGoogle/>}
+                    buttonClassName={'border border-gray-400 text-black'}
+                    handleClick={() => handleLoginWithGoogle()}
+                />
+            </div>
 
-                </div>
+            <div className={'flex items-center justify-between gap-1'}>
+                <div className={'w-2/5 h-0.5 bg-gray-200'}/>
+                <Typography content={'signup_page.or'}/>
+                <div className={'w-2/5 h-0.5 bg-gray-200'}/>
+            </div>
 
-                {/*Email */}
-                <div className={'mt-2 flex'}>
-                    <div className={'w-1/2 mr-4'}>
-                        <Typography
-                        content={'signup_page.signup_form.email.label'}
-                        className={'text-base mb-2'}
-                    />
-                    <InputTextField
-                        handleChange={handleChangeSignUpForm}
-                        placeholder={'signup_page.signup_form.email.placeholder'}
-                        
-                        value={signUpForm.email}
-                        inputName={'email'}
-                        className={'border mb-1'}
-                        isInvalidField={!!signUpFormErrorMessages.email.message}
-                        dataTest={'email'}
-                    />
-                    <ErrorMessage
-                        errorMessage={signUpFormErrorMessages.email.message}
-                        field={signUpFormErrorMessages.email.field}
-                        dataTest={'emailErrMessage'}
-                    />
-                    </div>
+            <Formik
+                initialValues={defaultSignUpForm}
+                onSubmit={handleSignUp}
+                validationSchema={signUpValidationSchema}
+            >
+                {({ values: formikValues, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
+                    <Form onSubmit={handleSubmit}>
+                        <div className={'grid grid-cols-2 gap-4'}>
+                            {formFieldsUsernameArr.map((field: FieldProps) => {
+                                return (
+                                    <div className={`${field.inputName === 'userName' ? 'col-span-2' : ''}`}>
+                                        <RenderFormField
+                                            field={field}
+                                            formikValues={formikValues}
+                                            errors={errors}
+                                            touched={touched}
+                                            handleChangeForm={handleChange}
+                                            handleBlur={handleBlur}
+                                            setFieldValue={setFieldValue}
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
 
-                    {/* Phone number*/}
-                    <div className={'w-1/2'}>
-                        <Typography
-                            content={'signup_page.signup_form.phone_number.label'}
-                            className={'text-base mb-2'}
-                        />
-                        <InputTextField
-                            handleChange={handleChangeSignUpForm}
-                            placeholder={'signup_page.signup_form.phone_number.placeholder'}
-                            
-                            value={signUpForm.phoneNumber}
-                            inputName={'phoneNumber'}
-                            className={'border mb-1'}
-                            isInvalidField={!!signUpFormErrorMessages.phoneNumber.message}
-                            dataTest={'phoneNumber'}
-                        />
-                        <ErrorMessage
-                            errorMessage={signUpFormErrorMessages.phoneNumber.message}
-                            field={signUpFormErrorMessages.phoneNumber.field}
-                            dataTest={'phoneNumberErrMessage'}
-                        />
-                    </div>
-                </div>
+                        <div>
+                            {formPasswordFieldsArr.map((field: FieldProps) => {
+                                return (
+                                    <React.Fragment key={field.inputName}>
+                                        <div className="mt-3">
+                                            <RenderFormField
+                                                field={field}
+                                                formikValues={formikValues}
+                                                errors={errors}
+                                                touched={touched}
+                                                handleChangeForm={handleChange}
+                                                handleBlur={handleBlur}
+                                                setFieldValue={setFieldValue}
+                                            />
+                                        </div>
+                                    </React.Fragment>
+                                );
+                            })}
+                            <div className={'mt-4 bg-gray-300 rounded p-4'}>
+                                <Typography
+                                    content={'signup_page.signup_form.password_validate.label'}
+                                    className={'text-lg'}/>
+                            </div>
+                        </div>
 
-                {/*Password */}
-                <div className={'mt-2'}>
-                    <Typography
-                        content={'signup_page.signup_form.password.label'}
-                        className={'text-base mb-2'}
-                    />
-                    <InputTextField
-                        handleChange={handleChangeSignUpForm}
-                        placeholder={'signup_page.signup_form.password.placeholder'}
-                        
-                        value={signUpForm.password}
-                        inputName={'password'}
-                        className={'border mb-1'}
-                        isPasswordField={true}
-                        isInvalidField={!!signUpFormErrorMessages.password.message}
-                        dataTest={'password'}
-                    />
-                    <ErrorMessage
-                        errorMessage={signUpFormErrorMessages.password.message}
-                        field={signUpFormErrorMessages.password.field}
-                        dataTest={'passwordErrMessage'}
-                    />
-                </div>
+                        <div className={'grid grid-cols-2 gap-4'}>
+                            {formGenderDateFieldsArr.map((field: FieldProps) => {
+                                return (
+                                    <div className="mt-3">
+                                        <RenderFormField
+                                            field={field}
+                                            formikValues={formikValues}
+                                            errors={errors}
+                                            touched={touched}
+                                            handleChangeForm={handleChange}
+                                            handleBlur={handleBlur}
+                                            setFieldValue={setFieldValue}
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
 
-                {/*Repeat password*/}
-                <div className={'mt-2'}>
-                    <Typography
-                        content={'signup_page.signup_form.repeat_password.label'}
-                        className={'text-base mb-2'}
-                    />
-                    <InputTextField
-                        handleChange={handleChangeSignUpForm}
-                        placeholder={'signup_page.signup_form.repeat_password.placeholder'}
-                        
-                        value={signUpForm.confirmPassword}
-                        inputName={'confirmPassword'}
-                        className={'border mb-1'}
-                        isPasswordField={true}
-                        isInvalidField={!!signUpFormErrorMessages.confirmPassword.message}
-                        dataTest={'confirmPassword'}
-                    />
-                    <ErrorMessage
-                        errorMessage={signUpFormErrorMessages.confirmPassword.message}
-                        field={signUpFormErrorMessages.confirmPassword.field}
-                        dataTest={'confirmPasswordErrMessage'}
-                    />
-                </div>
-                
-                <div className={'mt-4 bg-gray-300 rounded p-4'}>
-                    <Typography content={'signup_page.signup_form.password_validate.label'} className={'text-base'}/>
-                </div>
-
-                {/*Gender*/}
-                <div className={'mt-2 flex w-full'}>
-                    <div className={'w-1/2'}>
-                        <Typography
-                            content={'signup_page.signup_form.gender.label'}
-                            className={'text-base mb-2'}
-                        />
-                        <BaseRadioButtons
-                            isRow={true}
-                            optionsList={gendersOptions}
-                            defaultValue={gender}
-                            handleSelect={handleSelectGender}
-                        />
-                    </div>
-
-                    <div className={'w-1/2'}>
-                        <Typography
-                            content={'signup_page.signup_form.date_of_birth.label'}
-                            className={'text-base mb-2'}
-                        />
-                        <DatePicker 
-                            selectedDay={dateOfBirth} 
-                            handleChangeDate={handleChangeDate}
-                        />
-                    </div>
-                </div>
-
-                <div className={'mt-6'}>
-                    <Button
-                        handleClick={handleSignUp}
-                        content={'signup_page.signup_form.submit_btn'}
-                        typoClassName={'text-white text-2xl'}
-                        dataTest={'sign-up-btn'}
-                    />
-                </div>
-
-                <div className={'flex mt-4'}>
-                        <Typography
-                            content={'signup_page.already_have_account'}
-                            className={'mr-1 text-base'}
-                        />
-                        <div className={'cursor-pointer'} onClick={redirectToLogin}>
-                            <Typography
-                                content={'signup_page.login_now'}
-                                className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
-                                dataTest={'navigate-to-login'}
+                        <div className={'mt-6'}>
+                            <Button
+                                btnType={'submit'}
+                                content={'signup_page.signup_form.submit_btn'}
+                                typoClassName={'text-white text-2xl'}
+                                dataTest={'sign-up-btn'}
                             />
                         </div>
-                    </div>
-            </form>
+
+                        <div className={'flex mt-4'}>
+                            <Typography
+                                content={'signup_page.already_have_account'}
+                                className={'mr-1 text-base'}
+                            />
+                            <div className={'cursor-pointer'} onClick={redirectToLogin}>
+                                <Typography
+                                    content={'signup_page.login_now'}
+                                    className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
+                                    dataTest={'navigate-to-login'}
+                                />
+                            </div>
+                        </div>
+                    </Form>
+                )}
+
+            </Formik>
         </div>
     );
 }

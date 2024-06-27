@@ -1,6 +1,5 @@
 import React from 'react';
 import { Pagination } from 'antd';
-import SelectBox from '@/components/base/SelectBox';
 import Typography from '@/components/base/Typography';
 import { useTranslation } from 'react-i18next';
 
@@ -39,7 +38,7 @@ const BasePagination: React.FC<paginationPropsTypes> = (props) => {
             <Typography
                     content={t('pagination.show_total', { start: getFirstIndexOfList(), end: getLastIndexOfList(), total: total })}
                     needTranslate={true}
-                    className={'text-sm'}
+                    className={'text-base'}
                 />
             <Pagination
                 total={total}

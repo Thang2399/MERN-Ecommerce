@@ -2,6 +2,7 @@
   "required": "Required",
   "login_page": {
     "label": "Login",
+    "or": "Or",
     "not_have_an_account": "Not having an account yet?",
     "sign_up_now": "Sign up now",
     "forgot_password": "Forget password?",
@@ -22,6 +23,7 @@
   },
   "signup_page": {
     "label": "Sign Up",
+    "or": "Or",
     "signup_form": {
       "first_name": {
         "label": "User Name",
