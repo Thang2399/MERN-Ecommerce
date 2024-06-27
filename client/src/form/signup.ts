@@ -1,12 +1,14 @@
 import { defaultSignUpFormType, signUpFormErrorMessageTypes } from '../types/signup';
+import dayjs from 'dayjs';
+
 export const defaultSignUpForm: defaultSignUpFormType = {
     userName: '',
     phoneNumber: '',
     email: '',
     password: '',
     confirmPassword: '',
-    gender: '',
-    dateOfBirth: '',
+    gender: 'male',
+    dateOfBirth: dayjs().toString(),
 };
 
 export const defaultSignUpFormErrorMessages: signUpFormErrorMessageTypes = {

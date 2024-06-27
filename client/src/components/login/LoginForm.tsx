@@ -40,7 +40,7 @@ export default function LoginForm(): JSX.Element {
             .required('error_messages.filed_required'),
     });
 
-    const formFieldsArr = [
+    const formFieldsArr: FieldProps[] = [
         {
             label: 'login_page.login_form.email',
             fieldType: FIELD_TYPE.INPUT,
@@ -123,87 +123,105 @@ export default function LoginForm(): JSX.Element {
                 dataTest={'login-title'}
             />
 
-            <Formik
-                initialValues={defaultLoginForm}
-                enableReinitialize={true}
-                validationSchema={loginValidationSchema}
-                onSubmit={handleLogin}
-            >
-                {({ values: formikValues, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
-                    <Form onSubmit={handleSubmit}>
-                        {formFieldsArr.map((field: FieldProps) => {
-                            return (
-                                <React.Fragment key={field.inputName}>
-                                    <div className="mt-3">
-                                        <RenderFormField
-                                            field={field}
-                                            formikValues={formikValues}
-                                            errors={errors}
-                                            touched={touched}
-                                            handleChangeForm={handleChange}
-                                            handleBlur={handleBlur}
-                                            setFieldValue={setFieldValue}
+            <div className={'my-6'}>
+                <Button
+                    content={'login_page.login_form.login_with_google'}
+                    typoClassName={'text-gray-600 text-2xl'}
+                    dataTest={'loginGoogleBtn'}
+                    icon={<FcGoogle/>}
+                    buttonClassName={'border border-gray-400 text-black'}
+                    handleClick={() => handleLoginWithGoogle()}
+                />
+            </div>
+
+            <div className={'flex items-center justify-between gap-1'}>
+                <div className={'w-2/5 h-0.5 bg-gray-200'}/>
+                <Typography content={'login_page.or'} />
+                <div className={'w-2/5 h-0.5 bg-gray-200'}/>
+            </div>
+
+
+                <Formik
+                    initialValues={defaultLoginForm}
+                    enableReinitialize={true}
+                    validationSchema={loginValidationSchema}
+                    onSubmit={handleLogin}
+                >
+                    {({
+                          values: formikValues,
+                          errors,
+                          touched,
+                          handleChange,
+                          handleBlur,
+                          handleSubmit,
+                          setFieldValue
+                      }) => (
+                        <Form onSubmit={handleSubmit}>
+                            {formFieldsArr.map((field: FieldProps) => {
+                                return (
+                                    <React.Fragment key={field.inputName}>
+                                        <div className="mt-3">
+                                            <RenderFormField
+                                                field={field}
+                                                formikValues={formikValues}
+                                                errors={errors}
+                                                touched={touched}
+                                                handleChangeForm={handleChange}
+                                                handleBlur={handleBlur}
+                                                setFieldValue={setFieldValue}
+                                            />
+                                        </div>
+                                    </React.Fragment>
+                                );
+                            })}
+
+                            <div className={'mt-3 flex justify-between items-center'}>
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={checked}
+                                            onChange={(event) => setChecked(event.target.checked)}
                                         />
-                                    </div>
-                                </React.Fragment>
-                            );
-                        })}
-
-                        <div className={'mt-3 flex justify-between items-center'}>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={checked}
-                                        onChange={(event) => setChecked(event.target.checked)}
+                                    }
+                                    label={t('login_page.login_form.remember_me')}
+                                />
+                                <div className={'cursor-pointer'} onClick={redirectToForgetPassword}>
+                                    <Typography
+                                        content={'login_page.forgot_password'}
+                                        className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
+                                        dataTest={'navigate-to-forgot-pass'}
                                     />
-                                }
-                                label={t('login_page.login_form.remember_me')}
-                            />
-                            <div className={'cursor-pointer'} onClick={redirectToForgetPassword}>
-                            <Typography
-                                    content={'login_page.forgot_password'}
-                                    className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
-                                    dataTest={'navigate-to-forgot-pass'}
+                                </div>
+                            </div>
+
+                            <div className={'mt-6'}>
+                                <Button
+                                    buttonClassName={'bg-gray-400'}
+                                    btnType={'submit'}
+                                    content={'login_page.login_form.submit_btn'}
+                                    typoClassName={'text-white text-2xl'}
+                                    dataTest={'loginBtn'}
                                 />
                             </div>
-                        </div>
 
-                        <div className={'mt-6'}>
-                            <Button
-                                content={'login_page.login_form.login_with_google'}
-                                typoClassName={'text-gray-600 text-2xl'}
-                                dataTest={'loginGoogleBtn'}
-                                icon={<FcGoogle/>}
-                                buttonClassName={'border border-gray-400 text-black'}
-                                handleClick={() => handleLoginWithGoogle()}
-                            />
-
-                            <Button
-                                buttonClassName={'mt-4 bg-gray-400'}
-                                btnType={'submit'}
-                                content={'login_page.login_form.submit_btn'}
-                                typoClassName={'text-white text-2xl'}
-                                dataTest={'loginBtn'}
-                            />
-                        </div>
-
-                        <div className={'flex mt-4'}>
-                            <Typography
-                                content={'login_page.not_have_an_account'}
-                                className={'mr-1 text-base'}
-                            />
-                            <div className={'cursor-pointer'} onClick={redirectToSignUp}>
+                            <div className={'flex mt-4'}>
                                 <Typography
-                                    content={'login_page.sign_up_now'}
-                                    className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
-                                    dataTest={'navigate-to-sign-up'}
+                                    content={'login_page.not_have_an_account'}
+                                    className={'mr-1 text-base'}
                                 />
+                                <div className={'cursor-pointer'} onClick={redirectToSignUp}>
+                                    <Typography
+                                        content={'login_page.sign_up_now'}
+                                        className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
+                                        dataTest={'navigate-to-sign-up'}
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                    </Form>
-                )}
-            </Formik>
+                        </Form>
+                    )}
+                </Formik>
+
         </div>
     );
 }

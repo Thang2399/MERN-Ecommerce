@@ -87,11 +87,11 @@ const MyAccountPage = () => {
             label: 'my_account_page.form.gender.label',
             htmlFor: 'gender',
             fieldType: FIELD_TYPE.RADIO,
-            placeholder: 'my_account_page.form.phone_number.placeholder',
+            placeholder: '',
             inputName: 'gender',
             dataTest: 'gender',
             errorMessageField: 'form.gender',
-            errorMessageDataTest: 'errorDateOfBirth',
+            errorMessageDataTest: 'errorGender',
             checkboxList: gendersOptions,
             isRowRadio: true,
             handleChange: (setFieldValue: (field: string, value: any, shouldValidate?: (boolean | undefined)) => Promise<void | FormikErrors<any>>, value: string) => {
@@ -113,7 +113,7 @@ const MyAccountPage = () => {
             label: 'my_account_page.form.date_of_birth.label',
             htmlFor: 'dateOfBirth',
             fieldType: FIELD_TYPE.CALENDAR,
-            placeholder: 'my_account_page.form.phone_number.placeholder',
+            placeholder: '',
             inputName: 'dateOfBirth',
             dataTest: 'dateOfBirth',
             errorMessageField: 'form.date_of_birth',
@@ -123,7 +123,6 @@ const MyAccountPage = () => {
                 setFieldValue('dateOfBirth', convertDate);
             }
         },
-
     ];
 
     const handleUpdateUserInformation = async (values: any) => {

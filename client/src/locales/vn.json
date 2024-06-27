@@ -2,6 +2,7 @@
   "required": "Bắt buộc",
   "login_page": {
     "label": "Đăng nhập",
+    "or": "Hoặc",
     "not_have_an_account": "Chưa có tài khoản?",
     "sign_up_now": "Đăng kí ngay",
     "forgot_password": "Quên mật khẩu?",
@@ -21,6 +22,7 @@
   },
   "signup_page": {
     "label": "Đăng kí",
+    "or": "Hoặc",
     "signup_form": {
       "first_name": {
         "label": "Tên",
