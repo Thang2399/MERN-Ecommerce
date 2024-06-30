@@ -38,7 +38,7 @@ const BasePagination: React.FC<paginationPropsTypes> = (props) => {
             <Typography
                     content={t('pagination.show_total', { start: getFirstIndexOfList(), end: getLastIndexOfList(), total: total })}
                     needTranslate={true}
-                    className={'text-base'}
+                    className={'text-sm'}
                 />
             <Pagination
                 total={total}

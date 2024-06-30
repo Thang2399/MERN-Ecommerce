@@ -12,5 +12,6 @@ export type FieldProps = {
     disabledField?: boolean,
     isRowRadio?: boolean,
     handleChange?: (setFieldValue?: any, value?: any) => void,
-    isPhoneNumberInput?: boolean
+    isPhoneNumberInput?: boolean,
+    className?: string
 }

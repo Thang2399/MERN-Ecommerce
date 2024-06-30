@@ -8,6 +8,7 @@ export type createUserAddressType = {
     nation?: string,
     isDefaultAddress?: boolean,
     isWorkingAddress?: boolean
+    _id?: string
 }
 
 export type deleteUserAddressType = {

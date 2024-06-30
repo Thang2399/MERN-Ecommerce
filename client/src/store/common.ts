@@ -17,15 +17,8 @@ interface CommonState {
         email: string,
         userName: string
     },
-    showLoginModal: boolean,
+    showLoadingBtn: boolean,
 }
-
-const getCommonUserInfor = (name: string) => {
-    const result = getCookie(name);
-    if (typeof result === 'string') {
-        return result;
-    } else return '';
-};
 
 const initialState: CommonState = {
     showPopupConfirm: false,
@@ -41,7 +34,7 @@ const initialState: CommonState = {
         email: '',
         userName: ''
     },
-    showLoginModal: false
+    showLoadingBtn: false
 };
 
 export const commonSlice = createSlice({
@@ -67,8 +60,8 @@ export const commonSlice = createSlice({
         setUserCommonInfor(state, action: PayloadAction<CommonState['userCommonInfor']>) {
             state.userCommonInfor = action.payload;
         },
-        setShowLoginModal(state, action: PayloadAction<boolean>) {
-            state.showLoginModal = action.payload;
+        setShowLoadingBtn(state, action: PayloadAction<boolean>) {
+            state.showLoadingBtn = action.payload;
         }
     },
 });
@@ -79,7 +72,7 @@ export const {
     setShowToastMessage,
     setHideToastMessage,
     setUserCommonInfor,
-    setShowLoginModal
+    setShowLoadingBtn
 } = commonSlice.actions;
 
 export default commonSlice.reducer;
