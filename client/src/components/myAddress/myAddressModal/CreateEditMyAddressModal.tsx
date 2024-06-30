@@ -6,7 +6,7 @@ import Typography from '@/components/base/Typography';
 import { FieldProps } from '@/types/field';
 import { FIELD_TYPE } from '@/constants/field';
 import { optionsAddressTypes } from '@/constants/checkout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createUserAddressType } from '@/types/userAddress';
 import { Form, Formik, FormikErrors } from 'formik';
 import RenderFormField from '@/components/base/RenderFormField';
@@ -19,6 +19,7 @@ import { modalTypes } from '@/types/modal';
 import * as yup from 'yup';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
+import services from '@/services';
 
 const CreateEditAddressModal: React.FC<modalTypes> = ({ open, handleClose, handleSubmit }) => {
     const commonUserInfor = useSelector((state: RootState) => state.commonReducer.userCommonInfor);
@@ -30,7 +31,6 @@ const CreateEditAddressModal: React.FC<modalTypes> = ({ open, handleClose, handl
             address: '',
             city: 'Ha Noi',
             district: '',
-            isDefaultAddress: false,
             isWorkingAddress: false,
             nation: 'Viet Nam',
             phoneNumber: '',
@@ -38,6 +38,8 @@ const CreateEditAddressModal: React.FC<modalTypes> = ({ open, handleClose, handl
             userName: ''
         }
     );
+
+    const [ isDefaultAddress, setIsDefaultAddress ] = useState<boolean>(false);
 
     const userAddressValidationSchema = yup.object({
         userName: yup.string().required('error_messages.filed_required'),
@@ -126,11 +128,29 @@ const CreateEditAddressModal: React.FC<modalTypes> = ({ open, handleClose, handl
         },
     ];
 
+    const handleGetDetailUserAddress = async () => {
+        if (id) {
+            try {
+                const res = await services.getDetailUserAddress(id);
+                console.log('res handleGetDetailUserAddress', res);
+                const data = res.data;
+                setIsDefaultAddress(data.isDefaultAddress);
+                setUserAddressForm(data);
+            } catch (err) {
+                console.log('err', err);
+            }
+        }
+    };
+
+    useEffect(() => {
+        handleGetDetailUserAddress();
+    }, [ id ]);
+
     const handleCreateEditUserAddress = (values: any) => {
         const payload = {
             ...values,
             userId: commonUserInfor.id,
-            isDefaultAddress: userAddressForm.isDefaultAddress,
+            isDefaultAddress: isDefaultAddress,
         };
 
         if (commonUserInfor.id) {
@@ -138,11 +158,17 @@ const CreateEditAddressModal: React.FC<modalTypes> = ({ open, handleClose, handl
         }
     };
 
+    const onClose = () => {
+        searchParams.delete('id');
+        setSearchParams(searchParams);
+        handleClose();
+    };
+
     return (
         <div>
             <Modal
                 open={open}
-                onClose={handleClose}
+                onClose={onClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -159,6 +185,7 @@ const CreateEditAddressModal: React.FC<modalTypes> = ({ open, handleClose, handl
                             initialValues={userAddressForm}
                             onSubmit={handleCreateEditUserAddress}
                             validationSchema={userAddressValidationSchema}
+                            enableReinitialize={true}
                         >
                             {({
                                   values: formikValues,
@@ -203,11 +230,8 @@ const CreateEditAddressModal: React.FC<modalTypes> = ({ open, handleClose, handl
                                         <FormControlLabel
                                             control={
                                                 <Checkbox
-                                                    checked={userAddressForm.isDefaultAddress}
-                                                    onChange={(event) => setUserAddressForm((prev) => ({
-                                                        ...prev,
-                                                        isDefaultAddress: event.target.checked
-                                                    }))}
+                                                    checked={isDefaultAddress}
+                                                    onChange={(event) => setIsDefaultAddress(event.target.checked)}
                                                 />
                                             }
                                             label={t('my_address_page.form.default_address.label')}
@@ -219,7 +243,7 @@ const CreateEditAddressModal: React.FC<modalTypes> = ({ open, handleClose, handl
                                                 content={'my_address_page.form.buttons.cancel'}
                                                 typoClassName={'text-gray-600 text-2xl'}
                                                 dataTest={'submitBtn'}
-                                                handleClick={handleClose}
+                                                handleClick={onClose}
                                             />
 
                                             <Button

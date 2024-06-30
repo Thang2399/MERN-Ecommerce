@@ -87,6 +87,7 @@ export default function LoginButton(): JSX.Element {
     const navigate = useNavigate();
     const accessToken = getCookie(COMMON_CONSTANTS.ACCESS_TOKEN);
     const userCommonInfor = useSelector((state: RootState) => state.commonReducer.userCommonInfor);
+    console.log('userCommonInfor', userCommonInfor);
 
     const handleLogin = () => {
         navigate('/login');

@@ -35,3 +35,14 @@ export const optionsListPaymentMethod = [
         value: Payment_Method_Enum.CARD
     }
 ];
+
+export const optionsAddressTypes = [
+    {
+        label: 'my_address_page.form.address_type.home',
+        value: false,
+    },
+    {
+        label: 'my_address_page.form.address_type.office',
+        value: true,
+    }
+];

@@ -216,7 +216,7 @@ export default function SignUpForm(): JSX.Element {
                         <div className={'grid grid-cols-2 gap-4'}>
                             {formFieldsUsernameArr.map((field: FieldProps) => {
                                 return (
-                                    <div className={`${field.inputName === 'userName' ? 'col-span-2' : ''}`}>
+                                    <div className={`${field.inputName === 'userName' ? 'col-span-2' : ''}`} key={field.inputName}>
                                         <RenderFormField
                                             field={field}
                                             formikValues={formikValues}

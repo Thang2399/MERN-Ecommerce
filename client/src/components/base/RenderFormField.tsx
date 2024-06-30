@@ -36,11 +36,12 @@ const RenderFormField: React.FC<IRenderFormField> = ({ field, formikValues, erro
         disabledField = false,
         isRowRadio = false,
         handleChange,
-        isPhoneNumberInput
+        isPhoneNumberInput,
+        className = ''
     } = field;
 
     return (
-        <>
+        <div className={`${className}`}>
             {showLabel && (
                 <InputLabel shrink htmlFor={htmlFor}>
                     <Typography
@@ -114,7 +115,7 @@ const RenderFormField: React.FC<IRenderFormField> = ({ field, formikValues, erro
                     dataTest={errorMessageDataTest}
                 />
             )}
-        </>
+        </div>
     );
 };
 

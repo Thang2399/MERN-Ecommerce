@@ -217,7 +217,7 @@
     "country": "country",
     "city": "city",
     "district": "district",
-    "street_address": "street address",
+    "address": "address",
     "password": "password",
     "otp": "OTP",
     "current_password": "current password",
@@ -374,5 +374,58 @@
     },
   "pagination": {
     "show_total": "{{start}} - {{end}} of {{total}} items"
+  },
+  "my_address_page": {
+    "label": "My Address",
+    "create_label_button": "Create Address",
+    "create_label": "Create My Address",
+    "edit_label": "Edit My Address",
+    "form": {
+      "user_name": {
+        "label": "Customer Name",
+        "placeholder": "Customer name"
+      },
+      "phone_number": {
+        "label": "Phone Number",
+        "placeholder": "Phone number"
+      },
+      "country": {
+        "label": "Country",
+        "placeholder": "Country"
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "City"
+      },
+      "district": {
+        "label": "District",
+        "placeholder": "District"
+      },
+      "address": {
+        "label": "Address",
+        "placeholder": "Address"
+      },
+      "address_type": {
+        "label": "Address Type",
+        "home": "Home",
+        "office": "Office",
+        "note": "Note: We will deliver items on working hours from 8 a.m to 5 p.m on working days if you choose office address"
+      },
+      "default_address": {
+        "label": "Set as default address",
+        "title": "Default address"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "create": "Create",
+        "edit": "Edit"
+      },
+      "response": {
+        "create_success": "Create address successfully!",
+        "create_failed": "Create address failed!",
+        "edit_success": "Edit address successfully!",
+        "edit_failed": "Edit address failed!"
+      }
+  }
   }
 }

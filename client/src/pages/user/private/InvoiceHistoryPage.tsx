@@ -215,7 +215,6 @@ export default function InvoiceHistoryPage(): JSX.Element {
                     };
                 });
                 setListInvoices(convertedData);
-                console.log('check run 2');
                 setPaginationData((prev: paginationDataType) => ({
                     ...prev,
                     total: data.totalCount
@@ -230,7 +229,6 @@ export default function InvoiceHistoryPage(): JSX.Element {
     };
 
     useEffect(() => {
-        console.log('check run 1');
         getListInvoicesFromEmail();
     }, [ userEmail, paginationData.currentPage, paginationData.pageSize ]);
 
@@ -251,7 +249,7 @@ export default function InvoiceHistoryPage(): JSX.Element {
             <Typography
                 content={'invoices_history_page.label'}
                 variant={'h1'}
-                className={'text-3xl font-semibold'}
+                className={'text-4xl text-black font-semibold capitalize mb-10'}
                 needTranslate={true}
             />
 
@@ -261,7 +259,7 @@ export default function InvoiceHistoryPage(): JSX.Element {
                         <div>
                             <BaseTable columns={columns} data={listInvoices}/>
 
-                            <div className={'my-4 pb-4'}>
+                            <div className={'my-10 pb-4'}>
                                 <BasePagination
                                     pageSize={paginationData.pageSize}
                                     currentPage={paginationData.currentPage}

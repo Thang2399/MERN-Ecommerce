@@ -161,7 +161,7 @@ const MyAccountPage = () => {
             <Typography
                 content={'my_account_page.label'}
                 variant={'h1'}
-                className={'text-4xl text-black font-semibold'}
+                className={'text-4xl text-black font-semibold capitalize mb-10'}
             />
             <Formik
                 initialValues={userInfor}
@@ -191,7 +191,7 @@ const MyAccountPage = () => {
                             })}
                         </div>
 
-                        <div className={'flex gap-5'}>
+                        <div className={'flex gap-5 mt-10'}>
                             <div className={'w-1/4'}>
                                 <Button
                                     content={'my_account_page.form.button.go_back'}
