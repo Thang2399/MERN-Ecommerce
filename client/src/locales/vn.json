@@ -63,25 +63,47 @@
       "submit_btn": "Đăng kí"
     },
     "already_have_account": "Đã có tài khoản?",
-    "login_now": "Đăng nhập ngay"
+    "login_now": "Đăng nhập ngay",
+    "response": {
+      "sign_up_failed": "Đăng kí thất bại!",
+      "duplicate_email": "Email đã dược đăng kí!"
+    }
   },
   "forget_password_page": {
     "label": "Quên mật khẩu",
+    "not_receive_email": "Không nhận được email?",
+    "back_to_login": "Về màn Đăng nhập",
+    "send_email_success": {
+      "label": "Gửi Email Thành Công",
+      "description": "Một email đã được gửi về địa chỉ email",
+      "check_and_follow": "Hãy kiểm tra và làm theo hướng dẫn!"
+    },
     "forget_password_form": {
       "email": {
         "label": "Email",
         "placeholder": "Nhập địa chỉ email"
       },
-      "button_label": "Gửi email"
+      "button_label": "Gửi email",
+      "button_resend_label": "Gửi lại email"
+    },
+    "response_message": {
+      "send_mail_success": "Gửi email thành công!",
+      "send_mail_failed": "Gửi email thất bại!",
+      "not_found_email": "Địa chỉ email này không tồn tại!"
     }
   },
   "reset_password_page": {
     "popup": {
       "title": "Thông báo",
-      "label": "Một mã OTP vừa được gửi về tài khoản emaiil của bạn. Hãy kiểm tra email của bạn.",
+      "label": "Email đặt lại mật khẩu đã hết hạn. Hãy gửi một yêu cầu quên mật khẩu khác",
       "confirm": "OK"
     },
     "label": "Thiết lập lại mật khẩu",
+    "token_expired": {
+      "label": "Email Hết Hạn",
+      "description": "Email đặt lại mật khẩu đã hết hạn. Hãy gửi một yêu cầu quên mật khẩu khác",
+      "back_to_forget_password": "Về màn hình Quên Mật Khẩu"
+    },
     "reset_password_form": {
       "otp": {
         "label": "Mật mã dùng một lần (OTP)",

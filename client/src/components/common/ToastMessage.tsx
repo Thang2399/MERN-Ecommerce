@@ -2,9 +2,9 @@ import React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { RootState } from '@/store';
 import { useTranslation } from 'react-i18next';
-import { setHideToastMessage } from '../../store/common';
+import { setHideToastMessage } from '@/store/common';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -24,30 +24,26 @@ const ToastMessage: React.FC = () => {
     };
 
     return (
-        <div>
-            <Snackbar
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                autoHideDuration={5000}
-                open={toastMessage.show}
-                key={'key'}
-                onClose={handleClose}
-            >
-                {
-                    toastMessage.type === 'error'
-                        ? (
-                            <Alert severity='error' sx={{ width: '100%' }} onClose={handleClose}>
-                                {t(toastMessage.message)}
-                            </Alert>
-                        )
-                        : (
-                            <Alert severity='success' sx={{ width: '100%' }} onClose={handleClose}>
-                            {t(toastMessage.message)}
-                        </Alert>
-                        )
-                }
-
-            </Snackbar>
-        </div>
+        <>
+            {toastMessage.show && (
+                <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    autoHideDuration={5000}
+                    open={toastMessage.show}
+                    key={'key'}
+                    onClose={handleClose}
+                >
+                    <Alert
+                        severity={toastMessage.type}
+                        sx={{ width: '100%' }}
+                        onClose={handleClose}
+                        data-test={'toastMessage'}
+                    >
+                        {t(toastMessage.message)}
+                    </Alert>
+                </Snackbar>
+            )}
+        </>
     );
 };
 

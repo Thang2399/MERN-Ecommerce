@@ -15,6 +15,7 @@ export default function LoadingIcon(): JSX.Element {
                         open={true}
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
+                        data-test={'loadingIcon'}
                     >
                         <>
                             <div className={'flex justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'}>

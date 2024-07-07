@@ -1,7 +1,7 @@
 export type FieldProps = {
     showLabel?: boolean,
     label?: string,
-    fieldType: string,
+    fieldType?: string,
     htmlFor: string,
     placeholder?: string,
     inputName: string,
