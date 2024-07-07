@@ -41,7 +41,9 @@ const InputPasswordField: React.FC<InputProps> = ({
 
             <div
                 className={`absolute top-0 right-0 h-full pr-2.5 text-2xl flex justify-center items-center ${isInvalidField ? 'text-red-400' : 'text-gray-400'} cursor-pointer`}
-                onClick={handleShowPassword}>
+                onClick={handleShowPassword}
+                data-test={`${dataTest}ToggleIcon`}
+            >
                 <div>
                     {showPassword ? <AiOutlineEye/> : <AiOutlineEyeInvisible/>}
                 </div>

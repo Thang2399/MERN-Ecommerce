@@ -24,7 +24,7 @@ interface IRenderFormField {
 const RenderFormField: React.FC<IRenderFormField> = ({ field, formikValues, errors, touched, handleBlur, handleChangeForm, setFieldValue }) => {
     const {
         showLabel = true,
-        fieldType,
+        fieldType = FIELD_TYPE.INPUT,
         label = '',
         htmlFor,
         placeholder = '',
@@ -46,7 +46,7 @@ const RenderFormField: React.FC<IRenderFormField> = ({ field, formikValues, erro
                 <InputLabel shrink htmlFor={htmlFor}>
                     <Typography
                         content={label}
-                        className={'text-2xl mb-2 text-black cursor-pointer w-fit capitalize'}
+                        className={'text-xl mb-2 text-black cursor-pointer w-fit capitalize'}
                     />
                 </InputLabel>
             )}

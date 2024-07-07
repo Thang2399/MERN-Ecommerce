@@ -22,6 +22,7 @@ import { FcGoogle } from 'react-icons/fc';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useTranslation } from 'react-i18next';
+import LoginWithGoogleButton from '@/components/loginWithGoogleBtn/LoginWithGoogleButton';
 
 export default function LoginForm(): JSX.Element {
     const { t } = useTranslation();
@@ -59,7 +60,7 @@ export default function LoginForm(): JSX.Element {
             inputName: 'password',
             dataTest: 'password',
             errorMessageField: 'form.password',
-            errorMessageDataTest: 'errorEmail'
+            errorMessageDataTest: 'errorPassword'
         }
     ];
 
@@ -109,12 +110,6 @@ export default function LoginForm(): JSX.Element {
         onLoginUser(payload);
     };
 
-    const handleLoginWithGoogle = () => {
-        const newPath = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
-        const redirectRoute = `${process.env.REACT_APP_SERVER_END_POINT}/auth/google/redirect?redirect_url=${newPath}`;
-        window.location.href = redirectRoute;
-    };
-
     return (
         <div className={'w-full border p-5 rounded-md'}>
             <Typography
@@ -124,14 +119,7 @@ export default function LoginForm(): JSX.Element {
             />
 
             <div className={'my-6'}>
-                <Button
-                    content={'login_page.login_form.login_with_google'}
-                    typoClassName={'text-gray-600 text-2xl'}
-                    dataTest={'loginGoogleBtn'}
-                    icon={<FcGoogle/>}
-                    buttonClassName={'border border-gray-400 text-black'}
-                    handleClick={() => handleLoginWithGoogle()}
-                />
+                <LoginWithGoogleButton />
             </div>
 
             <div className={'flex items-center justify-between gap-1'}>
@@ -139,7 +127,6 @@ export default function LoginForm(): JSX.Element {
                 <Typography content={'login_page.or'} />
                 <div className={'w-2/5 h-0.5 bg-gray-200'}/>
             </div>
-
 
                 <Formik
                     initialValues={defaultLoginForm}
@@ -181,6 +168,7 @@ export default function LoginForm(): JSX.Element {
                                         <Checkbox
                                             checked={checked}
                                             onChange={(event) => setChecked(event.target.checked)}
+                                            data-test={'checkboxRemember'}
                                         />
                                     }
                                     label={t('login_page.login_form.remember_me')}
@@ -189,7 +177,7 @@ export default function LoginForm(): JSX.Element {
                                     <Typography
                                         content={'login_page.forgot_password'}
                                         className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
-                                        dataTest={'navigate-to-forgot-pass'}
+                                        dataTest={'navigateToForgotPassword'}
                                     />
                                 </div>
                             </div>
@@ -199,7 +187,7 @@ export default function LoginForm(): JSX.Element {
                                     buttonClassName={'bg-gray-400'}
                                     btnType={'submit'}
                                     content={'login_page.login_form.submit_btn'}
-                                    typoClassName={'text-white text-2xl'}
+                                    typoClassName={'text-white text-xl'}
                                     dataTest={'loginBtn'}
                                 />
                             </div>
@@ -213,7 +201,7 @@ export default function LoginForm(): JSX.Element {
                                     <Typography
                                         content={'login_page.sign_up_now'}
                                         className={'text-base text-gray-500 underline hover:text-cyan-700 hover:no-underline'}
-                                        dataTest={'navigate-to-sign-up'}
+                                        dataTest={'navigateToSignUp'}
                                     />
                                 </div>
                             </div>

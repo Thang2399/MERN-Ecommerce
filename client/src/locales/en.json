@@ -64,14 +64,20 @@
       "submit_btn": "Sign Up"
     },
     "already_have_account": "Already have an account?",
-    "login_now": "Login now"
+    "login_now": "Login now",
+    "response": {
+      "sign_up_failed": "Sign up failed!",
+      "duplicate_email": "This is email is already signed up!"
+    }
   },
   "forget_password_page": {
     "label": "Forget Password",
     "not_receive_email": "Didn't receive email?",
+    "back_to_login": "Back to Login",
     "send_email_success": {
       "label": "Send Email Successfully",
-      "description": "An email has been send to your email address {{email}}. Please check and follow the instruction"
+      "description": "An email has been sent to your email address",
+      "check_and_follow": "Please check and follow the instruction!"
     },
     "forget_password_form": {
       "email": {
@@ -83,16 +89,22 @@
     },
     "response_message": {
       "send_mail_success": "Send email successfully!",
-      "send_mail_failed": "Send email failed!"
+      "send_mail_failed": "Send email failed!",
+      "not_found_email": "This email address does not exist!"
     }
   },
   "reset_password_page": {
     "popup": {
       "title": "Alert",
-      "label": "This reset password link has expired. Please try again",
+      "label": "This email link has expired. Please send another forget password request",
       "confirm": "OK"
     },
     "label": "Reset Password",
+    "token_expired": {
+      "label": "Email Has Expired",
+      "description": "This email link has expired. Please send another forget password request",
+      "back_to_forget_password": "Back to Forget Password"
+    },
     "reset_password_form": {
       "otp": {
         "label": "One time password (OTP)",
@@ -110,7 +122,8 @@
     },
     "response_message": {
       "reset_success": "Reset password successfully! Please log in again!",
-      "wrong_otp": "Your OTP is incorrect! Please try again"
+      "wrong_otp": "Your OTP is incorrect! Please try again",
+      "reset_failed": "Reset password failed"
     }
   },
   "home_page": {

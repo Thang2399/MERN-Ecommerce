@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -10,7 +10,7 @@ import services from '../../services';
 import { setShowLoadingIcon, setShowToastMessage } from '@/store/common';
 import { COMMON_CONSTANTS, HTTP_STATUS, REGEX } from '@/constants';
 import { defaultSignUpForm } from '@/form/signup';
-import { defaultSignUpFormType, signUpFormPayloadTypes } from '@/types/signup';
+import { signUpFormPayloadTypes } from '@/types/signup';
 import { USER_ROUTES } from '@/routes/constants';
 import { gendersOptions } from '@/constants/user';
 import { FieldProps } from '@/types/field';
@@ -18,16 +18,16 @@ import { FIELD_TYPE } from '@/constants/field';
 import { Form, Formik, FormikErrors } from 'formik';
 import { formatDateTime } from '@/utils/misc';
 import RenderFormField from '@/components/base/RenderFormField';
-import { FcGoogle } from 'react-icons/fc';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
+import { SIGN_UP } from '@/constants/auth';
+import LoginWithGoogleButton from '@/components/loginWithGoogleBtn/LoginWithGoogleButton';
 
 export default function SignUpForm(): JSX.Element {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [ signUpForm, setSignUpForm ] = useState<defaultSignUpFormType>(defaultSignUpForm);
 
     const formFieldsUsernameArr: FieldProps[] = [
         {
@@ -119,7 +119,7 @@ export default function SignUpForm(): JSX.Element {
     ];
 
     const signUpValidationSchema = yup.object({
-        userName: yup.string().required('error_messages.filed_required'),
+        userName: yup.string().trim().required('error_messages.filed_required'),
         email: yup
             .string()
             .required('error_messages.filed_required')
@@ -144,7 +144,6 @@ export default function SignUpForm(): JSX.Element {
         try {
             const res = await services.signUpUser(payload);
             if (res && res.status === HTTP_STATUS.CREATE_SUCCESS) {
-                console.log('res', res);
                 const loginPayload = {
                     email: payload.email,
                     password: payload.password,
@@ -168,18 +167,18 @@ export default function SignUpForm(): JSX.Element {
             }
         } catch (err: any) {
             console.log('error', err);
+            const errorMessage = err.response?.data.message || '';
+            dispatch(setShowToastMessage({
+                show: true,
+                message: `signup_page.response.${errorMessage === SIGN_UP.DUPLICATE_EMAIL ? 'duplicate_email' : 'sign_up_failed'}`,
+                type: 'error'
+            }));
             dispatch(setShowLoadingIcon(false));
         }
     };
 
     const handleSignUp = (values: any) => {
         onSignUpUser(values);
-    };
-
-    const handleLoginWithGoogle = () => {
-        const newPath = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
-        const redirectRoute = `${process.env.REACT_APP_SERVER_END_POINT}/auth/google/redirect?redirect_url=${newPath}`;
-        window.location.href = redirectRoute;
     };
 
     return (
@@ -190,14 +189,7 @@ export default function SignUpForm(): JSX.Element {
             />
 
             <div className={'my-6'}>
-                <Button
-                    content={'login_page.login_form.login_with_google'}
-                    typoClassName={'text-gray-600 text-2xl'}
-                    dataTest={'loginGoogleBtn'}
-                    icon={<FcGoogle/>}
-                    buttonClassName={'border border-gray-400 text-black'}
-                    handleClick={() => handleLoginWithGoogle()}
-                />
+                <LoginWithGoogleButton />
             </div>
 
             <div className={'flex items-center justify-between gap-1'}>
@@ -278,7 +270,7 @@ export default function SignUpForm(): JSX.Element {
                             <Button
                                 btnType={'submit'}
                                 content={'signup_page.signup_form.submit_btn'}
-                                typoClassName={'text-white text-2xl'}
+                                typoClassName={'text-white text-xl'}
                                 dataTest={'sign-up-btn'}
                             />
                         </div>

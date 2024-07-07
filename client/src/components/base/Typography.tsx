@@ -22,11 +22,11 @@ const Typography: React.FC<Props> = ({
 	return (
 		<>
             {needTranslate
-                ? <CustomTag className={`${className} text-lg font-sans`} data-test={dataTest}>
+                ? <CustomTag className={`${className} font-sans`} data-test={dataTest}>
                     {t(content)}
                 </CustomTag>
                 
-				: <CustomTag className={`${className} text-lg font-sans`} data-test={dataTest}>
+				: <CustomTag className={`${className} font-sans`} data-test={dataTest}>
                     {content}
                 </CustomTag>
 			}

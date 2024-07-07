@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { getCookie } from 'typescript-cookie';
-import { COMMON_CONSTANTS } from '../constants';
+import { AlertColor } from '@mui/material';
 
 interface CommonState {
     showPopupConfirm: boolean,
@@ -9,7 +8,7 @@ interface CommonState {
     showToastMessage: {
         show: boolean,
         message: string,
-        type: string,
+        type: AlertColor,
     },
     userCommonInfor: {
         role: string,
@@ -26,7 +25,7 @@ const initialState: CommonState = {
     showToastMessage: {
         show: false,
         message: '',
-        type: '',
+        type: 'success',
     },
     userCommonInfor: {
         role: '',
@@ -54,7 +53,7 @@ export const commonSlice = createSlice({
             state.showToastMessage = {
                 show: false,
                 message: '',
-                type: '',
+                type: 'success',
             };
         },
         setUserCommonInfor(state, action: PayloadAction<CommonState['userCommonInfor']>) {

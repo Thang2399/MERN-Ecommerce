@@ -1,17 +1,6 @@
-import { IResetPasswordErrorMessages, IResetPasswordForm } from '../types/resetPassword';
+import { IResetPasswordForm } from '@/types/resetPassword';
 
-export const defaultForgetPasswordForm: IResetPasswordForm = {
+export const defaultResetPasswordForm: IResetPasswordForm = {
     confirmPassword: '',
     newPassword: '',
-};
-
-export const defaultForgetPasswordErrorMessage: IResetPasswordErrorMessages = {
-    newPassword: {
-        message: '',
-        field: ''
-    },
-    confirmPassword: {
-        message: '',
-        field: ''
-    },
 };
