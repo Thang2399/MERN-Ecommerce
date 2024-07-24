@@ -13,7 +13,7 @@ import {
     Shipping_Method_Enum
 } from '@/constants/checkout';
 import * as yup from 'yup';
-import Button from '@/components/base/Button';
+import Button from '@/components/base/Button/Button';
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import { BsFillCartCheckFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';

@@ -13,7 +13,7 @@ import RenderFormField from '@/components/base/RenderFormField';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useTranslation } from 'react-i18next';
-import Button from '@/components/base/Button';
+import Button from '@/components/base/Button/Button';
 import { modalStyle } from '@/constants/modal';
 import { modalTypes } from '@/types/modal';
 import * as yup from 'yup';

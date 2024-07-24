@@ -64,7 +64,7 @@ export default function PublicLayout(): JSX.Element {
                     <Navbar/>
                 </div>
 
-                <div className={'w-full h-full p-24 pb-4 overflow-auto'}>
+                <div className={'w-full h-full p-24 pb-4 sm:p-4 overflow-auto'}>
                     <Outlet />
                 </div>
         </div>

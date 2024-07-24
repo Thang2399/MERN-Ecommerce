@@ -8,7 +8,7 @@ import { HTTP_STATUS } from '@/constants';
 
 import Typography from '../../../components/base/Typography';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../../components/base/Button';
+import Button from '../../../components/base/Button/Button';
 import BaseTable from '@/components/base/BaseTable';
 import { formatDateTime } from '@/utils/misc';
 import { DATE_TIME_FORMAT } from '@/constants/datetime';

@@ -1,5 +1,5 @@
 import { FcGoogle } from 'react-icons/fc';
-import Button from '@/components/base/Button';
+import Button from '@/components/base/Button/Button';
 import React from 'react';
 
 export default function LoginWithGoogleButton() {

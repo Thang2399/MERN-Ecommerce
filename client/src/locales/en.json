@@ -146,6 +146,12 @@
       "delete_cart": "Empty cart",
       "checkout": "Process to checkout",
       "items": "items"
+    },
+    "list_categories": {
+      "smart_phone": "Smartphone",
+      "sound": "Sound",
+      "laptop": "Laptop",
+      "smart_watch": "Smart Watch"
     }
   },
   "cart_page": {
@@ -440,5 +446,17 @@
         "edit_failed": "Edit address failed!"
       }
   }
+  },
+  "navbar": {
+    "list_categories": {
+      "label": "Categories",
+      "smartphone": "Smartphone",
+      "sound": "Sound",
+      "laptop" : "Laptop",
+      "smart_watch": "Smart Watch"
+    },
+    "list_stores": {
+      "label": "Check price at"
+    }
   }
 }

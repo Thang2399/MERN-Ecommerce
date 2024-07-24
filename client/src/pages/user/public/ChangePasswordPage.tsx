@@ -5,7 +5,7 @@ import { FIELD_TYPE } from '@/constants/field';
 import { Form, Formik } from 'formik';
 import { changeUserPasswordTypes } from '@/types/user';
 import RenderFormField from '@/components/base/RenderFormField';
-import Button from '@/components/base/Button';
+import Button from '@/components/base/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';

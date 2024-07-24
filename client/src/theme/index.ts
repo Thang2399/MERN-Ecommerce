@@ -1,7 +1,9 @@
 import { ThemeConfig } from 'antd/es/config-provider/context';
 
-const colorPrimary = '#131317';
-const colorSecondary = '#09173B';
+const colorPrimary = '#27374D';
+const colorSecondary = '#526D82';
+const colorDark = '#9DB2BF';
+const colorLight = '#DDE6ED';
 
 export const theme: ThemeConfig = {
   components: {
@@ -9,21 +11,25 @@ export const theme: ThemeConfig = {
       borderRadius: 8,
     },
     Typography: {
-      colorTextHeading: '#131317'
+      colorTextHeading: colorPrimary
     },
     Menu: {
-      colorBgBase: '#09173B',
-      colorSubItemBg: '#09173B'
+      colorBgBase: colorPrimary,
+      colorBgContainer: colorLight,
+      colorTextBase: 'white',
+      colorTextLabel: 'white',
+      colorSubItemBg: '#09173B',
+      borderRadius: 8,
     },
     Checkbox: {},
     Notification: {
-      colorBgBase: '#3A4562',
+      colorBgBase: colorPrimary,
       colorTextBase: '#fff'
     },
     Pagination: {
       borderRadius: 4,
       // colorText: '#f37f13'
-      colorBgBase: '#f37f13',
+      colorBgBase: colorPrimary,
       colorTextDisabled: '#8C8C92',
       colorTextBase: 'black',
       colorIcon: 'red',
@@ -37,6 +43,9 @@ export const theme: ThemeConfig = {
     Input: {
       borderRadius: 4,
       colorBorder: '#EAEAEA',
+    },
+    Tooltip: {
+      colorBgBase: '#526D82',
     }
 
   },

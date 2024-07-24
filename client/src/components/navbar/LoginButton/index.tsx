@@ -5,7 +5,7 @@ import { getCookie, setCookie } from 'typescript-cookie';
 import { COMMON_CONSTANTS } from '@/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShowToastMessage, setUserCommonInfor } from '@/store/common';
-import Button from '../../base/Button';
+import Button from '../../base/Button/Button';
 import { Avatar, Tooltip } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 import { RootState } from '@/store';
@@ -38,7 +38,7 @@ const logoutOptions = [
     }
 ];
 
-const TooltipOptionComponent: React.FC = () => {
+export const TooltipOptionComponent: React.FC = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -65,15 +65,15 @@ const TooltipOptionComponent: React.FC = () => {
 
     return (
         <>
-            <div className={'rounded-md'}>
+            <div className={'rounded-md bg-light'}>
                 {logoutOptions.map(item => {
                     return (
                         <div key={item.label}
-                             className={'cursor-pointer w-56 py-2 px-4 first:rounded-t-md last:rounded-b-md hover:bg-gray-300 hover:text-black border-b last:border-0'}
+                             className={'cursor-pointer w-full py-2 px-4 first:rounded-t-md last:rounded-b-md text-black hover:bg-dark hover:text-white border-b border-white last:border-0'}
                              onClick={() => onMenuItemClick(item.redirectPath, item.isLogoutItem)}
                             data-test={item.dataTest}
                         >
-                            <Typography content={item.label} className={'font-light capitalize'}/>
+                            <Typography content={item.label} className={'font-light capitalize text-base'}/>
                         </div>
                     );
                 })}
@@ -87,7 +87,6 @@ export default function LoginButton(): JSX.Element {
     const navigate = useNavigate();
     const accessToken = getCookie(COMMON_CONSTANTS.ACCESS_TOKEN);
     const userCommonInfor = useSelector((state: RootState) => state.commonReducer.userCommonInfor);
-    console.log('userCommonInfor', userCommonInfor);
 
     const handleLogin = () => {
         navigate('/login');
@@ -103,7 +102,7 @@ export default function LoginButton(): JSX.Element {
                             <Button
                                 handleClick={handleLogin}
                                 content={'home_page.login_icon.login'}
-                                buttonClassName={'bg-gray-800 h-full'}
+                                buttonClassName={'bg-dark h-full'}
                                 typoClassName={'text-lg font-light'}
                                 dataTest={'navigate-to-login-btn'}
                             />
@@ -115,7 +114,9 @@ export default function LoginButton(): JSX.Element {
                                 className={'cursor-pointer'}
                             >
                                 <Avatar sx={{ bgcolor: stringToColor(userCommonInfor.userName) }}>
-                                    <span data-test={'userNameText'}>{userCommonInfor.userName[0]}</span>
+                                    <span data-test={'userNameText'}>
+                                        {userCommonInfor.userName[0]}
+                                    </span>
                                 </Avatar>
                             </Tooltip>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Typography from '../base/Typography';
-import Button from '../base/Button';
+import Button from '../base/Button/Button';
 import services from '../../services';
 import { HTTP_STATUS } from '@/constants';
 import { useDispatch } from 'react-redux';

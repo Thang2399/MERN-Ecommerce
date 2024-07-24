@@ -6,7 +6,7 @@ import { singleItemTypes } from '@/types/home';
 
 import Typography from '../base/Typography';
 import Image from '../base/Image';
-import Button from '../base/Button';
+import Button from '../base/Button/Button';
 import { RootState } from '@/store';
 import { convertMoney } from '@/utils/misc';
 import { COMMON_CONSTANTS } from '@/constants';
@@ -35,7 +35,9 @@ const SingleItem: React.FC<Props> = ({ item }) => {
 
     return (
         <div
-            className={'w-full h-full p-4 bg-white cursor-pointer rounded-xl border'}>
+            className={'w-full h-full p-4 bg-white cursor-pointer rounded-xl border'}
+        onClick={() => handleViewDetailItem(item._id)}
+        >
             <div>
                 <div className={'w-full'}>
                     <Image imgUrl={item.imageUrl}/>
@@ -46,7 +48,7 @@ const SingleItem: React.FC<Props> = ({ item }) => {
                     className={'text-xl font-medium mt-3 text-center'}
                     needTranslate={false}
                 />
-                <div className={'flex mt-3'}>
+                <div className={'flex mt-3 text-xl'}>
                     <RenderCurrency currency={item.currency} price={item.price} />
                 </div>
             </div>
@@ -55,14 +57,14 @@ const SingleItem: React.FC<Props> = ({ item }) => {
                 <Button
                     handleClick={() => addToCart(item)}
                     content={'home_page.add_to_cart'}
-                    buttonClassName={'bg-black w-3/5 mr-1'}
+                    buttonClassName={'bg-primary w-3/5 mr-1'}
                     typoClassName={'text-white font-light'}
                 />
                 <Button
                     handleClick={() => handleViewDetailItem(item._id)}
                     content={'home_page.view_detail'}
-                    buttonClassName={'bg-gray-400 w-2/5'}
-                    typoClassName={'text-white font-light'}
+                    buttonClassName={'bg-light w-2/5'}
+                    typoClassName={'text-black font-light'}
                 />
             </div>
         </div>

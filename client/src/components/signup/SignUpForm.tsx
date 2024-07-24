@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Typography from '../base/Typography';
-import Button from '../base/Button';
+import Button from '../base/Button/Button';
 
 import { setCookie } from 'typescript-cookie';
 import services from '../../services';

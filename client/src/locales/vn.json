@@ -144,6 +144,12 @@
       "delete_cart": "Xoá giỏ hàng",
       "checkout": "Tiến hành thanh toán",
       "items": "sản phẩm"
+    },
+    "list_categories": {
+      "smart_phone": "Điện thoại",
+      "sound": "Âm thanh",
+      "laptop": "Laptop",
+      "smart_watch": "Đồng hồ"
     }
   },
   "cart_page": {
@@ -455,5 +461,13 @@
         "edit_failed": "Chỉnh sửa địa chỉ thất bại!"
       }
   }
+  },
+  "navbar": {
+    "list_categories": {
+      "label": "Danh mục"
+    },
+    "list_stores": {
+      "label": "Xem giá tại"
+    }
   }
 }

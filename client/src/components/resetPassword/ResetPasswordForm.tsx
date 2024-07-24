@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Typography from '../base/Typography';
-import Button from '../base/Button';
+import Button from '../base/Button/Button';
 import { IResetPasswordFormPayload } from '@/types/resetPassword';
 import { defaultResetPasswordForm } from '@/form/resetPassword';
 import { useDispatch } from 'react-redux';

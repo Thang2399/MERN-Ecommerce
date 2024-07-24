@@ -13,7 +13,7 @@ import { changeQuantityItem, removeItemFromCart, getTotalCartPrice, deleteCart }
 import { convertMoney } from '@/utils/misc';
 import { COMMON_CONSTANTS } from '@/constants';
 import { REDUCER_HOME_ACTION } from '@/constants/reducer';
-import Button from '../base/Button';
+import Button from '../base/Button/Button';
 import RenderCurrency from '@/components/base/RenderCurrency';
 
 interface ICart {

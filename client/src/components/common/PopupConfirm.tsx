@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '../base/Typography';
-import Button from '../base/Button';
+import Button from '../base/Button/Button';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 interface Props {

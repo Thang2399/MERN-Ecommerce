@@ -9,7 +9,7 @@ import { HTTP_STATUS } from '@/constants';
 
 import Typography from '../base/Typography';
 import Image from '../base/Image';
-import Button from '../base/Button';
+import Button from '../base/Button/Button';
 import { RootState } from '@/store';
 
 import Box from '@mui/material/Box';

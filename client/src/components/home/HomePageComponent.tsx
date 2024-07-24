@@ -50,7 +50,6 @@ export default function HomePageComponent(): JSX.Element {
             </div>
 
             {showQuickView && (<QuickViewItem />)}
-
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CreateEditAddressModal from '@/components/myAddress/myAddressModal/CreateEditMyAddressModal';
-import Button from '@/components/base/Button';
+import Button from '@/components/base/Button/Button';
 import Typography from '@/components/base/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShowLoadingBtn, setShowLoadingIcon, setShowToastMessage } from '@/store/common';

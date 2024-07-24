@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import Typography from '../base/Typography';
 import * as yup from 'yup';
-import Button from '../base/Button';
+import Button from '../base/Button/Button';
 
 import { defaultLoginFormTypes } from '@/types/login';
 import { defaultLoginForm } from '@/form/login';

@@ -10,7 +10,7 @@ import { Form, Formik, FormikErrors } from 'formik';
 import { FieldProps } from '@/types/field';
 import RenderFormField from '@/components/base/RenderFormField';
 import { gendersOptions } from '@/constants/user';
-import Button from '@/components/base/Button';
+import Button from '@/components/base/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { formatDateTime } from '@/utils/misc';
 import * as yup from 'yup';

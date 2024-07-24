@@ -1,8 +1,10 @@
 import React from 'react';
-import Typography from './Typography';
+import Typography from '../Typography';
 import ReactLoading from 'react-loading';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
+import MuiButton from '@mui/material/Button';
+import './Button.scss';
 
 type Props = {
 	content: string;
@@ -12,7 +14,8 @@ type Props = {
 	handleClick?: (params?: any) => any;
 	dataTest?: string;
 	btnType?: 'submit' | 'button' | 'reset' | undefined;
-	icon?: any
+	icon?: any;
+	btnVariant?: 'text' | 'outlined' | 'contained' | undefined
 };
 
 const Button: React.FC<Props> = ({
@@ -23,7 +26,8 @@ const Button: React.FC<Props> = ({
 	handleClick,
 	dataTest,
 	btnType = 'button',
-	icon
+	icon,
+	btnVariant = 'contained'
 }) => {
 	const showLoadingBtn = useSelector((state: RootState) => state.commonReducer.showLoadingBtn);
 	const onClick = () => {
@@ -33,13 +37,14 @@ const Button: React.FC<Props> = ({
 	};
 
 	return (
-		<>
-			<button
+		<div className={`base-button-container w-full rounded ${buttonClassName}`}>
+			<MuiButton
+				variant={btnVariant}
 				type={btnType}
-				className={`py-2 h-12 px-5 w-full rounded-lg disabled:cursor-not-allowed disabled:opacity-50 ${buttonClassName}`}
 				onClick={() => onClick()}
 				data-test={dataTest}
 				disabled={showLoadingBtn}
+				className={'w-full rounded disabled:cursor-not-allowed disabled:opacity-50 hover:backdrop-opacity-20'}
 			>
 				<div className={`flex justify-center ${showLoadingBtn ? 'items-center' : ''}`}>
 					{showLoadingBtn && (
@@ -61,13 +66,13 @@ const Button: React.FC<Props> = ({
 					/>
 				</div>
 
-			</button>
-		</>
+			</MuiButton>
+		</div>
 	);
 };
 
 Button.defaultProps = {
-	buttonClassName: 'bg-gray-400',
+	buttonClassName: 'bg-primary',
 	dataTest: ''
 };
 
