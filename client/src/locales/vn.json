@@ -464,7 +464,11 @@
   },
   "navbar": {
     "list_categories": {
-      "label": "Danh mục"
+      "label": "Danh mục",
+      "smartphone": "Điện thoại",
+      "sound": "Âm thanh",
+      "laptop" : "Laptop",
+      "smart_watch": "Đồng hồ"
     },
     "list_stores": {
       "label": "Xem giá tại"
